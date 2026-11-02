@@ -143,7 +143,8 @@ Revisão completa do PDF, dos fontes, dos oito `.drawio`, dos 19 protótipos, do
 ### Bloqueante
 
 - [x] Nota 2 da Seção III: trocada em 02/11/2026 por `² Disponível em: https://github.com/joaozanini/tcc1 (pasta Especificacao). Acesso em: 2 nov. 2026.` ([III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologias.md), linha 59). O repositório é o remoto `origin` deste Git; entraram um README na raiz e as 28 páginas dos `.drawio` em PNG em `Especificacao/imagens-dos-diagramas`. Artigo montado, LaTeX, zip do Overleaf e Word regenerados
-- [ ] Fazer o `git push` para `origin` e deixar o repositório público; sem isso o link da nota 2 não abre
+- [x] `git push` feito em 02/11/2026: `origin/main` tem os 26 commits, com um commit de limpeza dos temporários do Edge por cima do histórico que já estava no GitHub (um push forçado deixaria o histórico mais enxuto, mas não foi usado)
+- [ ] Deixar o repositório público: hoje está privado (a API do GitHub responde 404 sem autenticação), e o link da nota 2 só abre para a banca depois disso. No GitHub: Settings, General, Danger Zone, Change repository visibility
 - [x] PDF recompilado em 02/11/2026 depois de reinstalar o TinyTeX (seção 9): 13 páginas, sem erro; figura do fluxo (hoje Figura 4) centrada e com texto maior, Tabela 1 com "Parcial (projetos no Pavlovia)" (p. 8), nota 2 com o link (p. 8), 65 referências em ordem (p. 12 e 13), autor nos metadados
 
 ### Importantes
