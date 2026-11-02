@@ -110,11 +110,17 @@ O modelo de processo escolhido para conduzir o trabalho foi o Scrum [43], adapta
 
 O desenvolvimento do projeto foi dividido em duas etapas: modelagem, realizada na primeira parte do Trabalho de Conclusão de Curso (TCC1) e apresentada neste documento, e desenvolvimento, prevista para a segunda parte (TCC2). Na etapa de modelagem, houve a elicitação dos requisitos e a elaboração dos diagramas de casos de uso, das histórias de usuário, do diagrama de classes, do diagrama de estados da sessão, do diagrama lógico-relacional do banco de dados, dos diagramas de sequência dos seis fluxos principais, dos diagramas de processo de negócio do experimento, como é conduzido hoje e com o NeuroSight, do diagrama macro do fluxo de uma sessão, do diagrama de arquitetura e dos protótipos de tela: 14 do sistema web e 5 do aplicativo do óculos. A notação dos modelos foi a definida pela *Unified Modeling Language* (UML) [46], com exceção dos processos de negócio, descritos em *Business Process Model and Notation* (BPMN) [47]. Os diagramas foram feitos no draw.io [48], e os protótipos, em HTML (*HyperText Markup Language*) e CSS (*Cascading Style Sheets*).
 
-A Figura 1 apresenta, como exemplo, o diagrama de casos de uso das sessões, que reúne o fluxo principal do sistema: o pesquisador cria a sessão, a partir de um modelo ou de forma personalizada, envia-a ao óculos, acompanha o seu estado e a inicia. Ao todo, foram elaborados doze diagramas, com 60 casos de uso: um diagrama com os atores e um para cada grupo de requisitos. Os atores principais são os três perfis de usuário, que são cumulativos: o pesquisador, que cadastra pacientes, estímulos, modelos e sessões, inicia as sessões e analisa os dados; o administrador, que, além disso, gerencia os usuários, os óculos, a visibilidade das sessões e a auditoria; e o proprietário, que criou o *tenant* e define quem é administrador. Completam o modelo o visitante, que conhece o sistema e cria um *tenant*, e o paciente, ator secundário que usa o óculos durante a sessão, mas não acessa o sistema. A documentação completa está disponível on-line[^2].
+Ao todo, foram elaborados doze diagramas de casos de uso, com 60 casos de uso: um diagrama com os atores e um para cada grupo de requisitos. A Figura 1 apresenta os atores e a hierarquia dos perfis. O usuário é um ator abstrato, que representa qualquer pessoa com conta. Dele herda o pesquisador, que cadastra pacientes, estímulos, modelos e sessões, inicia as sessões e analisa os dados; do pesquisador herda o administrador, que, além disso, gerencia os usuários, os óculos, a visibilidade das sessões e a auditoria; e do administrador herda o proprietário, que criou o *tenant* e define quem é administrador. A generalização entre os atores representa os perfis cumulativos: quem herda tem também os casos de uso do ator de quem herda. Completam o modelo o visitante, que conhece o sistema e cria um *tenant*, e o paciente, ator secundário que usa o óculos durante a sessão, mas não acessa o sistema. O aplicativo do óculos faz parte do NeuroSight e, por isso, não aparece como ator. A Figura 2 apresenta, como exemplo, o diagrama de casos de uso das sessões, que reúne o fluxo principal do sistema: o pesquisador cria a sessão, a partir de um modelo ou de forma personalizada, envia-a ao óculos, acompanha o seu estado e a inicia. Só o pesquisador aparece nesse diagrama porque o administrador e o proprietário herdam os casos de uso dele. A documentação completa está disponível on-line[^2].
 
-**FIGURA 1** - Exemplo de diagrama de casos de uso - Sessões.
+**FIGURA 1** - Atores do NeuroSight e hierarquia dos perfis.
 
-![Diagrama de casos de uso UC07 – Sessões](figuras/Figura-1-casos-de-uso-UC07-Sessoes.png)
+![Diagrama de casos de uso UC00 – Atores e perfis](figuras/Figura-1-casos-de-uso-UC00-Atores.png)
+
+FONTE: O autor (2026).
+
+**FIGURA 2** - Exemplo de diagrama de casos de uso - Sessões.
+
+![Diagrama de casos de uso UC07 – Sessões](figuras/Figura-2-casos-de-uso-UC07-Sessoes.png)
 
 FONTE: O autor (2026).
 
@@ -150,25 +156,25 @@ Esta seção apresenta o resultado da etapa de modelagem: a arquitetura proposta
 
 ### A. Arquitetura do Sistema
 
-A arquitetura geral do sistema é representada pela Figura 2. Conforme apresentado na Tabela 2, ela se baseia em tecnologias atuais e amplamente utilizadas, como Unreal Engine, NestJS, Next.js e PostgreSQL. O sistema tem três partes: o aplicativo de coleta, executado no Meta Quest Pro; o sistema web, acessado pelo navegador; e o servidor, que reúne a interface de programação de aplicações (API, do inglês *Application Programming Interface*), o banco de dados, os arquivos e o processamento das sessões.
+A arquitetura geral do sistema é representada pela Figura 3. Conforme apresentado na Tabela 2, ela se baseia em tecnologias atuais e amplamente utilizadas, como Unreal Engine, NestJS, Next.js e PostgreSQL. O sistema tem três partes: o aplicativo de coleta, executado no Meta Quest Pro; o sistema web, acessado pelo navegador; e o servidor, que reúne a interface de programação de aplicações (API, do inglês *Application Programming Interface*), o banco de dados, os arquivos e o processamento das sessões.
 
-**FIGURA 2** - Arquitetura do NeuroSight.
+**FIGURA 3** - Arquitetura do NeuroSight.
 
-![Arquitetura do NeuroSight](figuras/Figura-2-arquitetura.png)
+![Arquitetura do NeuroSight](figuras/Figura-3-arquitetura.png)
 
 FONTE: O autor (2026).
 
-Na Figura 2, observa-se o aplicativo de coleta, desenvolvido a partir do protótipo da IC, que baixa a sessão e os estímulos, apresenta os estímulos ao paciente, coleta o olhar e as expressões faciais, captura os quadros da cena e envia os dados ao servidor. O sistema web é a interface dos pesquisadores e dos administradores e não contém regras de negócio. Essas regras ficam na API, que também é responsável pela autenticação, pelo isolamento entre os grupos de pesquisa, pelo registro de auditoria e pela entrega dos arquivos. A API acessa o banco de dados por meio do Prisma e guarda os arquivos (estímulos, dados brutos das sessões, quadros e vídeos) no disco do servidor, atrás de uma interface que permite trocar o disco por um serviço de armazenamento compatível com o Amazon S3 sem alterar o restante do sistema. O processamento é executado em segundo plano, a partir de uma fila de tarefas mantida no próprio banco pela biblioteca pg-boss [61]: ele importa as amostras de cada sessão para o banco e monta o vídeo com o FFmpeg. Por fim, um serviço externo de e-mail envia as mensagens de confirmação de cadastro, de convite e de redefinição de senha.
+Na Figura 3, observa-se o aplicativo de coleta, desenvolvido a partir do protótipo da IC, que baixa a sessão e os estímulos, apresenta os estímulos ao paciente, coleta o olhar e as expressões faciais, captura os quadros da cena e envia os dados ao servidor. O sistema web é a interface dos pesquisadores e dos administradores e não contém regras de negócio. Essas regras ficam na API, que também é responsável pela autenticação, pelo isolamento entre os grupos de pesquisa, pelo registro de auditoria e pela entrega dos arquivos. A API acessa o banco de dados por meio do Prisma e guarda os arquivos (estímulos, dados brutos das sessões, quadros e vídeos) no disco do servidor, atrás de uma interface que permite trocar o disco por um serviço de armazenamento compatível com o Amazon S3 sem alterar o restante do sistema. O processamento é executado em segundo plano, a partir de uma fila de tarefas mantida no próprio banco pela biblioteca pg-boss [61]: ele importa as amostras de cada sessão para o banco e monta o vídeo com o FFmpeg. Por fim, um serviço externo de e-mail envia as mensagens de confirmação de cadastro, de convite e de redefinição de senha.
 
 Os componentes do servidor rodam em contêineres, orquestrados pelo Docker Compose, com um *proxy* reverso responsável pela conexão segura (HTTPS, do inglês *Hypertext Transfer Protocol Secure*). Assim, o sistema pode ser instalado em um servidor virtual privado (VPS, do inglês *Virtual Private Server*) contratado, de preferência hospedado no Brasil, ou em um servidor da própria instituição de pesquisa. A escolha cabe ao protocolo de cada pesquisa, aprovado pelo CEP, já que o art. 13 da LGPD prevê que os dados de estudos em saúde pública sejam tratados dentro do órgão de pesquisa [12]. O banco de dados e os arquivos terão cópia de segurança diária. Não há comunicação direta entre o sistema web e o óculos: as duas partes falam apenas com a API, como detalhado a seguir.
 
 *1) Multi-tenant:* Cada instituição ou grupo de pesquisa cadastrado no NeuroSight corresponde a um *tenant*, e uma única instalação atende a todos. Os dados ficam em um banco único, em que toda tabela com dados de um *tenant* tem a coluna `tenant_id`. O isolamento é feito em duas camadas. Na primeira, a API filtra cada consulta pelo *tenant* do usuário, informado no *token* de acesso. Na segunda, o PostgreSQL aplica em cada tabela uma política de *Row-Level Security* (RLS) [56], que só devolve as linhas do *tenant* definido para a transação em curso. Assim, um filtro esquecido no código não expõe dados de outro grupo. Como a checagem de chaves estrangeiras não passa pelo RLS, as relações entre as tabelas usam chaves compostas com o *tenant*, o que impede, por exemplo, que uma sessão aponte para o paciente de outro grupo. A API acessa o banco com um papel que não pode ignorar o RLS; um segundo papel, que pode, é usado apenas nas operações feitas antes de existir um *tenant* no contexto, como o autocadastro, o *login* e o pareamento dos óculos. Os arquivos também são separados em pastas por *tenant* e só são entregues pela API, depois da checagem de permissão.
 
-*2) Comunicação entre sistema web, servidor e óculos:* O sistema web e o aplicativo do óculos se comunicam apenas com a API, por HTTPS, no estilo REST (*Representational State Transfer*). A API será documentada em OpenAPI [62], que serve de contrato entre o servidor e o aplicativo. A Figura 3 resume o fluxo de uma sessão.
+*2) Comunicação entre sistema web, servidor e óculos:* O sistema web e o aplicativo do óculos se comunicam apenas com a API, por HTTPS, no estilo REST (*Representational State Transfer*). A API será documentada em OpenAPI [62], que serve de contrato entre o servidor e o aplicativo. A Figura 4 resume o fluxo de uma sessão.
 
-**FIGURA 3** - Fluxo de uma sessão no NeuroSight.
+**FIGURA 4** - Fluxo de uma sessão no NeuroSight.
 
-![Fluxo de uma sessão no NeuroSight](figuras/Figura-3-fluxo-de-uma-sessao.png)
+![Fluxo de uma sessão no NeuroSight](figuras/Figura-4-fluxo-de-uma-sessao.png)
 
 FONTE: O autor (2026).
 
