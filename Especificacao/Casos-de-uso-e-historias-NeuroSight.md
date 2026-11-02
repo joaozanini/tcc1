@@ -482,7 +482,7 @@ A herança representa os perfis cumulativos (RN05): cada perfil faz tudo o que o
 | Caso de uso | Ator | Relações | Requisitos |
 |---|---|---|---|
 | UC11.1 Consultar auditoria | Administrador | — | RF60 |
-| UC11.2 Registrar ações automaticamente | — | incluído pelos casos de uso que criam, alteram, excluem ou visualizam dados | RF59 |
+| UC11.2 Registrar ações automaticamente | — | incluído pelos casos de uso que criam, alteram, excluem ou visualizam dados (no diagrama, UC07.6 aparece como exemplo) | RF59 |
 
 #### HU11.1 – Consultar auditoria
 **Sendo** administrador, **quero** consultar os registros de auditoria, filtrando por usuário, ação e período, **para** saber quem fez o quê e quando.
