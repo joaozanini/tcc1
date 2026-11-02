@@ -88,13 +88,13 @@ if ($tem_resumo) {
 
 my @falta;
 push @falta, 'Resumo e Abstract' unless $tem_resumo;
-push @falta, 'link da documentação (nota 2)';
 my $falta = @falta > 1 ? join(', ', @falta[0 .. $#falta - 1]) . ' e ' . $falta[-1] : $falta[0];
+my $pendencias = @falta ? "**Ainda falta:** $falta. " : '';
 my $data = strftime('%d/%m/%Y', localtime);
 
 my $cab = "# Artigo do TCC1 – NeuroSight (versão montada)\n\n"
   . "Versão de trabalho de $data, montada a partir dos arquivos das Seções I a IV.A desta pasta. As citações já estão com a numeração final, e a lista de referências está no fim. Para mudar o texto, edite o arquivo da seção e monte de novo com `perl Texto-TCC/montar-artigo.pl`, no Git Bash, a partir da pasta do TCC. Para atualizar a versão de entrega, no modelo LaTeX do curso, rode em seguida `perl Texto-TCC/gerar-latex.pl --pdf` (grava a pasta Texto-TCC/LaTeX, o .zip para o Overleaf e o PDF compilado); para a versão em Word, `powershell -ExecutionPolicy Bypass -File .\\Texto-TCC\\gerar-docx.ps1`.\n\n"
-  . "**Ainda falta:** $falta. As Seções IV.B, V e VI ficam para o TCC2.\n\n"
+  . "${pendencias}As Seções IV.B, V e VI ficam para o TCC2.\n\n"
   . "---\n\n"
   . "# NeuroSight: sistema de rastreamento ocular e emocional em realidade virtual para estudo e apoio ao diagnóstico de pessoas com distúrbios da consciência\n\n"
   . "João Vitor Zanini Pedro\n\n"

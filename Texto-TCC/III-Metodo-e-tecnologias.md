@@ -56,7 +56,7 @@ FONTE: O autor (2026).
 
 ¹ BRAWERMAN, A. Levantamento de requisitos do NeuroSight. Curitiba, 2026. Informação verbal – Reuniões de orientação.
 
-² [LINK DA DOCUMENTAÇÃO COMPLETA]
+² Disponível em: https://github.com/joaozanini/tcc1 (pasta Especificacao). Acesso em: 2 nov. 2026.
 
 ---
 
@@ -90,7 +90,7 @@ Os endereços responderam em 26/10/2026. As páginas da Meta só abrem no navega
 ## O que conferir antes de passar para o modelo
 
 1. **Nota ¹:** o nome do orientador. Se for o mesmo da IC, fica "BRAWERMAN, A.".
-2. **Nota ²:** o link da documentação completa, quando você decidir onde ela vai ficar.
+2. **Nota ²:** resolvida em 02/11/2026 com o repositório https://github.com/joaozanini/tcc1 (pasta Especificacao). O link só abre depois do push e com o repositório público.
 3. **Revisões com o orientador:** o texto diz que o orientador acompanha o andamento nas revisões das *sprints*. Ajuste se a rotina de vocês for outra.
 4. **Prova de conceito do rastreamento facial:** se ela levar a trocar o Unreal pelo Unity (plano B), mude o parágrafo das tecnologias e a Tabela 2.
 5. **Figura 1:** a imagem saiu da página UC07 de [Casos-de-uso-NeuroSight.drawio](../Especificacao/Casos-de-uso-NeuroSight.drawio). Se mudar o diagrama, exporte a página de novo no draw.io.
