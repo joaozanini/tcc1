@@ -239,6 +239,7 @@ my $tex = <<'TEX';
 %%%% NÃO MEXER NESTES ARQUIVOS
 %%%% Definições/Estilos customizadas para o TADS, Mais capa
 \input{tads.tex}
+\hypersetup{pdfauthor={%%AUTOR%%}}
 
 % Figura na largura das duas colunas, com legenda e fonte como as do figura do tads.tex
 \newenvironment{figuralarga}[4][!t]
