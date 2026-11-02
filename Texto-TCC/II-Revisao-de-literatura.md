@@ -60,9 +60,9 @@ Os estudos apresentados na Subseção B usaram instrumentos montados para cada p
 
 O iMotions é uma plataforma comercial [IMOTIONS-PRICE] que analisa expressões faciais pela *webcam* ou por vídeo, com os algoritmos AFFDEX e Realeyes [IMOTIONS-FEA], e permite definir a ordem e a duração dos estímulos [IMOTIONS-SB]. O Meta Quest Pro passou a ser aceito em 2026, mas apenas pela importação de arquivos gravados no óculos, sem menção ao rastreamento facial do equipamento [IMOTIONS-NEWS]. Os dados ficam no computador do experimento, e o cumprimento do regulamento europeu de proteção de dados (GDPR) cabe ao cliente [IMOTIONS-TOS]. O Tobii Pro Lab, do fabricante de rastreadores Tobii, é um programa comercial para gravar e analisar o olhar, com mapas de calor, áreas de interesse e estímulos organizados em uma linha do tempo, e os projetos ficam no computador local [TOBII-PROLAB]. Foi o programa usado por Johansson et al. para rever as gravações dos pacientes [JOHANSSON], mas não foram encontrados suporte atual a óculos de RV nem análise de expressões faciais.
 
-O SightLab VR Pro, da WorldViz, é um complemento comercial do ambiente Vizard para experimentos em RV [SIGHTLAB], [WORLDVIZ-PRICE]. É a ferramenta mais próxima do NeuroSight no óculos: lê o olhar e os parâmetros de expressão facial do Meta Quest Pro [SIGHTLAB-FACE], apresenta sequências de imagens e vídeos com troca por tempo [SIGHTLAB-MEDIA] e gera mapas de calor e reproduções das sessões [SIGHTLAB]. Os dados, porém, ficam no computador do experimento, e não foram encontrados recursos de contas por grupo de pesquisa nem de proteção de dados. O Cognitive3D é uma plataforma de análise para aplicações de RV, vendida como serviço por assinatura [COG3D-PRICING]. Reproduz as sessões em 3D, com o trajeto do olhar e mapas de calor, e organiza os dados em organizações, projetos e participantes, com papéis de acesso [COG3D-CONCEPTS]. Também declara conformidade com o GDPR [COG3D-DPA] e oferece registro de auditoria no plano mais caro [COG3D-PRICING], mas não foram encontrados recursos para montar a sequência de estímulos nem suporte às expressões faciais.
+O SightLab VR Pro, da WorldViz, é um complemento comercial do ambiente Vizard para experimentos em RV [SIGHTLAB], [WORLDVIZ-PRICE]. É a ferramenta mais próxima do NeuroSight no óculos: lê o olhar e os parâmetros de expressão facial do Meta Quest Pro [SIGHTLAB-FACE], apresenta sequências de imagens e vídeos com troca por tempo [SIGHTLAB-MEDIA] e gera mapas de calor e reproduções das sessões [SIGHTLAB]. Os dados, porém, ficam no computador do experimento, e não foram encontrados recursos de contas por grupo de pesquisa nem de proteção de dados. O Cognitive3D é uma plataforma de análise para aplicações de RV, vendida como serviço por assinatura [COG3D-PRICING]. Reproduz as sessões em 3D, com o trajeto do olhar e mapas de calor, e organiza os dados em organizações, projetos e participantes, com papéis de acesso [COG3D-CONCEPTS]. Lê o olhar do Meta Quest Pro, mas a documentação lista o aparelho entre os dispositivos em fim de vida, que o fabricante deixou de vender e que podem não ter sido testados recentemente [COG3D-HARDWARE]. Também declara conformidade com o GDPR [COG3D-DPA] e oferece registro de auditoria no plano mais caro [COG3D-PRICING], mas não foram encontrados recursos para montar a sequência de estímulos nem suporte às expressões faciais.
 
-O PsychoPy é um programa gratuito e de código aberto para experimentos de psicologia [PSYCHOPY-ABOUT], que define o início e a duração de cada estímulo [PSYCHOPY-TIMING] e se comunica com rastreadores oculares [PSYCHOPY-ET]. O suporte a RV, contudo, limita-se ao Oculus Rift [PSYCHOPY-RIFT], e a análise de expressões faciais só existe nos experimentos on-line, pela *webcam* [PSYCHOPY-ONLINE]. A Tabela 1 resume a comparação.
+O PsychoPy é um programa gratuito e de código aberto para experimentos de psicologia [PSYCHOPY-ABOUT], que define o início e a duração de cada estímulo [PSYCHOPY-TIMING] e se comunica com rastreadores oculares [PSYCHOPY-ET]. O suporte a RV, contudo, limita-se ao Oculus Rift [PSYCHOPY-RIFT], e a análise de expressões faciais só existe nos experimentos on-line, pela *webcam* [PSYCHOPY-ONLINE]. Esses experimentos ficam em projetos da plataforma Pavlovia, privados por padrão e compartilhados com outros usuários ou grupos por convite, com os papéis de acesso do GitLab [PSYCHOPY-PAVLOVIA]. A Tabela 1 resume a comparação.
 
 **TABELA 1** - Comparação entre o NeuroSight e ferramentas semelhantes.
 
@@ -72,7 +72,7 @@ O PsychoPy é um programa gratuito e de código aberto para experimentos de psic
 | Tobii Pro Lab | Comercial | Não encontrado | Não encontrado | Sim | Não (dados locais) | Não encontrado |
 | SightLab VR Pro | Comercial | Sim | Valores do óculos | Sim | Não (dados locais) | Não encontrado |
 | Cognitive3D | Assinatura | Sim (em fim de vida) | Não encontrado | Não encontrado | Sim | Só no plano Enterprise |
-| PsychoPy | Gratuita | Não (só Oculus Rift) | Pela *webcam*, só on-line | Sim | Parcial (Pavlovia) | Não encontrado |
+| PsychoPy | Gratuita | Não (só Oculus Rift) | Pela *webcam*, só on-line | Sim | Parcial (projetos no Pavlovia) | Não encontrado |
 | NeuroSight | A definir | Sim | Valores do óculos | Sim | Sim | Sim |
 
 FONTE: O autor (2026), com base na documentação das ferramentas.
@@ -102,7 +102,7 @@ Na ordem em que aparecem no texto, no formato do modelo. As chaves já usadas na
 | [IMOTIONS-SB] | [25] | | [PSYCHOPY-RIFT] | [39] |
 | [IMOTIONS-NEWS] | [26] | | [PSYCHOPY-ONLINE] | [40] |
 
-A numeração foi conferida por script, pela ordem da primeira citação na Introdução e nesta seção. Os endereços responderam em 26/10/2026; os da Meta só abrem no navegador.
+A numeração foi conferida por script, pela ordem da primeira citação na Introdução e nesta seção. Os endereços responderam em 26/10/2026; os da Meta só abrem no navegador. Em 02/11/2026 entraram [COG3D-HARDWARE] e [PSYCHOPY-PAVLOVIA] na Subseção F, o que desloca a numeração a partir de [36]; a numeração válida é a do artigo montado.
 
 **Estudos e normas**
 
@@ -135,11 +135,13 @@ A numeração foi conferida por script, pela ordem da primeira citação na Intr
 - **[COG3D-PRICING]** COGNITIVE3D. *XR Analytics Platform Pricing*. Disponível em: https://cognitive3d.com/pricing/. Acesso em: 26 out. 2026.
 - **[COG3D-CONCEPTS]** COGNITIVE3D. *Concepts*: Cognitive3D documentation. Disponível em: https://docs.cognitive3d.com/dashboard/concepts/. Acesso em: 26 out. 2026.
 - **[COG3D-DPA]** COGNITIVE3D. *Data Processing Addendum*. Disponível em: https://cognitive3d.com/dpa/. Acesso em: 26 out. 2026.
+- **[COG3D-HARDWARE]** COGNITIVE3D. *Supported Hardware*: Cognitive3D documentation. Disponível em: https://docs.cognitive3d.com/hardware/. Acesso em: 2 nov. 2026.
 - **[PSYCHOPY-ABOUT]** PSYCHOPY. *About PsychoPy*. Disponível em: https://psychopy.org/about/index.html. Acesso em: 26 out. 2026.
 - **[PSYCHOPY-TIMING]** PSYCHOPY. *Defining the onset/duration of components*. Disponível em: https://psychopy.org/builder/startStop.html. Acesso em: 26 out. 2026.
 - **[PSYCHOPY-ET]** PSYCHOPY. *Communicating with an eyetracker*. Disponível em: https://psychopy.org/hardware/eyeTracking.html. Acesso em: 26 out. 2026.
 - **[PSYCHOPY-RIFT]** PSYCHOPY. *psychopy.visual.Rift*. Disponível em: https://psychopy.org/api/visual/rift.html. Acesso em: 26 out. 2026.
 - **[PSYCHOPY-ONLINE]** PSYCHOPY. *Advanced features for online experiments*. Disponível em: https://psychopy.org/online/advanced-features-online.html. Acesso em: 26 out. 2026.
+- **[PSYCHOPY-PAVLOVIA]** PSYCHOPY. *Create a Pavlovia project*. Disponível em: https://psychopy.org/online/create-pavlovia-project.html. Acesso em: 2 nov. 2026.
 
 ## O que conferir antes de passar para o modelo
 
