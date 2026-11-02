@@ -151,7 +151,7 @@ Revisão completa do PDF, dos fontes, dos oito `.drawio`, dos 19 protótipos, do
 
 - [x] Figura do fluxo (Figura 3 na época, hoje Figura 4): nota sem "(SD02)" no `.drawio` e PNG regenerado em 02/11/2026 com recorte e margens iguais às das outras figuras (renderizado com o visualizador do diagrams.net no Edge, que reproduziu a Figura 2 pixel a pixel no teste). Copiado para `Texto-TCC/figuras` e `Texto-TCC/LaTeX/figuras`; o PDF só mostra a figura nova depois de recompilado
 - [x] Tabela 1: a II.F ganhou uma frase para o Cognitive3D (o Quest Pro está na lista de dispositivos em fim de vida da documentação, nova referência [COG3D-HARDWARE]) e outra para o PsychoPy (projetos privados no Pavlovia, compartilhados por convite com os papéis do GitLab, nova referência [PSYCHOPY-PAVLOVIA]); a célula virou "Parcial (projetos no Pavlovia)" (02/11/2026)
-- [ ] Licença do NeuroSight na Tabela 1 continua "A definir": decisão sua. O protótipo da IC no GitHub não tem arquivo de licença, então "código aberto" ainda não está formalizado
+- [x] Licença do NeuroSight na Tabela 1: mantida como "A definir" por decisão do autor em 02/11/2026 (o protótipo da IC no GitHub não tem arquivo de licença, então código aberto ainda não está formalizado)
 - [x] BPMN do experimento: o evento de mensagem "Comando recebido" saiu, e "Enviar o comando de início" liga direto a "Executar a sessão…"; o `.md` foi ajustado (02/11/2026)
 - [x] BPMN do experimento: "Falha registrada" virou evento de fim do tipo terminar, que encerra também o ramo do pesquisador que ficaria preso no join paralelo (02/11/2026)
 - [x] UC11: UC07.6 "Iniciar sessão" entrou em cinza tracejado com «include» para UC11.2, e a tabela de casos de uso do `.md` registra o exemplo (02/11/2026)
