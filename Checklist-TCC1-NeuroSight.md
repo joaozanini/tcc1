@@ -16,7 +16,7 @@ As decisões técnicas e os motivos de cada uma estão em [Decisoes-tecnicas-Neu
 - [x] Quest Pro disponível: o grupo tem o aparelho usado na IC
 - [x] Definir de onde vêm os requisitos: literatura, protótipo da IC e reuniões com o orientador (nota de informação verbal na Seção III)
 - [x] Definir o que o pesquisador pode editar nos dados registrados (só anotações) e se haverá exportação (desejável, RF58 de [Requisitos-NeuroSight.md](Especificacao/Requisitos-NeuroSight.md))
-- [ ] Documentação completa: vai para um repositório no GitHub. Falta criar o repositório e pôr o endereço na nota 2 da Seção III. Só três páginas dos `.drawio` têm PNG exportado (UC07 e as duas de arquitetura); antes de publicar, exporte as outras ou avise no README que os diagramas se abrem no draw.io (ver seção 10)
+- [x] Documentação completa: repositório https://github.com/joaozanini/tcc1 (remoto `origin` deste repositório Git), com README na raiz e as 28 páginas dos `.drawio` exportadas em PNG em `Especificacao/imagens-dos-diagramas`. O endereço está na nota 2 da Seção III. Falta só o `git push`, e o repositório precisa estar público (seção 10)
 - [x] Combinado: não há limite de páginas, o TCC1 termina na IV.A (sem cronograma nem fechamento) e a documentação entra por link
 - [x] Separar o que dá para reaproveitar do relatório final da IC: o texto usa o relatório [11] para o protótipo, a gravação (88 MB por minuto, 22 Hz) e os testes feitos pelo autor; a figura de arquitetura foi refeita para o NeuroSight
 
@@ -49,7 +49,7 @@ O texto está em [III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologia
 - [x] Lista dos artefatos produzidos e das notações (UML, BPMN), incluindo os protótipos de tela
 - [x] Figura com um diagrama de casos de uso de exemplo (UC07 – Sessões)
 - [x] Parágrafo sobre as histórias de usuário (épicos, formato SENDO/QUERO/PARA)
-- [ ] Nota de rodapé com o link da documentação completa: o texto está pronto, falta o link. O marcador `[LINK DA DOCUMENTAÇÃO COMPLETA]` está na linha 59 de [III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologias.md) e aparece no PDF (p. 8) e no Word; depois de trocar, regenerar os dois (seção 10)
+- [x] Nota de rodapé com o link da documentação completa: https://github.com/joaozanini/tcc1 (pasta Especificacao), na linha 59 de [III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologias.md). Artigo montado, LaTeX, pacote do Overleaf e Word regenerados em 02/11/2026; o PDF ainda precisa ser recompilado (seção 10)
 - [x] Nome do orientador na nota de informação verbal (BRAWERMAN, A.)
 - [x] Tabela 2 – Tecnologias, com uma referência para cada uma (a Tabela 1 é a comparação da Seção II)
 - [x] Trazer do 1.2 os perfis (proprietário, administrador, pesquisador) e o escopo funcional
@@ -101,6 +101,7 @@ O texto está em [II-Revisao-de-literatura.md](Texto-TCC/II-Revisao-de-literatur
 - [x] Trocar "Meta, [202-]" pela página exata da documentação, com data de acesso: use [META-MOVE], da Seção III
 - [x] Conferir os dados de cada referência: as obras do 1.1 e os estudos novos foram conferidos no Crossref ou no PubMed; os endereços das normas, do método, das tecnologias e das ferramentas responderam em 26/10/2026
 - [x] Reconferência de 02/11/2026: as 63 referências são citadas no texto na ordem 1 a 63 e nenhuma sobra; os 14 DOIs batem com o Crossref (título, periódico, volume, páginas); os 46 endereços responderam, e as seis páginas da Meta e a do Road to VR, que bloqueiam scripts, abriram no navegador com os títulos e datas da lista. Único ajuste: o ano "[2026]" da referência da LGPD (seção 10)
+- [x] Referências novas em 02/11/2026, para sustentar duas células da Tabela 1: [COG3D-HARDWARE] (Supported Hardware, documentação do Cognitive3D) e [PSYCHOPY-PAVLOVIA] (Create a Pavlovia project, documentação do PsychoPy). A lista passou a 65 referências, renumeradas a partir de [35]
 
 ## 7. Resumo e Abstract (por último)
 
@@ -122,7 +123,7 @@ O texto está em [Resumo-e-Abstract.md](Texto-TCC/Resumo-e-Abstract.md) e já en
 O artigo montado está em [Artigo-TCC1-NeuroSight.md](Texto-TCC/Artigo-TCC1-NeuroSight.md). A versão para entrega, no modelo LaTeX do curso, fica na pasta `Texto-TCC/LaTeX` (com o `textoprincipal.tex`) e no pacote `Texto-TCC/TCC1-NeuroSight-LaTeX.zip`, que vai direto para o Overleaf (New Project > Upload Project). A versão em Word, que continua sendo gerada junto, fica em `Texto-TCC/Artigo-TCC1-NeuroSight.docx`. Depois de editar uma seção, rode no Git Bash, na pasta do TCC: `perl Texto-TCC/montar-artigo.pl` e `perl Texto-TCC/gerar-latex.pl --pdf` (o `--pdf` compila com o TinyTeX e grava `Texto-TCC/TCC1-NeuroSight.pdf`). Para o Word, rode também `powershell -ExecutionPolicy Bypass -File .\Texto-TCC\gerar-docx.ps1`.
 
 - [x] Versão em LaTeX no modelo do curso: capa, folha de rosto, termo (PDF do modelo, a trocar depois da banca) e artigo, com as mesmas chaves de citação dos arquivos das seções
-- [x] Compilar a versão em LaTeX e conferir o PDF: compilada com o TinyTeX instalado neste computador, sem erros, em [TCC1-NeuroSight.pdf](Texto-TCC/TCC1-NeuroSight.pdf) (13 páginas). Para gerar de novo, rode `perl Texto-TCC/gerar-latex.pl --pdf`
+- [ ] Compilar a versão em LaTeX e conferir o PDF: a versão de 28/10/2026 foi compilada com o TinyTeX, sem erros (13 páginas). Em 02/11/2026 o TinyTeX não está mais instalado neste computador, e o PDF em [TCC1-NeuroSight.pdf](Texto-TCC/TCC1-NeuroSight.pdf) ficou desatualizado em relação aos fontes. Recompilar com `perl Texto-TCC/gerar-latex.pl --pdf` depois de reinstalar o TinyTeX, ou enviar `Texto-TCC/TCC1-NeuroSight-LaTeX.zip` ao Overleaf e salvar o PDF em `Texto-TCC/TCC1-NeuroSight.pdf` (seção 10)
 - [x] Versão em Word no formato do exemplo: capa, folha de rosto, página do termo de aprovação e o artigo em duas colunas (A4, Times New Roman 10, título em 24, seções em versalete, numeração de página embaixo), com as Figuras 1 a 3 e a Tabela 1 no alto da página, na largura toda, e a Tabela 2 dentro da coluna. São 14 páginas, das quais 11 são o artigo. A opção `-Pdf arquivo.pdf` também exporta um PDF
 
 - [x] Legendas "FIGURA n - Título." acima e "FONTE: O autor (2026)" abaixo; o mesmo padrão nas tabelas
@@ -141,26 +142,29 @@ Revisão completa do PDF, dos fontes, dos oito `.drawio`, dos 19 protótipos, do
 
 ### Bloqueante
 
-- [ ] Nota 2 da Seção III ainda é `[LINK DA DOCUMENTAÇÃO COMPLETA]` (PDF p. 8; [III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologias.md), linha 59; o `.docx` tem o mesmo marcador). Criar o repositório no GitHub com a pasta `Especificacao` (os diagramas que só existem em `.drawio` precisam de PNG exportado ou de um aviso no README de que se abrem no draw.io), trocar a linha 59 por `² Disponível em: https://github.com/joaozanini/<repositório>. Acesso em: <dia> nov. 2026.` e regenerar o PDF e o Word
+- [x] Nota 2 da Seção III: trocada em 02/11/2026 por `² Disponível em: https://github.com/joaozanini/tcc1 (pasta Especificacao). Acesso em: 2 nov. 2026.` ([III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologias.md), linha 59). O repositório é o remoto `origin` deste Git; entraram um README na raiz e as 28 páginas dos `.drawio` em PNG em `Especificacao/imagens-dos-diagramas`. Artigo montado, LaTeX, zip do Overleaf e Word regenerados
+- [ ] Fazer o `git push` para `origin` e deixar o repositório público; sem isso o link da nota 2 não abre
+- [ ] Recompilar o PDF: o TinyTeX não está mais instalado. Reinstalar em `%APPDATA%\TinyTeX`, onde o `gerar-latex.pl --pdf` o procura, ou compilar `Texto-TCC/TCC1-NeuroSight-LaTeX.zip` no Overleaf e salvar em `Texto-TCC/TCC1-NeuroSight.pdf`. Conferir no PDF novo a Figura 3, a Tabela 1, a nota 2 e a numeração das referências (agora 65)
 
 ### Importantes
 
-- [ ] Figura 3 descentrada: o PNG foi exportado sem a opção "Recortar", e um quarto da largura é branco à esquerda. Na página "Figura – Fluxo de uma sessão" de [Arquitetura-NeuroSight.drawio](Especificacao/Arquitetura-NeuroSight.drawio), trocar a nota por "Antes do primeiro uso, o óculos é pareado ao tenant por um código." (o artigo não define SD02), exportar com zoom 300% e "Recortar", copiar para `Texto-TCC/figuras/Figura-3-fluxo-de-uma-sessao.png` e regenerar. Com o recorte, o texto da figura sobe de cerca de 5,4 pt para cerca de 7,5 pt
-- [ ] Tabela 1 ([II-Revisao-de-literatura.md](Texto-TCC/II-Revisao-de-literatura.md), linhas 74 a 76): o texto da II.F não explica "Sim (em fim de vida)" do Cognitive3D nem "Parcial (Pavlovia)" do PsychoPy. Acrescentar uma frase no parágrafo de cada ferramenta, conferindo as fontes [34] e [40], ou simplificar as células para "Sim" e "Não encontrado". Decidir a licença do NeuroSight no lugar de "A definir" (por exemplo, "Gratuita (código aberto)", como o protótipo da IC)
-- [ ] BPMN do experimento ([BPMN-Experimento-NeuroSight.drawio](Especificacao/BPMN-Experimento-NeuroSight.drawio)): o evento de mensagem "Comando recebido" recebe fluxo de sequência de outra raia da mesma piscina, e mensagem só circula entre piscinas. Tirar o evento e ligar "Enviar o comando de início" direto a "Executar a sessão…", ou separar o app do óculos em outra piscina, com fluxo de mensagem. Ajustar o item "mensagem recebida" em [BPMN-Experimento-NeuroSight.md](Especificacao/BPMN-Experimento-NeuroSight.md), linha 17
-- [ ] BPMN do experimento: quando "Processamento concluído?" segue por "não" até "Falha registrada", o ramo "Acompanhar o paciente…" fica preso no join paralelo e o processo nunca termina. Trocar "Falha registrada" por um evento de fim do tipo terminar (círculo grosso com disco preenchido) ou levar o "não" até depois do join
-- [ ] UC11 ([Casos-de-uso-NeuroSight.drawio](Especificacao/Casos-de-uso-NeuroSight.drawio)): UC11.2 "Registrar ações automaticamente" não tem ator nem relação desenhada, só a nota. Desenhar um «include» a partir de um caso de uso representativo em cinza tracejado, como UC06.6 no UC07 (por exemplo, UC07.6 Iniciar sessão)
+- [x] Figura 3: nota sem "(SD02)" no `.drawio` e PNG regenerado em 02/11/2026 com recorte e margens iguais às das outras figuras (renderizado com o visualizador do diagrams.net no Edge, que reproduziu a Figura 2 pixel a pixel no teste). Copiado para `Texto-TCC/figuras` e `Texto-TCC/LaTeX/figuras`; o PDF só mostra a figura nova depois de recompilado
+- [x] Tabela 1: a II.F ganhou uma frase para o Cognitive3D (o Quest Pro está na lista de dispositivos em fim de vida da documentação, nova referência [COG3D-HARDWARE]) e outra para o PsychoPy (projetos privados no Pavlovia, compartilhados por convite com os papéis do GitLab, nova referência [PSYCHOPY-PAVLOVIA]); a célula virou "Parcial (projetos no Pavlovia)" (02/11/2026)
+- [ ] Licença do NeuroSight na Tabela 1 continua "A definir": decisão sua. O protótipo da IC no GitHub não tem arquivo de licença, então "código aberto" ainda não está formalizado
+- [x] BPMN do experimento: o evento de mensagem "Comando recebido" saiu, e "Enviar o comando de início" liga direto a "Executar a sessão…"; o `.md` foi ajustado (02/11/2026)
+- [x] BPMN do experimento: "Falha registrada" virou evento de fim do tipo terminar, que encerra também o ramo do pesquisador que ficaria preso no join paralelo (02/11/2026)
+- [x] UC11: UC07.6 "Iniciar sessão" entrou em cinza tracejado com «include» para UC11.2, e a tabela de casos de uso do `.md` registra o exemplo (02/11/2026)
 
 ### Menores (fazer se der tempo)
 
 - [ ] Texto das Figuras 1 e 2 fica com cerca de 5 pt na impressão. Em [gerar-latex.pl](Texto-TCC/gerar-latex.pl), mudar `'Figura-1' => '0.75\textwidth'` para `'\textwidth'`, ou aumentar a fonte para 14 px no draw.io antes de exportar
-- [ ] Siglas que só aparecem na Figura 2: definir VPS no texto ("servidor virtual privado (VPS, do inglês *Virtual Private Server*)") e citar o pg-boss pelo nome ("fila de tarefas mantida no próprio banco pela biblioteca pg-boss [PGBOSS]") em [IV-A-Arquitetura-do-sistema.md](Texto-TCC/IV-A-Arquitetura-do-sistema.md), linhas 28 e 30
-- [ ] "heatmap" nas telas W01, W11 e W14 ([Prototipos-NeuroSight.html](Especificacao/Prototipos-NeuroSight/Prototipos-NeuroSight.html)): trocar por "mapa de calor", como no texto e na RNF21, e gerar as imagens de novo com `gerar-imagens.ps1`
-- [ ] RF59 em [Requisitos-NeuroSight.md](Especificacao/Requisitos-NeuroSight.md), linha 138: acrescentar "exportação" ("visualização e exportação de dados de sessão"), como já fazem TipoDeAcao, HU10.7 e o texto da IV.A.4
-- [ ] [Diagramas-de-sequencia-NeuroSight.md](Especificacao/Diagramas-de-sequencia-NeuroSight.md), linha 86: a rota `GET /sessoes/{id}` está marcada em SD03, mas no diagrama aparece só como nota. Desenhar a consulta do sistema web ou tirar "SD03" da linha
-- [ ] Referência [LGPD], na lista de [IV-A-Arquitetura-do-sistema.md](Texto-TCC/IV-A-Arquitetura-do-sistema.md): "[2026]" deve ser "[2018]", o ano da lei
-- [ ] Metadados do PDF sem autor: acrescentar `\hypersetup{pdfauthor={João Vitor Zanini Pedro}}` depois de `\input{tads.tex}` no modelo de `.tex` dentro de [gerar-latex.pl](Texto-TCC/gerar-latex.pl)
-- [ ] [Decisoes-tecnicas-NeuroSight.md](Especificacao/Decisoes-tecnicas-NeuroSight.md): "Início da sessão … até ~1 s" diverge de RNF13, do texto e da tela W10 (até cerca de 2 s)
+- [x] Siglas da Figura 2: VPS definida e pg-boss citado pelo nome na IV.A (02/11/2026)
+- [x] "heatmap" nas telas W01, W11 e W14 trocado por "mapa de calor" e as três imagens regeneradas (02/11/2026). Nos documentos da especificação o termo heatmap continua, como nome técnico
+- [x] RF59 passou a incluir a exportação de dados de sessão (02/11/2026)
+- [x] Tabela de rotas dos diagramas de sequência: `GET /sessoes/{id}` marcada como "SD03 (só como nota), SD06" (02/11/2026)
+- [x] Referência [LGPD] com o ano "[2018]" (02/11/2026)
+- [x] Metadados do PDF: `gerar-latex.pl` passou a emitir `\hypersetup{pdfauthor={...}}` com o nome do autor (02/11/2026); vale a partir da próxima compilação
+- [x] Decisões técnicas alinhadas ao RNF13: início em até cerca de 2 s, com consulta a cada ~1 s (02/11/2026)
 - [ ] Opcionais de estilo: "o óculos" no singular em todo o texto (a norma culta pede "os óculos"); dizer na IV.A.2 que o espelhamento previsto na descrição inicial foi abandonado; "Multi-tenant" em itálico no título da subseção 1); distinguir a duração das sprints por etapa, como faz o exemplo
 
 ## Fica para o TCC2 (não fazer agora)
