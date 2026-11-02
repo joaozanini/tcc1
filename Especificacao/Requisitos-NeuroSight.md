@@ -135,7 +135,7 @@ O app do óculos faz parte do NeuroSight (é um dos seus três componentes), por
 
 | ID | Requisito | Prioridade | Origem |
 |---|---|---|---|
-| RF59 | O sistema deve registrar automaticamente quem fez cada ação, quando e em qual registro: login, criação, edição e exclusão de dados, envio e início de sessões, visualização de dados de sessão e mudanças de permissão. | Essencial | 1.1 + 1.2 |
+| RF59 | O sistema deve registrar automaticamente quem fez cada ação, quando e em qual registro: login, criação, edição e exclusão de dados, envio e início de sessões, visualização e exportação de dados de sessão e mudanças de permissão. | Essencial | 1.1 + 1.2 |
 | RF60 | O sistema deve permitir que o administrador consulte os registros de auditoria, filtrando por usuário, ação e período. | Essencial | 1.2 |
 
 ## 3. Regras de negócio

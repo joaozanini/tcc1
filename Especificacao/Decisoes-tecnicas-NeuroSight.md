@@ -12,7 +12,7 @@ Registro das decisões fechadas em 25/10/2026. Serve de base para a Tabela 2 (Se
 | Banco de dados | PostgreSQL |
 | Multi-tenant | Banco único com `tenant_id` em todas as tabelas; filtro no servidor e Row-Level Security (RLS) no PostgreSQL |
 | Envio da sessão | No sistema web, o pesquisador envia a sessão a um óculos pareado; o óculos baixa a sessão e os estímulos |
-| Início da sessão | Botão "Iniciar" no sistema web; o óculos recebe o comando na consulta seguinte ao servidor (até ~1 s) |
+| Início da sessão | Botão "Iniciar" no sistema web; o óculos recebe o comando na consulta seguinte ao servidor (até cerca de 2 s, com consulta a cada ~1 s; RNF13) |
 | Acompanhamento ao vivo | Não existe. O pesquisador não vê o que o paciente vê: acompanha só o estado da sessão e vê os dados depois que ela termina |
 | Gravação | Igual à IC: o app captura quadros JPEG da cena, envia em lotes ao fim da sessão e o servidor monta o vídeo MP4 (H.264) |
 | Comunicação | Só HTTPS (REST): óculos ↔ servidor e navegador ↔ servidor. Enquanto espera, o óculos consulta o servidor a cada ~1 s. Sem WebSocket e sem exigir mesma rede, mas o óculos precisa de internet no momento do início |
@@ -57,7 +57,7 @@ Sugestão: web e API num mesmo repositório (monorepo com pnpm workspaces), para
 1. **Pareamento do óculos (uma vez por aparelho).** O app pede um código curto e recebe também um segredo. Um administrador digita o código no sistema web, o servidor vincula o óculos ao tenant, e o segredo passa a valer como token próprio do dispositivo (ver SD02 em Diagramas-de-sequencia-NeuroSight.md). Substitui a chave fixa (`X-Api-Key`) da IC. Modelo de referência: OAuth 2.0 Device Authorization Grant (RFC 8628).
 2. **Preparação (sistema web).** O pesquisador escolhe o paciente, aplica um modelo ou monta a sessão na hora e a envia para um óculos pareado.
 3. **Download (óculos).** Na tela de espera, o app consulta o servidor a cada ~1 s (a consulta também serve de sinal de vida do aparelho), baixa a sessão e todos os estímulos e avisa o servidor que está pronto. A tela mostra algo como "Sessão pronta: paciente P-012 · 8 estímulos · 4 min · aguardando início". O paciente aparece só pelo código, nunca pelo nome.
-4. **Início (sistema web).** O sistema web mostra o óculos online e a sessão baixada, e só então libera o botão "Iniciar". O pesquisador coloca o óculos no paciente e clica em "Iniciar". Na consulta seguinte (até ~1 s), o app começa e confirma; o web passa a mostrar "em execução" e o início fica registrado na auditoria, com o usuário que clicou. Daí em diante tudo roda no óculos, sem depender da rede.
+4. **Início (sistema web).** O sistema web mostra o óculos online e a sessão baixada, e só então libera o botão "Iniciar". O pesquisador coloca o óculos no paciente e clica em "Iniciar". Na consulta seguinte (até cerca de 2 s), o app começa e confirma; o web passa a mostrar "em execução" e o início fica registrado na auditoria, com o usuário que clicou. Daí em diante tudo roda no óculos, sem depender da rede.
 5. **Execução e fim.** O app exibe os estímulos na ordem e pelo tempo configurados, coleta o olhar e as expressões, captura os quadros e encerra sozinho no fim do tempo.
 6. **Envio.** Como na IC: cria a sessão no servidor (JSON), envia os quadros em lotes com nova tentativa e finaliza. Sem rede, os dados ficam no óculos e o app tenta de novo depois (na IC isso era manual, via `adb`).
 7. **Processamento (servidor).** Monta o MP4 em segundo plano e associa tudo à sessão e ao paciente.

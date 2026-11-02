@@ -83,7 +83,7 @@ Os diagramas estão em [Diagramas-de-sequencia-NeuroSight.drawio](Diagramas-de-s
 | `GET /dispositivo/proxima-sessao` | App | Consulta periódica: sinal de vida, sessão pendente e comando de início | SD03, SD04 |
 | `GET /estimulos/{id}/arquivo` | App | Baixa um estímulo | SD03 |
 | `POST /sessoes/{id}/baixada` | App | Avisa que a sessão está pronta e informa o estado do rastreamento | SD03 |
-| `GET /sessoes/{id}` | Sistema web | Estado e dados da sessão | SD03, SD06 |
+| `GET /sessoes/{id}` | Sistema web | Estado e dados da sessão | SD03 (só como nota), SD06 |
 | `POST /sessoes/{id}/inicio` | Sistema web | Pede o início (botão "Iniciar") | SD04 |
 | `POST /sessoes/{id}/inicio-confirmado` | App | Confirma que a execução começou | SD04 |
 | `POST /sessoes/{id}/coleta` | App | Envia o JSON da coleta | SD05 |
