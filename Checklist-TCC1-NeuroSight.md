@@ -1,0 +1,173 @@
+# Checklist do TCC1 — NeuroSight
+
+Tudo o que falta para a entrega do TCC1, que vai até **IV. Resultados → A. Arquitetura do Sistema**. As seções estão na ordem sugerida de trabalho. Marque `[x]` conforme for concluindo. A revisão final de 02/11/2026 está na seção 10: um item bloqueante (o link da nota 2) e os ajustes recomendados.
+
+As decisões técnicas e os motivos de cada uma estão em [Decisoes-tecnicas-NeuroSight.md](Especificacao/Decisoes-tecnicas-NeuroSight.md).
+
+## 0. Decisões e preparação
+
+- [x] Tecnologias de cada parte (Unreal, NestJS, Next.js, PostgreSQL)
+- [x] Acompanhamento ao vivo: não haverá
+- [x] Multi-tenant: `tenant_id` + RLS
+- [x] Envio da sessão (web → óculos pareado) e início (botão "Iniciar" no web)
+- [x] Pegar o arquivo-fonte do modelo: está em `TCC_TADS_Exemplo_Sistema_de_Estágios` (LaTeX, classe IEEEtran adaptada). A entrega será nesse modelo
+- [x] Definir o título: "NeuroSight: sistema de rastreamento ocular e emocional em realidade virtual para estudo e apoio ao diagnóstico de pessoas com distúrbios da consciência"
+- [x] Nome do orientador: Prof. Dr. Alessandro Brawerman (sem coorientador)
+- [x] Quest Pro disponível: o grupo tem o aparelho usado na IC
+- [x] Definir de onde vêm os requisitos: literatura, protótipo da IC e reuniões com o orientador (nota de informação verbal na Seção III)
+- [x] Definir o que o pesquisador pode editar nos dados registrados (só anotações) e se haverá exportação (desejável, RF58 de [Requisitos-NeuroSight.md](Especificacao/Requisitos-NeuroSight.md))
+- [ ] Documentação completa: vai para um repositório no GitHub. Falta criar o repositório e pôr o endereço na nota 2 da Seção III. Só três páginas dos `.drawio` têm PNG exportado (UC07 e as duas de arquitetura); antes de publicar, exporte as outras ou avise no README que os diagramas se abrem no draw.io (ver seção 10)
+- [x] Combinado: não há limite de páginas, o TCC1 termina na IV.A (sem cronograma nem fechamento) e a documentação entra por link
+- [x] Separar o que dá para reaproveitar do relatório final da IC: o texto usa o relatório [11] para o protótipo, a gravação (88 MB por minuto, 22 Hz) e os testes feitos pelo autor; a figura de arquitetura foi refeita para o NeuroSight
+
+## 1. Artefatos de modelagem
+
+O modelo cita todos estes; confirme com o orientador quais são obrigatórios.
+
+- [x] Requisitos funcionais e não funcionais ([Requisitos-NeuroSight.md](Especificacao/Requisitos-NeuroSight.md))
+- [x] Diagrama de processo de negócio (BPMN) do experimento com o NeuroSight: [BPMN-Experimento-NeuroSight.drawio](Especificacao/BPMN-Experimento-NeuroSight.drawio) e [BPMN-Experimento-NeuroSight.md](Especificacao/BPMN-Experimento-NeuroSight.md)
+- [x] (Opcional) BPMN do processo atual, sem o NeuroSight, a partir da Seção II.E: [BPMN-Processo-atual.drawio](Especificacao/BPMN-Processo-atual.drawio) e [BPMN-Processo-atual.md](Especificacao/BPMN-Processo-atual.md)
+- [x] Atualizar o diagrama macro do fluxo (Figura 1 do 1.2): nova versão na página "Figura – Fluxo de uma sessão" de [Arquitetura-NeuroSight.drawio](Especificacao/Arquitetura-NeuroSight.drawio)
+- [x] Diagramas de casos de uso: 12 páginas em [Casos-de-uso-NeuroSight.drawio](Especificacao/Casos-de-uso-NeuroSight.drawio). Só a UC07 foi exportada (Figura 1); as demais páginas ficam para a documentação completa (seção 10). Pendência de notação em UC11.2, também na seção 10
+- [x] Histórias de usuário: um épico por diagrama, no formato <SENDO><QUERO><PARA> ([Casos-de-uso-e-historias-NeuroSight.md](Especificacao/Casos-de-uso-e-historias-NeuroSight.md))
+- [x] Diagrama de classes ([Diagrama-de-classes-NeuroSight.drawio](Especificacao/Diagrama-de-classes-NeuroSight.drawio) e [Diagrama-de-classes-NeuroSight.md](Especificacao/Diagrama-de-classes-NeuroSight.md))
+- [x] (Opcional) Diagrama de estados da sessão, a partir da tabela "Estados da sessão": [Diagrama-de-estados-da-sessao.drawio](Especificacao/Diagrama-de-estados-da-sessao.drawio) e [Diagrama-de-estados-da-sessao.md](Especificacao/Diagrama-de-estados-da-sessao.md)
+- [x] Diagrama lógico-relacional do banco ([Modelo-logico-relacional-NeuroSight.drawio](Especificacao/Modelo-logico-relacional-NeuroSight.drawio) e dicionário de dados em [Modelo-logico-relacional-NeuroSight.md](Especificacao/Modelo-logico-relacional-NeuroSight.md))
+- [x] Diagramas de sequência: seis fluxos em [Diagramas-de-sequencia-NeuroSight.drawio](Especificacao/Diagramas-de-sequencia-NeuroSight.drawio), descritos com as rotas da API em [Diagramas-de-sequencia-NeuroSight.md](Especificacao/Diagramas-de-sequencia-NeuroSight.md)
+- [x] Protótipos das telas web: 14 telas em [Prototipos-NeuroSight.html](Especificacao/Prototipos-NeuroSight/Prototipos-NeuroSight.html), com as imagens na pasta `Especificacao/Prototipos-NeuroSight/imagens` e o mapa das telas em [Prototipos-NeuroSight.md](Especificacao/Prototipos-NeuroSight/Prototipos-NeuroSight.md)
+- [x] Protótipos das telas do app no óculos: código de pareamento, aguardando sessão, sessão pronta, execução e envio dos dados, no mesmo arquivo
+- [x] Diagrama de arquitetura: página "Figura – Arquitetura" de [Arquitetura-NeuroSight.drawio](Especificacao/Arquitetura-NeuroSight.drawio), com o roteiro da IV.A em [Arquitetura-NeuroSight.md](Especificacao/Arquitetura-NeuroSight.md)
+
+## 2. III. Método e tecnologias
+
+O texto está em [III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologias.md), com a Figura 1 na pasta `Texto-TCC/figuras`.
+
+- [x] Método de pesquisa: revisão bibliográfica, protótipo da IC e reuniões com o orientador
+- [x] Ponto de partida: o protótipo da IC
+- [x] Processo de desenvolvimento: Scrum adaptado ao trabalho individual, sprints de duas semanas e Kanban no GitHub Projects
+- [x] Etapas: modelagem (TCC1) e desenvolvimento (TCC2)
+- [x] Lista dos artefatos produzidos e das notações (UML, BPMN), incluindo os protótipos de tela
+- [x] Figura com um diagrama de casos de uso de exemplo (UC07 – Sessões)
+- [x] Parágrafo sobre as histórias de usuário (épicos, formato SENDO/QUERO/PARA)
+- [ ] Nota de rodapé com o link da documentação completa: o texto está pronto, falta o link. O marcador `[LINK DA DOCUMENTAÇÃO COMPLETA]` está na linha 59 de [III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologias.md) e aparece no PDF (p. 8) e no Word; depois de trocar, regenerar os dois (seção 10)
+- [x] Nome do orientador na nota de informação verbal (BRAWERMAN, A.)
+- [x] Tabela 2 – Tecnologias, com uma referência para cada uma (a Tabela 1 é a comparação da Seção II)
+- [x] Trazer do 1.2 os perfis (proprietário, administrador, pesquisador) e o escopo funcional
+
+## 3. IV. Resultados (abertura) + A. Arquitetura do Sistema
+
+O texto está em [IV-A-Arquitetura-do-sistema.md](Texto-TCC/IV-A-Arquitetura-do-sistema.md), com as Figuras 2 e 3 na pasta `Texto-TCC/figuras`.
+
+- [x] Parágrafo de abertura do capítulo
+- [x] Figura de arquitetura com a tecnologia de cada bloco (Figura 2)
+- [x] Descrição dos componentes: app do óculos (Unreal), API (NestJS), banco (PostgreSQL), armazenamento de arquivos, sistema web (Next.js), montagem do vídeo (FFmpeg)
+- [x] 1) Multi-tenant: `tenant_id` + RLS e arquivos separados por tenant
+- [x] 2) Comunicação entre sistema web, servidor e óculos: pareamento, envio da sessão, início por consulta ao servidor e envio dos dados, com a figura do fluxo atualizada (Figura 3)
+- [x] 3) Dados coletados e gravação: estrutura do JSON (eventos de estímulo, olhar, expressões), quadros e MP4
+- [x] 4) Segurança e auditoria: perfis, visibilidade das sessões, registro das ações, LGPD, paciente identificado só por código
+- [x] 5) Riscos e limitações: rastreamento facial no Unreal, Quest Pro fora de linha (o grupo tem o aparelho da IC; o risco é a reposição) e internet no início
+- [x] Hospedagem: o texto deixa as duas opções, VPS no Brasil ou servidor da instituição, conforme o protocolo aprovado pelo CEP (LGPD, art. 13); a Figura 2 diz "Servidor (VPS ou da instituição)"
+- [x] Aplicar as mudanças da seção 7 do arquivo de decisões: estão no texto da IV.A e na Figura 3. Ao reaproveitar trechos do 1.2 em outras seções, não trazer o espelhamento nem a exigência de mesma rede
+
+## 4. I. Introdução (base: 1.1)
+
+O texto está em [I-Introducao.md](Texto-TCC/I-Introducao.md).
+
+- [x] Enxugar contexto e problema em poucos parágrafos e levar o detalhamento para a Seção II
+- [x] Escrever a frase de objetivo: "O objetivo deste trabalho é..."
+- [x] Dizer que o trabalho parte do protótipo da IC
+- [x] Manter a delimitação: o sistema não faz diagnóstico
+- [x] Parágrafo final com a organização do documento
+
+## 5. II. Revisão de literatura (base: 1.1)
+
+O texto está em [II-Revisao-de-literatura.md](Texto-TCC/II-Revisao-de-literatura.md).
+
+- [x] A. Distúrbios da consciência e avaliação clínica
+- [x] B. Rastreamento ocular e expressões faciais, com duas revisões de 2026
+- [x] C. Realidade virtual e Meta Quest Pro
+- [x] D. Proteção de dados (LGPD, arts. 5º, 11 e 13), Resolução CNS 466/2012 e regras da Meta. O consentimento fica a cargo do protocolo da pesquisa, fora do sistema
+- [x] E. Como os experimentos são conduzidos hoje: fluxo dos estudos citados e do protótipo da IC, em tópicos
+- [x] F. Trabalhos semelhantes, com a Tabela 1 comparando iMotions, Tobii Pro Lab, SightLab VR Pro, Cognitive3D e PsychoPy, mais os estudos de Trojano, Johansson e Hyun
+- [x] Pôr citação nas afirmações sem fonte: capacidades do Quest Pro, vantagens da RV e "aplicativos isolados, scripts e transferência manual"
+- [x] Política de dados da Meta (§ 3.1): o orientador confirmou que o uso em pesquisa está de acordo. Hospedagem diante do art. 13 da LGPD: resolvida na IV.A, com as duas opções
+
+## 6. Referências
+
+- [x] Montar a lista das 13 obras já citadas: Laureys 2010, Giacino 2002, Giacino/Kalmar/Whyte 2004, Schnakers 2009, Bodien 2024, Trojano 2012, Johansson 2025, Magliacano 2019, Ekman/Friesen 1978, Picard 1997, Hyun 2022, LGPD 2018, Meta [202-]. Estão nas listas de [I-Introducao.md](Texto-TCC/I-Introducao.md) (com Johansson, Hyun e Picard separadas para a Seção II), [III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologias.md) (Meta) e [IV-A-Arquitetura-do-sistema.md](Texto-TCC/IV-A-Arquitetura-do-sistema.md) (Ekman e LGPD)
+- [x] Converter as citações de autor-data para numéricas [n], na ordem em que aparecem no texto: aplicado no artigo montado ([Artigo-TCC1-NeuroSight.md](Texto-TCC/Artigo-TCC1-NeuroSight.md)), com 63 referências
+- [x] Acrescentar as referências do método e das tecnologias (lista no fim de [III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologias.md))
+- [x] Acrescentar as referências dos trabalhos semelhantes (lista no fim de [II-Revisao-de-literatura.md](Texto-TCC/II-Revisao-de-literatura.md))
+- [x] Trocar "Meta, [202-]" pela página exata da documentação, com data de acesso: use [META-MOVE], da Seção III
+- [x] Conferir os dados de cada referência: as obras do 1.1 e os estudos novos foram conferidos no Crossref ou no PubMed; os endereços das normas, do método, das tecnologias e das ferramentas responderam em 26/10/2026
+- [x] Reconferência de 02/11/2026: as 63 referências são citadas no texto na ordem 1 a 63 e nenhuma sobra; os 14 DOIs batem com o Crossref (título, periódico, volume, páginas); os 46 endereços responderam, e as seis páginas da Meta e a do Road to VR, que bloqueiam scripts, abriram no navegador com os títulos e datas da lista. Único ajuste: o ano "[2026]" da referência da LGPD (seção 10)
+
+## 7. Resumo e Abstract (por último)
+
+O texto está em [Resumo-e-Abstract.md](Texto-TCC/Resumo-e-Abstract.md) e já entra no artigo montado.
+
+- [x] Resumo em parágrafo único (o exemplo tem cerca de 170 palavras; este tem cerca de 210), com objetivo, método, tecnologias e resultado, mais as palavras-chave (quatro, como no exemplo)
+- [x] Abstract e keywords
+
+## 8. Pré-textuais e cabeçalho
+
+- [x] Capa: UFPR, autor, título, Curitiba, PR, ano, com o desenho do prédio da UFPR ao fundo, como no exemplo (no LaTeX e no Word)
+- [x] Folha de rosto: o mesmo, mais a natureza do trabalho e o orientador (no LaTeX e no Word)
+- [x] Nome do orientador na folha de rosto (no LaTeX e no Word)
+- [ ] Termo de aprovação: a página 3 tem só o aviso em vermelho do modelo; o termo entra depois da banca
+- [x] Título, autor e afiliação no início do artigo
+
+## 9. Formatação e revisão final
+
+O artigo montado está em [Artigo-TCC1-NeuroSight.md](Texto-TCC/Artigo-TCC1-NeuroSight.md). A versão para entrega, no modelo LaTeX do curso, fica na pasta `Texto-TCC/LaTeX` (com o `textoprincipal.tex`) e no pacote `Texto-TCC/TCC1-NeuroSight-LaTeX.zip`, que vai direto para o Overleaf (New Project > Upload Project). A versão em Word, que continua sendo gerada junto, fica em `Texto-TCC/Artigo-TCC1-NeuroSight.docx`. Depois de editar uma seção, rode no Git Bash, na pasta do TCC: `perl Texto-TCC/montar-artigo.pl` e `perl Texto-TCC/gerar-latex.pl --pdf` (o `--pdf` compila com o TinyTeX e grava `Texto-TCC/TCC1-NeuroSight.pdf`). Para o Word, rode também `powershell -ExecutionPolicy Bypass -File .\Texto-TCC\gerar-docx.ps1`.
+
+- [x] Versão em LaTeX no modelo do curso: capa, folha de rosto, termo (PDF do modelo, a trocar depois da banca) e artigo, com as mesmas chaves de citação dos arquivos das seções
+- [x] Compilar a versão em LaTeX e conferir o PDF: compilada com o TinyTeX instalado neste computador, sem erros, em [TCC1-NeuroSight.pdf](Texto-TCC/TCC1-NeuroSight.pdf) (13 páginas). Para gerar de novo, rode `perl Texto-TCC/gerar-latex.pl --pdf`
+- [x] Versão em Word no formato do exemplo: capa, folha de rosto, página do termo de aprovação e o artigo em duas colunas (A4, Times New Roman 10, título em 24, seções em versalete, numeração de página embaixo), com as Figuras 1 a 3 e a Tabela 1 no alto da página, na largura toda, e a Tabela 2 dentro da coluna. São 14 páginas, das quais 11 são o artigo. A opção `-Pdf arquivo.pdf` também exporta um PDF
+
+- [x] Legendas "FIGURA n - Título." acima e "FONTE: O autor (2026)" abaixo; o mesmo padrão nas tabelas
+- [x] Tirar o título que está dentro da imagem da Figura 1 do 1.2 (a Figura 3 da IV.A substitui essa figura e não tem título dentro)
+- [x] Trocar "seção 1.1" pela numeração nova (o artigo não cita mais o 1.1 nem o 1.2)
+- [x] Toda figura e tabela citada no texto antes de aparecer (a Tabela 2 fica no alto da coluna, acima da frase que a cita, na mesma página: comportamento normal do *float*, igual ao do exemplo)
+- [x] Termos estrangeiros em itálico e siglas definidas na primeira ocorrência (conferido no artigo montado; refaça a conferência se mudar o texto)
+- [x] Tempo verbal: modelagem no passado; sistema no presente ou no futuro
+- [x] Limite de páginas: não há (o artigo tem cerca de 5.450 palavras, 3 figuras, 2 tabelas e 63 referências)
+- [x] Conferido em 02/11/2026: `Texto-TCC/TCC1-NeuroSight.pdf` e `Texto-TCC/LaTeX/build/textoprincipal.pdf` são o mesmo arquivo; o `.zip` tem exatamente os arquivos da pasta `LaTeX`; os `.md` regeneram um `.tex` idêntico ao entregue; o log não tem erro, *overfull* nem referência indefinida; os PNGs de `Texto-TCC/figuras` e `Texto-TCC/LaTeX/figuras` são idênticos, com fundo branco opaco e resolução efetiva acima de 430 dpi no PDF; os 19 protótipos estão completos, em português e coerentes entre si; nomes de estados, atores e perfis são os mesmos no texto, nos requisitos, nas classes, no banco, nos diagramas e nas telas; todo RF tem caso de uso e toda tela tem caso de uso
+- [x] Comparação com o exemplo do curso (02/11/2026): até a IV.A, a estrutura é a mesma (pré-textuais, cabeçalho, resumo e abstract com quatro palavras-chave, Seções I a IV.A com o mesmo padrão de títulos, legendas e referências ABNT numéricas); o texto tem cerca de 6.300 palavras até a IV.A contra cerca de 2.900 do exemplo. O exemplo só tem a mais o link da documentação resolvido (nota 2) e as Seções IV.B, V e VI, que ficam para o TCC2
+
+## 10. Pendências da revisão final (02/11/2026)
+
+Revisão completa do PDF, dos fontes, dos oito `.drawio`, dos 19 protótipos, dos requisitos, das entregas 1.1 e 1.2 e do modelo do curso. O que passou está registrado nas seções 6 e 9. Abaixo, o que falta, em ordem de prioridade. Depois de qualquer mudança nos `.md`, rode `perl Texto-TCC/montar-artigo.pl`, `perl Texto-TCC/gerar-latex.pl --pdf` e, para o Word, `powershell -ExecutionPolicy Bypass -File .\Texto-TCC\gerar-docx.ps1`.
+
+### Bloqueante
+
+- [ ] Nota 2 da Seção III ainda é `[LINK DA DOCUMENTAÇÃO COMPLETA]` (PDF p. 8; [III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologias.md), linha 59; o `.docx` tem o mesmo marcador). Criar o repositório no GitHub com a pasta `Especificacao` (os diagramas que só existem em `.drawio` precisam de PNG exportado ou de um aviso no README de que se abrem no draw.io), trocar a linha 59 por `² Disponível em: https://github.com/joaozanini/<repositório>. Acesso em: <dia> nov. 2026.` e regenerar o PDF e o Word
+
+### Importantes
+
+- [ ] Figura 3 descentrada: o PNG foi exportado sem a opção "Recortar", e um quarto da largura é branco à esquerda. Na página "Figura – Fluxo de uma sessão" de [Arquitetura-NeuroSight.drawio](Especificacao/Arquitetura-NeuroSight.drawio), trocar a nota por "Antes do primeiro uso, o óculos é pareado ao tenant por um código." (o artigo não define SD02), exportar com zoom 300% e "Recortar", copiar para `Texto-TCC/figuras/Figura-3-fluxo-de-uma-sessao.png` e regenerar. Com o recorte, o texto da figura sobe de cerca de 5,4 pt para cerca de 7,5 pt
+- [ ] Tabela 1 ([II-Revisao-de-literatura.md](Texto-TCC/II-Revisao-de-literatura.md), linhas 74 a 76): o texto da II.F não explica "Sim (em fim de vida)" do Cognitive3D nem "Parcial (Pavlovia)" do PsychoPy. Acrescentar uma frase no parágrafo de cada ferramenta, conferindo as fontes [34] e [40], ou simplificar as células para "Sim" e "Não encontrado". Decidir a licença do NeuroSight no lugar de "A definir" (por exemplo, "Gratuita (código aberto)", como o protótipo da IC)
+- [ ] BPMN do experimento ([BPMN-Experimento-NeuroSight.drawio](Especificacao/BPMN-Experimento-NeuroSight.drawio)): o evento de mensagem "Comando recebido" recebe fluxo de sequência de outra raia da mesma piscina, e mensagem só circula entre piscinas. Tirar o evento e ligar "Enviar o comando de início" direto a "Executar a sessão…", ou separar o app do óculos em outra piscina, com fluxo de mensagem. Ajustar o item "mensagem recebida" em [BPMN-Experimento-NeuroSight.md](Especificacao/BPMN-Experimento-NeuroSight.md), linha 17
+- [ ] BPMN do experimento: quando "Processamento concluído?" segue por "não" até "Falha registrada", o ramo "Acompanhar o paciente…" fica preso no join paralelo e o processo nunca termina. Trocar "Falha registrada" por um evento de fim do tipo terminar (círculo grosso com disco preenchido) ou levar o "não" até depois do join
+- [ ] UC11 ([Casos-de-uso-NeuroSight.drawio](Especificacao/Casos-de-uso-NeuroSight.drawio)): UC11.2 "Registrar ações automaticamente" não tem ator nem relação desenhada, só a nota. Desenhar um «include» a partir de um caso de uso representativo em cinza tracejado, como UC06.6 no UC07 (por exemplo, UC07.6 Iniciar sessão)
+
+### Menores (fazer se der tempo)
+
+- [ ] Texto das Figuras 1 e 2 fica com cerca de 5 pt na impressão. Em [gerar-latex.pl](Texto-TCC/gerar-latex.pl), mudar `'Figura-1' => '0.75\textwidth'` para `'\textwidth'`, ou aumentar a fonte para 14 px no draw.io antes de exportar
+- [ ] Siglas que só aparecem na Figura 2: definir VPS no texto ("servidor virtual privado (VPS, do inglês *Virtual Private Server*)") e citar o pg-boss pelo nome ("fila de tarefas mantida no próprio banco pela biblioteca pg-boss [PGBOSS]") em [IV-A-Arquitetura-do-sistema.md](Texto-TCC/IV-A-Arquitetura-do-sistema.md), linhas 28 e 30
+- [ ] "heatmap" nas telas W01, W11 e W14 ([Prototipos-NeuroSight.html](Especificacao/Prototipos-NeuroSight/Prototipos-NeuroSight.html)): trocar por "mapa de calor", como no texto e na RNF21, e gerar as imagens de novo com `gerar-imagens.ps1`
+- [ ] RF59 em [Requisitos-NeuroSight.md](Especificacao/Requisitos-NeuroSight.md), linha 138: acrescentar "exportação" ("visualização e exportação de dados de sessão"), como já fazem TipoDeAcao, HU10.7 e o texto da IV.A.4
+- [ ] [Diagramas-de-sequencia-NeuroSight.md](Especificacao/Diagramas-de-sequencia-NeuroSight.md), linha 86: a rota `GET /sessoes/{id}` está marcada em SD03, mas no diagrama aparece só como nota. Desenhar a consulta do sistema web ou tirar "SD03" da linha
+- [ ] Referência [LGPD], na lista de [IV-A-Arquitetura-do-sistema.md](Texto-TCC/IV-A-Arquitetura-do-sistema.md): "[2026]" deve ser "[2018]", o ano da lei
+- [ ] Metadados do PDF sem autor: acrescentar `\hypersetup{pdfauthor={João Vitor Zanini Pedro}}` depois de `\input{tads.tex}` no modelo de `.tex` dentro de [gerar-latex.pl](Texto-TCC/gerar-latex.pl)
+- [ ] [Decisoes-tecnicas-NeuroSight.md](Especificacao/Decisoes-tecnicas-NeuroSight.md): "Início da sessão … até ~1 s" diverge de RNF13, do texto e da tela W10 (até cerca de 2 s)
+- [ ] Opcionais de estilo: "o óculos" no singular em todo o texto (a norma culta pede "os óculos"); dizer na IV.A.2 que o espelhamento previsto na descrição inicial foi abandonado; "Multi-tenant" em itálico no título da subseção 1); distinguir a duração das sprints por etapa, como faz o exemplo
+
+## Fica para o TCC2 (não fazer agora)
+
+- IV.B Apresentação do Sistema, V. Considerações finais e VI. Artefatos
+- Especificação técnica no template do curso ([Template Especificação Técnica TCC TADS UFPR.docx](Referencias-e-modelos/Template%20Especificação%20Técnica%20TCC%20TADS%20UFPR.docx)), com os apêndices de casos de uso, classes, histórias com protótipos e sequência, modelo do banco em pé de galinha e APIs: os artefatos da pasta `Especificacao` já cobrem esses apêndices (confirmar com o orientador se é entrega do TCC2)
+- Termo de aprovação (fornecido depois da banca)
+- Prova de conceito com o olhar e as expressões faciais juntos no Unreal, como primeira tarefa do desenvolvimento (se falhar, o plano B é Unity)
+- Testes práticos: medir o tamanho do envio de uma sessão real (a IV.A estima cerca de 300 MB por sessão de 5 min) e testar a internet no local da coleta antes dos experimentos
+- Desenvolvimento do sistema
