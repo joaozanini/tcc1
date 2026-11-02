@@ -1,0 +1,294 @@
+<mxfile host="Electron" agent="gerar_casos_de_uso.pl" version="24.0.0">
+  <diagram id="UC00" name="UC00 – Atores e perfis">
+    <mxGraphModel dx="840" dy="470" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="840" pageHeight="470" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="UC00-frame" value="uc UC00 – Atores e perfis" style="shape=umlFrame;whiteSpace=wrap;html=1;width=210;height=28;verticalAlign=middle;align=left;spacingLeft=6;fillColor=none;fontSize=12;" vertex="1" parent="1"><mxGeometry x="20" y="20" width="800" height="430" as="geometry"/></mxCell>
+        <mxCell id="UC00-admin" value="Administrador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="255" y="80" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC00-n1" value="Perfis cumulativos (RN05): cada perfil herda os casos de uso do perfil para onde a seta aponta. Usuário é abstrato: qualquer pessoa com conta." style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#FFFFFF;strokeColor=#808080;fontSize=10;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;" vertex="1" parent="1"><mxGeometry x="60" y="185" width="700" height="40" as="geometry"/></mxCell>
+        <mxCell id="UC00-n2" value="Pessoa sem conta: conhece o sistema e cria um tenant (UC01)." style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#FFFFFF;strokeColor=#808080;fontSize=10;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;" vertex="1" parent="1"><mxGeometry x="150" y="262" width="220" height="56" as="geometry"/></mxCell>
+        <mxCell id="UC00-n3" value="Não é usuário (RN06). Ator secundário: usa o óculos durante a execução da sessão (UC08.3)." style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#FFFFFF;strokeColor=#808080;fontSize=10;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;" vertex="1" parent="1"><mxGeometry x="490" y="262" width="270" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC00-n4" value="O app do óculos faz parte do NeuroSight; por isso não aparece como ator." style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#FFFFFF;strokeColor=#808080;fontSize=10;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;" vertex="1" parent="1"><mxGeometry x="60" y="375" width="700" height="34" as="geometry"/></mxCell>
+        <mxCell id="UC00-pac" value="Paciente" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="425" y="270" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC00-pesq" value="Pesquisador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="425" y="80" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC00-prop" value="Proprietário" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="85" y="80" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC00-usuario" value="Usuário" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="595" y="80" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC00-visit" value="Visitante" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="85" y="270" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC00-e1" value="" style="endArrow=block;endFill=0;endSize=14;html=1;rounded=0;" edge="1" parent="1" source="UC00-prop" target="UC00-admin"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC00-e2" value="" style="endArrow=block;endFill=0;endSize=14;html=1;rounded=0;" edge="1" parent="1" source="UC00-admin" target="UC00-pesq"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC00-e3" value="" style="endArrow=block;endFill=0;endSize=14;html=1;rounded=0;" edge="1" parent="1" source="UC00-pesq" target="UC00-usuario"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC00-e4" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#808080;" edge="1" parent="1" source="UC00-n2" target="UC00-visit"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC00-e5" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#808080;" edge="1" parent="1" source="UC00-n3" target="UC00-pac"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="UC01" name="UC01 – Acesso e conta">
+    <mxGraphModel dx="910" dy="750" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="910" pageHeight="750" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="UC01-frame" value="uc UC01 – Acesso e conta" style="shape=umlFrame;whiteSpace=wrap;html=1;width=202;height=28;verticalAlign=middle;align=left;spacingLeft=6;fillColor=none;fontSize=12;" vertex="1" parent="1"><mxGeometry x="20" y="20" width="870" height="710" as="geometry"/></mxCell>
+        <mxCell id="UC01-subject" value="NeuroSight" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=center;fontStyle=1;fontSize=13;spacingTop=6;" vertex="1" parent="1"><mxGeometry x="260" y="80" width="590" height="620" as="geometry"/></mxCell>
+        <mxCell id="UC01-UC01_1" value="UC01.1&lt;br&gt;Conhecer o NeuroSight" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC01-UC01_2" value="UC01.2&lt;br&gt;Criar tenant" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC01-UC01_3" value="UC01.3&lt;br&gt;Confirmar e-mail" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC01-UC01_4" value="UC01.4&lt;br&gt;Entrar e sair do sistema" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="315" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC01-UC01_5" value="UC01.5&lt;br&gt;Recuperar senha" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="315" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC01-UC01_6" value="UC01.6&lt;br&gt;Alterar meus dados e senha" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="410" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC01-UC01_7" value="UC01.7&lt;br&gt;Alterar dados do tenant" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="505" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC01-UC01_8" value="UC01.8&lt;br&gt;Transferir propriedade do tenant" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="600" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC01-prop" value="Proprietário" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="75" y="557" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC01-usuario" value="Usuário" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="75" y="367" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC01-visit" value="Visitante" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="75" y="177" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC01-e1" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC01-visit" target="UC01-UC01_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC01-e2" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC01-visit" target="UC01-UC01_2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC01-e3" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC01-usuario" target="UC01-UC01_4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC01-e4" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC01-usuario" target="UC01-UC01_6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC01-e5" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC01-prop" target="UC01-UC01_7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC01-e6" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC01-prop" target="UC01-UC01_8"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC01-e7" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC01-UC01_2" target="UC01-UC01_3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC01-e8" value="«extend»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC01-UC01_5" target="UC01-UC01_4"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="UC02" name="UC02 – Usuários e permissões">
+    <mxGraphModel dx="910" dy="655" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="910" pageHeight="655" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="UC02-frame" value="uc UC02 – Usuários e permissões" style="shape=umlFrame;whiteSpace=wrap;html=1;width=253;height=28;verticalAlign=middle;align=left;spacingLeft=6;fillColor=none;fontSize=12;" vertex="1" parent="1"><mxGeometry x="20" y="20" width="870" height="615" as="geometry"/></mxCell>
+        <mxCell id="UC02-subject" value="NeuroSight" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=center;fontStyle=1;fontSize=13;spacingTop=6;" vertex="1" parent="1"><mxGeometry x="260" y="80" width="590" height="525" as="geometry"/></mxCell>
+        <mxCell id="UC02-UC02_1" value="UC02.1&lt;br&gt;Cadastrar usuário" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC02-UC02_2" value="UC02.2&lt;br&gt;Enviar convite por e-mail" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC02-UC02_3" value="UC02.3&lt;br&gt;Consultar usuários" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC02-UC02_4" value="UC02.4&lt;br&gt;Editar ou desativar usuário" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="315" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC02-UC02_5" value="UC02.5&lt;br&gt;Definir administradores" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="505" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC02-UC02_6" value="UC02.6&lt;br&gt;Definir quem vê uma sessão" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="410" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC02-admin" value="Administrador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="75" y="272" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC02-prop" value="Proprietário" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="75" y="510" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC02-e1" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC02-admin" target="UC02-UC02_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC02-e2" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC02-admin" target="UC02-UC02_3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC02-e3" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC02-admin" target="UC02-UC02_4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC02-e4" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC02-admin" target="UC02-UC02_6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC02-e5" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC02-prop" target="UC02-UC02_5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC02-e6" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC02-UC02_1" target="UC02-UC02_2"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="UC03" name="UC03 – Óculos">
+    <mxGraphModel dx="910" dy="560" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="910" pageHeight="560" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="UC03-frame" value="uc UC03 – Óculos" style="shape=umlFrame;whiteSpace=wrap;html=1;width=145;height=28;verticalAlign=middle;align=left;spacingLeft=6;fillColor=none;fontSize=12;" vertex="1" parent="1"><mxGeometry x="20" y="20" width="870" height="520" as="geometry"/></mxCell>
+        <mxCell id="UC03-subject" value="NeuroSight" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=center;fontStyle=1;fontSize=13;spacingTop=6;" vertex="1" parent="1"><mxGeometry x="260" y="80" width="590" height="430" as="geometry"/></mxCell>
+        <mxCell id="UC03-UC03_1" value="UC03.1&lt;br&gt;Parear óculos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC03-UC03_2" value="UC03.2&lt;br&gt;Consultar óculos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC03-UC03_3" value="UC03.3&lt;br&gt;Renomear óculos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="315" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC03-UC03_4" value="UC03.4&lt;br&gt;Desfazer pareamento" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="410" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC03-admin" value="Administrador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="75" y="272" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC03-n1" value="O código de pareamento aparece no app do óculos enquanto ele não está vinculado a um tenant (RF13)." style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#FFFFFF;strokeColor=#808080;fontSize=10;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;" vertex="1" parent="1"><mxGeometry x="605" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC03-e1" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC03-admin" target="UC03-UC03_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC03-e2" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC03-admin" target="UC03-UC03_2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC03-e3" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC03-admin" target="UC03-UC03_3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC03-e4" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC03-admin" target="UC03-UC03_4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC03-e5" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#808080;" edge="1" parent="1" source="UC03-n1" target="UC03-UC03_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="UC04" name="UC04 – Pacientes">
+    <mxGraphModel dx="600" dy="655" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="600" pageHeight="655" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="UC04-frame" value="uc UC04 – Pacientes" style="shape=umlFrame;whiteSpace=wrap;html=1;width=166;height=28;verticalAlign=middle;align=left;spacingLeft=6;fillColor=none;fontSize=12;" vertex="1" parent="1"><mxGeometry x="20" y="20" width="560" height="615" as="geometry"/></mxCell>
+        <mxCell id="UC04-subject" value="NeuroSight" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=center;fontStyle=1;fontSize=13;spacingTop=6;" vertex="1" parent="1"><mxGeometry x="260" y="80" width="280" height="525" as="geometry"/></mxCell>
+        <mxCell id="UC04-UC04_1" value="UC04.1&lt;br&gt;Cadastrar paciente" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC04-UC04_2" value="UC04.2&lt;br&gt;Editar paciente" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC04-UC04_3" value="UC04.3&lt;br&gt;Consultar pacientes" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="315" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC04-UC04_4" value="UC04.4&lt;br&gt;Ver histórico do paciente" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="410" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC04-UC04_5" value="UC04.5&lt;br&gt;Excluir paciente e seus dados" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="505" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC04-admin" value="Administrador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="75" y="510" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC04-pesq" value="Pesquisador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="75" y="272" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC04-e1" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC04-pesq" target="UC04-UC04_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC04-e2" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC04-pesq" target="UC04-UC04_2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC04-e3" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC04-pesq" target="UC04-UC04_3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC04-e4" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC04-pesq" target="UC04-UC04_4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC04-e5" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC04-admin" target="UC04-UC04_5"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="UC05" name="UC05 – Estímulos">
+    <mxGraphModel dx="600" dy="655" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="600" pageHeight="655" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="UC05-frame" value="uc UC05 – Estímulos" style="shape=umlFrame;whiteSpace=wrap;html=1;width=166;height=28;verticalAlign=middle;align=left;spacingLeft=6;fillColor=none;fontSize=12;" vertex="1" parent="1"><mxGeometry x="20" y="20" width="560" height="615" as="geometry"/></mxCell>
+        <mxCell id="UC05-subject" value="NeuroSight" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=center;fontStyle=1;fontSize=13;spacingTop=6;" vertex="1" parent="1"><mxGeometry x="260" y="80" width="280" height="525" as="geometry"/></mxCell>
+        <mxCell id="UC05-UC05_1" value="UC05.1&lt;br&gt;Enviar estímulos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC05-UC05_2" value="UC05.2&lt;br&gt;Consultar estímulos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC05-UC05_3" value="UC05.3&lt;br&gt;Editar informações do estímulo" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="315" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC05-UC05_4" value="UC05.4&lt;br&gt;Marcar estímulo como pessoal" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="410" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC05-UC05_5" value="UC05.5&lt;br&gt;Arquivar estímulo" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="505" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC05-pesq" value="Pesquisador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="75" y="320" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC05-e1" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC05-pesq" target="UC05-UC05_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC05-e2" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC05-pesq" target="UC05-UC05_2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC05-e3" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC05-pesq" target="UC05-UC05_3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC05-e4" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC05-pesq" target="UC05-UC05_4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC05-e5" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC05-pesq" target="UC05-UC05_5"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="UC06" name="UC06 – Modelos de sessão">
+    <mxGraphModel dx="1220" dy="655" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1220" pageHeight="655" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="UC06-frame" value="uc UC06 – Modelos de sessão" style="shape=umlFrame;whiteSpace=wrap;html=1;width=224;height=28;verticalAlign=middle;align=left;spacingLeft=6;fillColor=none;fontSize=12;" vertex="1" parent="1"><mxGeometry x="20" y="20" width="1180" height="615" as="geometry"/></mxCell>
+        <mxCell id="UC06-subject" value="NeuroSight" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=center;fontStyle=1;fontSize=13;spacingTop=6;" vertex="1" parent="1"><mxGeometry x="260" y="80" width="900" height="525" as="geometry"/></mxCell>
+        <mxCell id="UC06-UC06_1" value="UC06.1&lt;br&gt;Cadastrar modelo de sessão" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC06-UC06_2" value="UC06.2&lt;br&gt;Consultar modelos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC06-UC06_3" value="UC06.3&lt;br&gt;Editar modelo" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="315" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC06-UC06_4" value="UC06.4&lt;br&gt;Duplicar modelo" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="410" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC06-UC06_5" value="UC06.5&lt;br&gt;Excluir modelo" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="505" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC06-UC06_6" value="UC06.6&lt;br&gt;Montar sequência de estímulos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC06-UC06_7" value="UC06.7&lt;br&gt;Definir tela neutra entre estímulos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="915" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC06-pesq" value="Pesquisador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="75" y="320" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC06-e1" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC06-pesq" target="UC06-UC06_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC06-e2" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC06-pesq" target="UC06-UC06_2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC06-e3" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC06-pesq" target="UC06-UC06_3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC06-e4" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC06-pesq" target="UC06-UC06_4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC06-e5" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC06-pesq" target="UC06-UC06_5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC06-e6" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC06-UC06_1" target="UC06-UC06_6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC06-e7" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC06-UC06_3" target="UC06-UC06_6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC06-e8" value="«extend»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC06-UC06_7" target="UC06-UC06_6"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="UC07" name="UC07 – Sessões">
+    <mxGraphModel dx="910" dy="845" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="910" pageHeight="845" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="UC07-frame" value="uc UC07 – Sessões" style="shape=umlFrame;whiteSpace=wrap;html=1;width=152;height=28;verticalAlign=middle;align=left;spacingLeft=6;fillColor=none;fontSize=12;" vertex="1" parent="1"><mxGeometry x="20" y="20" width="870" height="805" as="geometry"/></mxCell>
+        <mxCell id="UC07-subject" value="NeuroSight" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=center;fontStyle=1;fontSize=13;spacingTop=6;" vertex="1" parent="1"><mxGeometry x="260" y="80" width="590" height="715" as="geometry"/></mxCell>
+        <mxCell id="UC07-UC06_6" value="UC06.6&lt;br&gt;Montar sequência de estímulos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F2F2F2;strokeColor=#808080;dashed=1;fontColor=#404040;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC07-UC07_1" value="UC07.1&lt;br&gt;Criar sessão a partir de modelo" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC07-UC07_2" value="UC07.2&lt;br&gt;Criar sessão personalizada" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC07-UC07_3" value="UC07.3&lt;br&gt;Registrar estado clínico do dia" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC07-UC07_4" value="UC07.4&lt;br&gt;Enviar sessão ao óculos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="315" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC07-UC07_5" value="UC07.5&lt;br&gt;Acompanhar estado da sessão" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="410" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC07-UC07_6" value="UC07.6&lt;br&gt;Iniciar sessão" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="505" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC07-UC07_7" value="UC07.7&lt;br&gt;Cancelar sessão" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="600" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC07-UC07_8" value="UC07.8&lt;br&gt;Consultar sessões" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="695" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC07-UC08_1" value="UC08.1&lt;br&gt;Baixar sessão e estímulos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F2F2F2;strokeColor=#808080;dashed=1;fontColor=#404040;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="315" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC07-UC08_3" value="UC08.3&lt;br&gt;Executar sessão" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F2F2F2;strokeColor=#808080;dashed=1;fontColor=#404040;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="505" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC07-pesq" value="Pesquisador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="75" y="415" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC07-e1" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC07-pesq" target="UC07-UC07_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC07-e2" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC07-pesq" target="UC07-UC07_2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC07-e3" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC07-pesq" target="UC07-UC07_4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC07-e4" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC07-pesq" target="UC07-UC07_5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC07-e5" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC07-pesq" target="UC07-UC07_6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC07-e6" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC07-pesq" target="UC07-UC07_7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC07-e7" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC07-pesq" target="UC07-UC07_8"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC07-e8" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC07-UC07_2" target="UC07-UC06_6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC07-e9" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC07-UC07_4" target="UC07-UC08_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC07-e10" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC07-UC07_6" target="UC07-UC08_3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC07-e11" value="«extend»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC07-UC07_3" target="UC07-UC07_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC07-e12" value="«extend»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC07-UC07_3" target="UC07-UC07_2"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="UC08" name="UC08 – Execução no óculos">
+    <mxGraphModel dx="1370" dy="655" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1370" pageHeight="655" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="UC08-frame" value="uc UC08 – Execução no óculos" style="shape=umlFrame;whiteSpace=wrap;html=1;width=231;height=28;verticalAlign=middle;align=left;spacingLeft=6;fillColor=none;fontSize=12;" vertex="1" parent="1"><mxGeometry x="20" y="20" width="1330" height="615" as="geometry"/></mxCell>
+        <mxCell id="UC08-subject" value="NeuroSight" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=center;fontStyle=1;fontSize=13;spacingTop=6;" vertex="1" parent="1"><mxGeometry x="260" y="80" width="900" height="525" as="geometry"/></mxCell>
+        <mxCell id="UC08-UC07_4" value="UC07.4&lt;br&gt;Enviar sessão ao óculos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F2F2F2;strokeColor=#808080;dashed=1;fontColor=#404040;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC08-UC07_6" value="UC07.6&lt;br&gt;Iniciar sessão" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F2F2F2;strokeColor=#808080;dashed=1;fontColor=#404040;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="315" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC08-UC08_1" value="UC08.1&lt;br&gt;Baixar sessão e estímulos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC08-UC08_2" value="UC08.2&lt;br&gt;Verificar rastreamento do óculos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="915" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC08-UC08_3" value="UC08.3&lt;br&gt;Executar sessão" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="315" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC08-UC08_4" value="UC08.4&lt;br&gt;Registrar olhar e expressões" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="915" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC08-UC08_5" value="UC08.5&lt;br&gt;Gravar a cena" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="915" y="410" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC08-UC08_6" value="UC08.6&lt;br&gt;Salvar dados no óculos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="915" y="505" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC08-pac" value="Paciente" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="1255" y="320" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC08-pesq" value="Pesquisador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="75" y="225" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC08-e1" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC08-pesq" target="UC08-UC07_4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC08-e2" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC08-pesq" target="UC08-UC07_6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC08-e3" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC08-pac" target="UC08-UC08_3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC08-e4" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC08-UC07_4" target="UC08-UC08_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC08-e5" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC08-UC08_1" target="UC08-UC08_2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC08-e6" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC08-UC07_6" target="UC08-UC08_3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC08-e7" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC08-UC08_3" target="UC08-UC08_4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC08-e8" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC08-UC08_3" target="UC08-UC08_5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC08-e9" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC08-UC08_3" target="UC08-UC08_6"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="UC09" name="UC09 – Envio e processamento">
+    <mxGraphModel dx="1220" dy="370" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1220" pageHeight="370" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="UC09-frame" value="uc UC09 – Envio e processamento" style="shape=umlFrame;whiteSpace=wrap;html=1;width=253;height=28;verticalAlign=middle;align=left;spacingLeft=6;fillColor=none;fontSize=12;" vertex="1" parent="1"><mxGeometry x="20" y="20" width="1180" height="330" as="geometry"/></mxCell>
+        <mxCell id="UC09-subject" value="NeuroSight" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=center;fontStyle=1;fontSize=13;spacingTop=6;" vertex="1" parent="1"><mxGeometry x="260" y="80" width="900" height="240" as="geometry"/></mxCell>
+        <mxCell id="UC09-UC07_6" value="UC07.6&lt;br&gt;Iniciar sessão" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F2F2F2;strokeColor=#808080;dashed=1;fontColor=#404040;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC09-UC08_3" value="UC08.3&lt;br&gt;Executar sessão" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F2F2F2;strokeColor=#808080;dashed=1;fontColor=#404040;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC09-UC09_1" value="UC09.1&lt;br&gt;Enviar dados da sessão" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="915" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC09-UC09_2" value="UC09.2&lt;br&gt;Processar dados recebidos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="915" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC09-n1" value="Começa sozinho no fim da sessão. Sem conexão, os dados ficam no óculos e são reenviados depois (RF49)." style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#FFFFFF;strokeColor=#808080;fontSize=10;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;" vertex="1" parent="1"><mxGeometry x="605" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC09-pesq" value="Pesquisador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="75" y="130" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC09-e1" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC09-pesq" target="UC09-UC07_6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC09-e2" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC09-UC07_6" target="UC09-UC08_3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC09-e3" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC09-UC08_3" target="UC09-UC09_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC09-e4" value="«include»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC09-UC09_1" target="UC09-UC09_2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC09-e5" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#808080;" edge="1" parent="1" source="UC09-n1" target="UC09-UC09_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="UC10" name="UC10 – Consulta e análise">
+    <mxGraphModel dx="910" dy="655" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="910" pageHeight="655" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="UC10-frame" value="uc UC10 – Consulta e análise" style="shape=umlFrame;whiteSpace=wrap;html=1;width=231;height=28;verticalAlign=middle;align=left;spacingLeft=6;fillColor=none;fontSize=12;" vertex="1" parent="1"><mxGeometry x="20" y="20" width="870" height="615" as="geometry"/></mxCell>
+        <mxCell id="UC10-subject" value="NeuroSight" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=center;fontStyle=1;fontSize=13;spacingTop=6;" vertex="1" parent="1"><mxGeometry x="260" y="80" width="590" height="525" as="geometry"/></mxCell>
+        <mxCell id="UC10-UC10_1" value="UC10.1&lt;br&gt;Assistir à sessão" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC10-UC10_2" value="UC10.2&lt;br&gt;Ver heatmap do olhar" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC10-UC10_3" value="UC10.3&lt;br&gt;Usar modo validação" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC10-UC10_4" value="UC10.4&lt;br&gt;Ver gráficos das expressões" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC10-UC10_5" value="UC10.5&lt;br&gt;Ver resumo por estímulo" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="315" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC10-UC10_6" value="UC10.6&lt;br&gt;Registrar anotações" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="410" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC10-UC10_7" value="UC10.7&lt;br&gt;Exportar dados da sessão" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="505" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC10-pesq" value="Pesquisador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="75" y="320" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC10-e1" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC10-pesq" target="UC10-UC10_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC10-e2" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC10-pesq" target="UC10-UC10_4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC10-e3" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC10-pesq" target="UC10-UC10_5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC10-e4" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC10-pesq" target="UC10-UC10_6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC10-e5" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC10-pesq" target="UC10-UC10_7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC10-e6" value="«extend»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC10-UC10_2" target="UC10-UC10_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC10-e7" value="«extend»" style="endArrow=open;endSize=10;dashed=1;html=1;rounded=0;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="UC10-UC10_3" target="UC10-UC10_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="UC11" name="UC11 – Auditoria">
+    <mxGraphModel dx="910" dy="375" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="910" pageHeight="375" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="UC11-frame" value="uc UC11 – Auditoria" style="shape=umlFrame;whiteSpace=wrap;html=1;width=166;height=28;verticalAlign=middle;align=left;spacingLeft=6;fillColor=none;fontSize=12;" vertex="1" parent="1"><mxGeometry x="20" y="20" width="870" height="335" as="geometry"/></mxCell>
+        <mxCell id="UC11-subject" value="NeuroSight" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=center;fontStyle=1;fontSize=13;spacingTop=6;" vertex="1" parent="1"><mxGeometry x="260" y="80" width="590" height="245" as="geometry"/></mxCell>
+        <mxCell id="UC11-UC11_1" value="UC11.1&lt;br&gt;Consultar auditoria" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="125" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC11-UC11_2" value="UC11.2&lt;br&gt;Registrar ações automaticamente" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="295" y="220" width="210" height="70" as="geometry"/></mxCell>
+        <mxCell id="UC11-admin" value="Administrador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1"><mxGeometry x="75" y="130" width="30" height="60" as="geometry"/></mxCell>
+        <mxCell id="UC11-n1" value="Incluído pelos casos de uso que criam, alteram, excluem ou visualizam dados (RF59). Os registros não podem ser alterados nem excluídos (RN20)." style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#FFFFFF;strokeColor=#808080;fontSize=10;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;" vertex="1" parent="1"><mxGeometry x="605" y="215" width="210" height="80" as="geometry"/></mxCell>
+        <mxCell id="UC11-e1" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UC11-admin" target="UC11-UC11_1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="UC11-e2" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#808080;" edge="1" parent="1" source="UC11-n1" target="UC11-UC11_2"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
