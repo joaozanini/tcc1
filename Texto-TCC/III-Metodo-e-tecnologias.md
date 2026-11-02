@@ -6,7 +6,7 @@ Versão de trabalho de 26/10/2026. Texto para passar ao modelo do TCC, escrito n
 
 - **Citações:** aparecem como chaves entre colchetes, por exemplo [SCRUM]. Ao montar o artigo, troque cada chave pelo número da referência, na ordem em que ela aparece no texto, como no modelo ([1], [2]...). As referências estão no fim deste arquivo.
 - **Notas de rodapé:** marcadas com ¹ e ². A numeração continua a das seções anteriores.
-- **Figura e tabela:** esta é a primeira figura do artigo. A tabela das tecnologias é a Tabela 2, porque a Seção II tem a Tabela 1 (comparação com ferramentas semelhantes).
+- **Figuras e tabela:** aqui ficam as Figuras 1 e 2, as primeiras do artigo. A tabela das tecnologias é a Tabela 2, porque a Seção II tem a Tabela 1 (comparação com ferramentas semelhantes).
 - **Trechos a completar:** estão entre colchetes e em maiúsculas.
 - **Tempo verbal:** a modelagem (TCC1) está no passado, e o desenvolvimento (TCC2), no futuro.
 
@@ -22,11 +22,17 @@ O modelo de processo escolhido para conduzir o trabalho foi o Scrum [SCRUM], ada
 
 O desenvolvimento do projeto foi dividido em duas etapas: modelagem, realizada na primeira parte do Trabalho de Conclusão de Curso (TCC1) e apresentada neste documento, e desenvolvimento, prevista para a segunda parte (TCC2). Na etapa de modelagem, houve a elicitação dos requisitos e a elaboração dos diagramas de casos de uso, das histórias de usuário, do diagrama de classes, do diagrama de estados da sessão, do diagrama lógico-relacional do banco de dados, dos diagramas de sequência dos seis fluxos principais, dos diagramas de processo de negócio do experimento, como é conduzido hoje e com o NeuroSight, do diagrama macro do fluxo de uma sessão, do diagrama de arquitetura e dos protótipos de tela: 14 do sistema web e 5 do aplicativo do óculos. A notação dos modelos foi a definida pela *Unified Modeling Language* (UML) [UML], com exceção dos processos de negócio, descritos em *Business Process Model and Notation* (BPMN) [BPMN]. Os diagramas foram feitos no draw.io [DRAWIO], e os protótipos, em HTML (*HyperText Markup Language*) e CSS (*Cascading Style Sheets*).
 
-A Figura 1 apresenta, como exemplo, o diagrama de casos de uso das sessões, que reúne o fluxo principal do sistema: o pesquisador cria a sessão, a partir de um modelo ou de forma personalizada, envia-a ao óculos, acompanha o seu estado e a inicia. Ao todo, foram elaborados doze diagramas, com 60 casos de uso: um diagrama com os atores e um para cada grupo de requisitos. Os atores principais são os três perfis de usuário, que são cumulativos: o pesquisador, que cadastra pacientes, estímulos, modelos e sessões, inicia as sessões e analisa os dados; o administrador, que, além disso, gerencia os usuários, os óculos, a visibilidade das sessões e a auditoria; e o proprietário, que criou o *tenant* e define quem é administrador. Completam o modelo o visitante, que conhece o sistema e cria um *tenant*, e o paciente, ator secundário que usa o óculos durante a sessão, mas não acessa o sistema. A documentação completa está disponível on-line².
+Ao todo, foram elaborados doze diagramas de casos de uso, com 60 casos de uso: um diagrama com os atores e um para cada grupo de requisitos. A Figura 1 apresenta os atores e a hierarquia dos perfis. O usuário é um ator abstrato, que representa qualquer pessoa com conta. Dele herda o pesquisador, que cadastra pacientes, estímulos, modelos e sessões, inicia as sessões e analisa os dados; do pesquisador herda o administrador, que, além disso, gerencia os usuários, os óculos, a visibilidade das sessões e a auditoria; e do administrador herda o proprietário, que criou o *tenant* e define quem é administrador. A generalização entre os atores representa os perfis cumulativos: quem herda tem também os casos de uso do ator de quem herda. Completam o modelo o visitante, que conhece o sistema e cria um *tenant*, e o paciente, ator secundário que usa o óculos durante a sessão, mas não acessa o sistema. O aplicativo do óculos faz parte do NeuroSight e, por isso, não aparece como ator. A Figura 2 apresenta, como exemplo, o diagrama de casos de uso das sessões, que reúne o fluxo principal do sistema: o pesquisador cria a sessão, a partir de um modelo ou de forma personalizada, envia-a ao óculos, acompanha o seu estado e a inicia. Só o pesquisador aparece nesse diagrama porque o administrador e o proprietário herdam os casos de uso dele. A documentação completa está disponível on-line².
 
-**FIGURA 1** - Exemplo de diagrama de casos de uso - Sessões.
+**FIGURA 1** - Atores do NeuroSight e hierarquia dos perfis.
 
-![Diagrama de casos de uso UC07 – Sessões](figuras/Figura-1-casos-de-uso-UC07-Sessoes.png)
+![Diagrama de casos de uso UC00 – Atores e perfis](figuras/Figura-1-casos-de-uso-UC00-Atores.png)
+
+FONTE: O autor (2026).
+
+**FIGURA 2** - Exemplo de diagrama de casos de uso - Sessões.
+
+![Diagrama de casos de uso UC07 – Sessões](figuras/Figura-2-casos-de-uso-UC07-Sessoes.png)
 
 FONTE: O autor (2026).
 
@@ -93,5 +99,5 @@ Os endereços responderam em 26/10/2026. As páginas da Meta só abrem no navega
 2. **Nota ²:** resolvida em 02/11/2026 com o repositório https://github.com/joaozanini/tcc1 (pasta Especificacao). O link só abre depois do push e com o repositório público.
 3. **Revisões com o orientador:** o texto diz que o orientador acompanha o andamento nas revisões das *sprints*. Ajuste se a rotina de vocês for outra.
 4. **Prova de conceito do rastreamento facial:** se ela levar a trocar o Unreal pelo Unity (plano B), mude o parágrafo das tecnologias e a Tabela 2.
-5. **Figura 1:** a imagem saiu da página UC07 de [Casos-de-uso-NeuroSight.drawio](../Especificacao/Casos-de-uso-NeuroSight.drawio). Se mudar o diagrama, exporte a página de novo no draw.io.
+5. **Figuras 1 e 2:** as imagens saíram das páginas UC00 e UC07 de [Casos-de-uso-NeuroSight.drawio](../Especificacao/Casos-de-uso-NeuroSight.drawio). Se mudar um diagrama, exporte a página de novo no draw.io, com zoom 300% e recorte.
 6. **Numeração:** confira as figuras, as tabelas, as notas e as citações depois de juntar todas as seções.

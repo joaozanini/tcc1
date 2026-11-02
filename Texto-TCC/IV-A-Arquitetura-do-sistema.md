@@ -6,7 +6,7 @@ Versão de trabalho de 26/10/2026. Continua o texto da [Seção III](III-Metodo-
 
 - **Convenções:** as mesmas da Seção III. As citações aparecem como chaves entre colchetes, e as referências novas estão no fim do arquivo.
 - **Chaves repetidas:** [IC], [POSTGRES] e [META-MOVE] já aparecem na Seção III e mantêm o número que receberem lá. [EKMAN] e [LGPD] são obras do 1.1 que devem ser citadas antes, na Seção II.
-- **Figuras:** continuam a numeração da Seção III, que tem a Figura 1. Aqui ficam as Figuras 2 e 3.
+- **Figuras:** continuam a numeração da Seção III, que tem as Figuras 1 e 2. Aqui ficam as Figuras 3 e 4.
 - **Tempo verbal:** a arquitetura está descrita no presente, como proposta. O que depende do desenvolvimento está no futuro.
 
 ---
@@ -17,25 +17,25 @@ Esta seção apresenta o resultado da etapa de modelagem: a arquitetura proposta
 
 ### A. Arquitetura do Sistema
 
-A arquitetura geral do sistema é representada pela Figura 2. Conforme apresentado na Tabela 2, ela se baseia em tecnologias atuais e amplamente utilizadas, como Unreal Engine, NestJS, Next.js e PostgreSQL. O sistema tem três partes: o aplicativo de coleta, executado no Meta Quest Pro; o sistema web, acessado pelo navegador; e o servidor, que reúne a interface de programação de aplicações (API, do inglês *Application Programming Interface*), o banco de dados, os arquivos e o processamento das sessões.
+A arquitetura geral do sistema é representada pela Figura 3. Conforme apresentado na Tabela 2, ela se baseia em tecnologias atuais e amplamente utilizadas, como Unreal Engine, NestJS, Next.js e PostgreSQL. O sistema tem três partes: o aplicativo de coleta, executado no Meta Quest Pro; o sistema web, acessado pelo navegador; e o servidor, que reúne a interface de programação de aplicações (API, do inglês *Application Programming Interface*), o banco de dados, os arquivos e o processamento das sessões.
 
-**FIGURA 2** - Arquitetura do NeuroSight.
+**FIGURA 3** - Arquitetura do NeuroSight.
 
-![Arquitetura do NeuroSight](figuras/Figura-2-arquitetura.png)
+![Arquitetura do NeuroSight](figuras/Figura-3-arquitetura.png)
 
 FONTE: O autor (2026).
 
-Na Figura 2, observa-se o aplicativo de coleta, desenvolvido a partir do protótipo da IC, que baixa a sessão e os estímulos, apresenta os estímulos ao paciente, coleta o olhar e as expressões faciais, captura os quadros da cena e envia os dados ao servidor. O sistema web é a interface dos pesquisadores e dos administradores e não contém regras de negócio. Essas regras ficam na API, que também é responsável pela autenticação, pelo isolamento entre os grupos de pesquisa, pelo registro de auditoria e pela entrega dos arquivos. A API acessa o banco de dados por meio do Prisma e guarda os arquivos (estímulos, dados brutos das sessões, quadros e vídeos) no disco do servidor, atrás de uma interface que permite trocar o disco por um serviço de armazenamento compatível com o Amazon S3 sem alterar o restante do sistema. O processamento é executado em segundo plano, a partir de uma fila de tarefas mantida no próprio banco pela biblioteca pg-boss [PGBOSS]: ele importa as amostras de cada sessão para o banco e monta o vídeo com o FFmpeg. Por fim, um serviço externo de e-mail envia as mensagens de confirmação de cadastro, de convite e de redefinição de senha.
+Na Figura 3, observa-se o aplicativo de coleta, desenvolvido a partir do protótipo da IC, que baixa a sessão e os estímulos, apresenta os estímulos ao paciente, coleta o olhar e as expressões faciais, captura os quadros da cena e envia os dados ao servidor. O sistema web é a interface dos pesquisadores e dos administradores e não contém regras de negócio. Essas regras ficam na API, que também é responsável pela autenticação, pelo isolamento entre os grupos de pesquisa, pelo registro de auditoria e pela entrega dos arquivos. A API acessa o banco de dados por meio do Prisma e guarda os arquivos (estímulos, dados brutos das sessões, quadros e vídeos) no disco do servidor, atrás de uma interface que permite trocar o disco por um serviço de armazenamento compatível com o Amazon S3 sem alterar o restante do sistema. O processamento é executado em segundo plano, a partir de uma fila de tarefas mantida no próprio banco pela biblioteca pg-boss [PGBOSS]: ele importa as amostras de cada sessão para o banco e monta o vídeo com o FFmpeg. Por fim, um serviço externo de e-mail envia as mensagens de confirmação de cadastro, de convite e de redefinição de senha.
 
 Os componentes do servidor rodam em contêineres, orquestrados pelo Docker Compose, com um *proxy* reverso responsável pela conexão segura (HTTPS, do inglês *Hypertext Transfer Protocol Secure*). Assim, o sistema pode ser instalado em um servidor virtual privado (VPS, do inglês *Virtual Private Server*) contratado, de preferência hospedado no Brasil, ou em um servidor da própria instituição de pesquisa. A escolha cabe ao protocolo de cada pesquisa, aprovado pelo CEP, já que o art. 13 da LGPD prevê que os dados de estudos em saúde pública sejam tratados dentro do órgão de pesquisa [LGPD]. O banco de dados e os arquivos terão cópia de segurança diária. Não há comunicação direta entre o sistema web e o óculos: as duas partes falam apenas com a API, como detalhado a seguir.
 
 *1) Multi-tenant:* Cada instituição ou grupo de pesquisa cadastrado no NeuroSight corresponde a um *tenant*, e uma única instalação atende a todos. Os dados ficam em um banco único, em que toda tabela com dados de um *tenant* tem a coluna `tenant_id`. O isolamento é feito em duas camadas. Na primeira, a API filtra cada consulta pelo *tenant* do usuário, informado no *token* de acesso. Na segunda, o PostgreSQL aplica em cada tabela uma política de *Row-Level Security* (RLS) [POSTGRES], que só devolve as linhas do *tenant* definido para a transação em curso. Assim, um filtro esquecido no código não expõe dados de outro grupo. Como a checagem de chaves estrangeiras não passa pelo RLS, as relações entre as tabelas usam chaves compostas com o *tenant*, o que impede, por exemplo, que uma sessão aponte para o paciente de outro grupo. A API acessa o banco com um papel que não pode ignorar o RLS; um segundo papel, que pode, é usado apenas nas operações feitas antes de existir um *tenant* no contexto, como o autocadastro, o *login* e o pareamento dos óculos. Os arquivos também são separados em pastas por *tenant* e só são entregues pela API, depois da checagem de permissão.
 
-*2) Comunicação entre sistema web, servidor e óculos:* O sistema web e o aplicativo do óculos se comunicam apenas com a API, por HTTPS, no estilo REST (*Representational State Transfer*). A API será documentada em OpenAPI [OPENAPI], que serve de contrato entre o servidor e o aplicativo. A Figura 3 resume o fluxo de uma sessão.
+*2) Comunicação entre sistema web, servidor e óculos:* O sistema web e o aplicativo do óculos se comunicam apenas com a API, por HTTPS, no estilo REST (*Representational State Transfer*). A API será documentada em OpenAPI [OPENAPI], que serve de contrato entre o servidor e o aplicativo. A Figura 4 resume o fluxo de uma sessão.
 
-**FIGURA 3** - Fluxo de uma sessão no NeuroSight.
+**FIGURA 4** - Fluxo de uma sessão no NeuroSight.
 
-![Fluxo de uma sessão no NeuroSight](figuras/Figura-3-fluxo-de-uma-sessao.png)
+![Fluxo de uma sessão no NeuroSight](figuras/Figura-4-fluxo-de-uma-sessao.png)
 
 FONTE: O autor (2026).
 
@@ -77,5 +77,5 @@ Os endereços responderam em 26/10/2026.
 2. **Fila de tarefas:** o pg-boss está como opcional no arquivo de decisões. Se ele sair, tire a citação [PGBOSS] e mantenha só "fila de tarefas".
 3. **Número de expressões faciais:** "cerca de 70" depende da versão do SDK da Meta. Confirme na prova de conceito.
 4. **Consentimento:** o texto remete à Seção II. Confira se a II.D trata do consentimento pelo responsável legal, como previsto no checklist.
-5. **Figuras 2 e 3:** saíram das duas páginas de [Arquitetura-NeuroSight.drawio](../Especificacao/Arquitetura-NeuroSight.drawio). Se mudar um diagrama, exporte a página de novo no draw.io.
+5. **Figuras 3 e 4:** saíram das duas páginas de [Arquitetura-NeuroSight.drawio](../Especificacao/Arquitetura-NeuroSight.drawio). Se mudar um diagrama, exporte a página de novo no draw.io.
 6. **Tamanho:** o texto tem cerca de 1.700 palavras. Se o limite de páginas apertar, os candidatos a corte são o parágrafo dos estados da sessão (o diagrama de classes já os lista) e os detalhes de envio na subseção 3.

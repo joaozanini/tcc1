@@ -33,7 +33,7 @@ $largTexto = 16.0          # 21 cm menos as margens de 3 cm e 2 cm
 $espColunas = 0.6
 $largColuna = ($largTexto - $espColunas) / 2
 # Figuras ocupam a largura toda da página (como figure* no LaTeX), para o texto continuar legível
-$larguras = @{ 'Figura-1' = 12.0; 'Figura-2' = 16.0; 'Figura-3' = 13.0 }
+$larguras = @{ 'Figura-1' = 14.0; 'Figura-2' = 12.0; 'Figura-3' = 16.0; 'Figura-4' = 13.0 }
 $padrao = '\*\*(.+?)\*\*|\*(.+?)\*|`([^`]+)`|\[\^(\d+)\]|\\([<>])'
 
 $jaAberto = @(Get-Process WINWORD -ErrorAction SilentlyContinue).Count -gt 0

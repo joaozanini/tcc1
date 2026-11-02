@@ -29,7 +29,7 @@ my ($modelo) = glob("$dir/../TCC_TADS_Exemplo_Sistema*");
 die "pasta do modelo (TCC_TADS_Exemplo_Sistema_de_Estágios) não encontrada ao lado de Texto-TCC\n" unless $modelo && -d $modelo;
 
 # Largura das figuras: todas ocupam as duas colunas (figure*), como na versão em Word
-my %largura = ('Figura-1' => '0.75\textwidth', 'Figura-2' => '\textwidth', 'Figura-3' => '0.8\textwidth');
+my %largura = ('Figura-1' => '0.85\textwidth', 'Figura-2' => '0.75\textwidth', 'Figura-3' => '\textwidth', 'Figura-4' => '0.8\textwidth');
 
 sub ler { my ($f) = @_; open my $h, '<', $f or die "não abri $f: $!\n"; local $/; my $t = <$h>; close $h; $t =~ s/\r\n/\n/g; return $t; }
 
