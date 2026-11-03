@@ -29,7 +29,7 @@ my ($modelo) = glob("$dir/../TCC_TADS_Exemplo_Sistema*");
 die "pasta do modelo (TCC_TADS_Exemplo_Sistema_de_Estágios) não encontrada ao lado de Texto-TCC\n" unless $modelo && -d $modelo;
 
 # Largura das figuras: todas ocupam as duas colunas (figure*), como na versão em Word
-my %largura = ('Figura-1' => '0.85\textwidth', 'Figura-2' => '0.75\textwidth', 'Figura-3' => '\textwidth', 'Figura-4' => '0.8\textwidth');
+my %largura = ('Figura-1' => '\textwidth', 'Figura-2' => '\textwidth', 'Figura-3' => '0.8\textwidth');
 
 sub ler { my ($f) = @_; open my $h, '<', $f or die "não abri $f: $!\n"; local $/; my $t = <$h>; close $h; $t =~ s/\r\n/\n/g; return $t; }
 
@@ -74,6 +74,15 @@ sub esc {
   $s =~ s/\^/\\textasciicircum{}/g;
   $s =~ s/\x{1}/\\textbackslash{}/g;
   $s =~ s/×/\$\\times\$/g;
+  $s =~ s/→/\$\\rightarrow\$/g;
+  $s =~ s/←/\$\\leftarrow\$/g;
+  $s =~ s/↔/\$\\leftrightarrow\$/g;
+  $s =~ s/≥/\$\\geq\$/g;
+  $s =~ s/≤/\$\\leq\$/g;
+  $s =~ s/…/.../g;
+  $s =~ s/[‘’]/'/g;
+  $s =~ s/“/``/g;
+  $s =~ s/”/''/g;
   $s =~ s/—/---/g;
   $s =~ s/–/--/g;
   $s =~ s/"([^"]*)"/``$1''/g;             # aspas retas viram aspas do LaTeX (o babel usa " para atalhos)
@@ -125,10 +134,18 @@ sub celulas {
 }
 
 sub tabela {
-  my ($cel, $larg) = @_;
+  my ($cel, $larg, $adaptar) = @_;
   my @t = @$cel;
   my $nc = @{ $t[0] };
   my $cols = $nc > 3 ? 'l|l|' . join('|', ('Y') x ($nc - 2)) : 'l|' . join('|', ('Y') x ($nc - 1));
+  if ($adaptar) {
+    # nos apêndices, a coluna só fica sem quebra de linha se todas as células forem curtas
+    my @max = (0) x $nc;
+    for my $r (@t) { for my $i (0 .. $#$r) { my $n = length($r->[$i] // ''); $max[$i] = $n if $n > $max[$i] } }
+    my @tipo = map { $max[$_] <= 22 ? 'l' : 'Y' } 0 .. $nc - 1;
+    $tipo[-1] = 'Y' unless grep { $_ eq 'Y' } @tipo;
+    $cols = join('|', @tipo);
+  }
   my @o = ('  \footnotesize', "  \\begin{tabularx}{$larg}{$cols}", '    \hline');
   my $cab = shift @t;
   push @o, '    ' . join(' & ', map { '\textbf{' . inline($_) . '}' } @$cab) . ' \\\\', '    \hline';
@@ -142,24 +159,46 @@ my $titulo = $l[0] =~ s/^# //r;
 my $k = 1;
 my @cab;
 while ($k < @l && $l[$k] !~ /^\*\*Resumo:\*\*/) { push @cab, $l[$k] if $l[$k] =~ /\S/; $k++ }
-my ($autor, $afiliacao) = @cab;
-die "autor ou afiliação não encontrados abaixo do título\n" unless $autor && $afiliacao;
+my ($nomes, $afiliacao) = @cab;
+die "autores ou afiliação não encontrados abaixo do título\n" unless $nomes && $afiliacao;
+my @autores = split /, /, $nomes;       # os autores vêm na mesma linha, separados por vírgula
 my ($setor, $ufpr) = split /, /, $afiliacao, 2;
 
 # ---------------------------------------------------------------- corpo
-my (%resumo, @corpo);
+# Largura e altura de um PNG (cabeçalho IHDR), para decidir se a figura do apêndice vai em página paisagem
+sub png_dim { my ($f) = @_; open my $h, '<:raw', $f or return (0, 0); read $h, my $b, 24; close $h; return unpack('x16 N N', $b) }
+
+# O corpo do artigo vai em @corpo (duas colunas, figuras e tabelas flutuantes, como no modelo do curso).
+# Os apêndices, depois das referências, vão em @apend: uma coluna, figuras e tabelas no lugar em que
+# aparecem no texto, e as figuras largas em página paisagem.
+my (%resumo, @corpo, @apend);
+my $apendice = 0;
+my $saida_ref = \@corpo;
 while ($k < @l) {
   my $x = $l[$k];
   if ($x =~ /^\s*$/ || $x eq '---' || $x =~ /^\[\^\d+\]: /) { $k++; next }
-  last if $x eq '## REFERÊNCIAS';
+  if ($x eq '## REFERÊNCIAS') {
+    $k++; $k++ while $k < @l && $l[$k] !~ /^## APÊNDICE/;
+    $apendice = 1; $saida_ref = \@apend;
+    push @apend, '\onecolumn', '\appendices', '' if $k < @l;
+    next;
+  }
   if ($x =~ /^\*\*(Resumo|Palavras-chave|Abstract|Keywords):\*\* (.+)$/) { $resumo{$1} = inline($2); $k++; next }
-  if ($x =~ /^## [IVX]+\. (.+)$/)  { push @corpo, '\section{' . inline($1) . '}', ''; $k++; next }
-  if ($x =~ /^### [A-Z]\. (.+)$/)  { push @corpo, '\subsection{' . inline($1) . '}', ''; $k++; next }
-  if ($x =~ /^\*\d+\) (.+?):\* (.+)$/) { push @corpo, '\subsubsection{' . inline($1) . '} ' . inline($2), ''; $k++; next }
+  if ($x =~ /^## [IVX]+\. (.+)$/)  { push @$saida_ref, '\section{' . inline($1) . '}', ''; $k++; next }
+  if ($x =~ /^## APÊNDICE [A-Z] – (.+)$/) { push @$saida_ref, '\FloatBarrier', '\section{' . inline($1) . '}', ''; $k++; next }
+  if ($x =~ /^### (?:[A-Z]\. )?(.+)$/)  { push @$saida_ref, '\subsection{' . inline($1) . '}', ''; $k++; next }
+  if ($x =~ /^#### (.+)$/)  { push @$saida_ref, '\paragraph*{' . inline($1) . '}'; $k++; next }
+  if ($x =~ /^\*\d+\) (.+?):\* (.+)$/) { push @$saida_ref, '\subsubsection{' . inline($1) . '} ' . inline($2), ''; $k++; next }
   if ($x =~ /^- /) {
-    push @corpo, '\begin{itemize}';
-    while ($k < @l && $l[$k] =~ /^- (.+)$/) { push @corpo, '  \item ' . inline($1); $k++ }
-    push @corpo, '\end{itemize}', '';
+    push @$saida_ref, '\begin{itemize}';
+    while ($k < @l && $l[$k] =~ /^- (.+)$/) { push @$saida_ref, '  \item ' . inline($1); $k++ }
+    push @$saida_ref, '\end{itemize}', '';
+    next;
+  }
+  if ($x =~ /^\d+\. /) {
+    push @$saida_ref, '\begin{enumerate}';
+    while ($k < @l && $l[$k] =~ /^\d+\. (.+)$/) { push @$saida_ref, '  \item ' . inline($1); $k++ }
+    push @$saida_ref, '\end{enumerate}', '';
     next;
   }
   if ($x =~ /^\*\*(FIGURA|TABELA) (\d+)\*\* - (.+)$/) {
@@ -171,23 +210,38 @@ while ($k < @l) {
       my ($pref) = $img =~ m{(Figura-\d+)};
       my $larg = $largura{ $pref // '' } // '\textwidth';
       $j = proxima($j + 1);
-      push @corpo, "\\begin{figuralarga}[!t]{$leg}{" . fonte($l[$j], "FIGURA $num") . "}{fig:$num}",
-        "  \\includegraphics[width=$larg]{$img}", '\end{figuralarga}', '';
+      my $f = fonte($l[$j], "FIGURA $num");
+      if ($apendice) {
+        my ($w, $h) = png_dim("$dir/$img");
+        # diagramas largos vão em página paisagem; os protótipos de tela (capturas 16:9) ficam em pé, na largura da página
+        my $paisagem = $leg !~ /^Prot/ && $w > 2600 && $h && $w / $h >= 1.4;
+        push @apend,
+          ($paisagem ? '\begin{landscape}' : ()),
+          "\\begin{figurasolta}{$leg}{$f}{fig:$num}",
+          ($paisagem ? "  \\includegraphics[width=\\linewidth,height=0.84\\textheight,keepaspectratio]{$img}"
+                     : $leg =~ /^Prot/ ? "  \\includegraphics[width=0.78\\textwidth]{$img}"   # duas telas por página
+                     : "  \\includegraphics[width=\\textwidth,height=0.8\\textheight,keepaspectratio]{$img}"),
+          '\end{figurasolta}',
+          ($paisagem ? '\end{landscape}' : ()), '';
+      } else {
+        push @corpo, "\\begin{figuralarga}[!t]{$leg}{$f}{fig:$num}", "  \\includegraphics[width=$larg]{$img}", '\end{figuralarga}', '';
+      }
     } else {
       my @tab; while ($j < @l && $l[$j] =~ /^\|/) { push @tab, $l[$j]; $j++ }
       die "TABELA $num sem a tabela logo abaixo da legenda\n" unless @tab;
       $j = proxima($j);
       my $f = fonte($l[$j], "TABELA $num");
       my @cel = celulas(\@tab);
+      if ($apendice) { push @apend, "\\begin{tabelasolta}{$leg}{$f}{tab:$num}", tabela(\@cel, '\textwidth', 1), '\end{tabelasolta}', '' }
       # tabela com mais de 3 colunas ocupa as duas colunas da página, como a Tabela 1 na versão em Word
-      if (@{ $cel[0] } > 3) { push @corpo, "\\begin{tabela*}[!t]{$leg}{$f}", tabela(\@cel, '\textwidth'), '\end{tabela*}', '' }
-      else                  { push @corpo, "\\begin{tabela}[!t]{$leg}{$f}{tab:$num}", tabela(\@cel, '\columnwidth'), '\end{tabela}', '' }
+      elsif (@{ $cel[0] } > 3) { push @corpo, "\\begin{tabela*}[!t]{$leg}{$f}", tabela(\@cel, '\textwidth'), '\end{tabela*}', '' }
+      else                     { push @corpo, "\\begin{tabela}[!t]{$leg}{$f}{tab:$num}", tabela(\@cel, '\columnwidth'), '\end{tabela}', '' }
     }
     $k = $j + 1;
     next;
   }
   if ($x =~ /^(#|\||!\[|FONTE:)/) { die "linha fora do padrão esperado: $x\n" }
-  push @corpo, inline($x), '';
+  push @$saida_ref, inline($x), '';
   $k++;
 }
 for (qw(Resumo Palavras-chave Abstract Keywords)) { die "falta o $_ no artigo montado\n" unless $resumo{$_} }
@@ -219,6 +273,8 @@ my $tex = <<'TEX';
 \usepackage{ifthen}
 \usepackage[pages=some]{background}
 \usepackage{tabularx}
+\usepackage{pdflscape}
+\usepackage{placeins}
 \RequirePackage[obeyspaces,hyphens]{url}
 \RequirePackage[plainpages,pdfpagelabels]{hyperref}	% PDF com links, metadados
 \RequirePackage{bookmark}				% cria um índice no PDF
@@ -239,7 +295,7 @@ my $tex = <<'TEX';
 %%%% NÃO MEXER NESTES ARQUIVOS
 %%%% Definições/Estilos customizadas para o TADS, Mais capa
 \input{tads.tex}
-\hypersetup{pdfauthor={%%AUTOR%%}}
+\hypersetup{pdfauthor={%%AUTORES%%}}
 
 % Figura na largura das duas colunas, com legenda e fonte como as do figura do tads.tex
 \newenvironment{figuralarga}[4][!t]
@@ -260,14 +316,54 @@ my $tex = <<'TEX';
   \end{figure*}
 }
 
+% Figura e tabela dos apêndices: flutuam perto de onde aparecem, numa coluna só, sem passar do apêndice
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.75}
+\newenvironment{figurasolta}[3]
+{
+  \refstepcounter{figuracounter}
+  \label{#3}
+  \def\fonteval{#2}
+  \begin{figure}[!htbp]
+    \begin{center}
+      \par\medskip\noindent
+      FIGURA~\thefiguracounter~-~#1
+      \par\medskip\noindent
+}
+{
+      \par\noindent
+      \fonte{\fonteval}
+    \end{center}
+  \end{figure}
+}
+\newenvironment{tabelasolta}[3]
+{
+  \refstepcounter{tabelacounter}
+  \label{#3}
+  \def\fonteval{#2}
+  \begin{table}[!htbp]
+    \begin{center}
+      \par\medskip\noindent
+      TABELA~\thetabelacounter~-~#1
+      \par\medskip\noindent
+}
+{
+      \par\noindent
+      \fonte{\fonteval}
+    \end{center}
+  \end{table}
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Definições usadas para geração da capa, folha de rosto e títulos
 \def\autorescapa{
-    \textsc{\Large %%AUTORCAPA%%}\\
+%%AUTORESCAPA%%
 }
 \def\autorestitulo{
-  %%AUTOR%%\refmark{1}
+  %%AUTORESTITULO%%
 }
 \def\titulo{%%TITULO%%}
 
@@ -337,16 +433,25 @@ my $tex = <<'TEX';
 
 \end{thebibliography}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% APÊNDICES (gerados da pasta Especificacao por montar-apendices.pl), numa coluna só
+
+%%APENDICES%%
+
 \end{document}
 TEX
 
 my %v = (
   DATA => strftime('%d/%m/%Y', localtime), ANO => strftime('%Y', localtime),
-  AUTORCAPA => esc(uc $autor), AUTOR => esc($autor), TITULO => inline($titulo),
+  # na capa, um nome por linha; no título, os nomes separados por vírgula, como no modelo do curso
+  AUTORESCAPA => join("\n", map { '    \textsc{\Large ' . esc(uc $_) . '}\\\\' } @autores),
+  AUTORESTITULO => join(', ', map { esc($_) . '\refmark{1}' } @autores),
+  AUTORES => esc(join(', ', @autores)), TITULO => inline($titulo),
   SETOR => esc($setor), UFPR => esc($ufpr),
   RESUMO => $resumo{'Resumo'}, PALAVRAS => $resumo{'Palavras-chave'},
   ABSTRACT => $resumo{'Abstract'}, KEYWORDS => $resumo{'Keywords'},
   CORPO => join("\n", @corpo),
+  APENDICES => join("\n", @apend),
   REFERENCIAS => join("\n\n", map { "\\bibitem{$_->[0]} " . inline($_->[1], 1) } @refs),
 );
 $tex =~ s/%%(\w+)%%/exists $v{$1} ? $v{$1} : die "marcador $1 sem valor\n"/ge;
@@ -378,7 +483,8 @@ my @erros;
 die join("\n", 'O .tex gerado tem problemas:', @erros) . "\n" if @erros;
 
 # ---------------------------------------------------------------- pasta do projeto LaTeX
-make_path("$saida/figuras");
+make_path("$saida/figuras", "$saida/figuras/apendices");
+unlink glob("$saida/figuras/apendices/*");   # imagens de montagens anteriores, de apêndices que saíram
 for my $f (qw(IEEEtran.cls tads.tex bg_capa.jpg termo_aprovacao.pdf)) {
   copy("$modelo/$f", "$saida/$f") or die "não copiei $f do modelo: $!\n";
 }

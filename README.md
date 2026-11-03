@@ -1,12 +1,12 @@
 # NeuroSight – TCC1
 
-Sistema de rastreamento ocular e emocional em realidade virtual para estudo e apoio ao diagnóstico de pessoas com distúrbios da consciência. Trabalho de Conclusão de Curso de João Vitor Zanini Pedro, orientado pelo Prof. Dr. Alessandro Brawerman, no curso de Tecnologia em Análise e Desenvolvimento de Sistemas da Universidade Federal do Paraná (2026).
+Sistema de rastreamento ocular e emocional em realidade virtual para estudo e apoio ao diagnóstico de pessoas com distúrbios da consciência. Trabalho de Conclusão de Curso de João Vitor Zanini Pedro e Lucas Sarnacki Guiraud, orientado pelo Prof. Dr. Alessandro Brawerman, no curso de Tecnologia em Análise e Desenvolvimento de Sistemas da Universidade Federal do Paraná (2026).
 
 Este repositório é a documentação completa citada na nota 2 da Seção III do artigo. O TCC1 vai até a Seção IV. Resultados, A. Arquitetura do Sistema.
 
 ## Onde está cada coisa
 
-- [Texto-TCC/TCC1-NeuroSight.pdf](Texto-TCC/TCC1-NeuroSight.pdf): o artigo do TCC1 no modelo do curso. As fontes do texto estão nos `.md` de `Texto-TCC/`, e os scripts da mesma pasta geram o LaTeX (`Texto-TCC/LaTeX/`), o pacote para o Overleaf e a versão em Word.
+- [Texto-TCC/TCC1-NeuroSight.pdf](Texto-TCC/TCC1-NeuroSight.pdf): o artigo do TCC1 no modelo do curso. As fontes do texto estão nos `.md` de `Texto-TCC/`, e os scripts da mesma pasta geram o LaTeX (`Texto-TCC/LaTeX/`), o pacote para o Overleaf e a versão em Word. O artigo traz, nos Apêndices A e B, os doze diagramas de casos de uso e as histórias de usuário, gerados da pasta `Especificacao` por `Texto-TCC/montar-apendices.pl`.
 - [Especificacao/](Especificacao/): os artefatos de modelagem. Cada diagrama tem um `.drawio`, que abre no [draw.io](https://www.drawio.com/) ou em app.diagrams.net, e um `.md` que o descreve.
   - [Requisitos-NeuroSight.md](Especificacao/Requisitos-NeuroSight.md): requisitos funcionais, regras de negócio e requisitos não funcionais.
   - [Decisoes-tecnicas-NeuroSight.md](Especificacao/Decisoes-tecnicas-NeuroSight.md): tecnologias escolhidas e os motivos.

@@ -93,17 +93,26 @@ my $pendencias = @falta ? "**Ainda falta:** $falta. " : '';
 my $data = strftime('%d/%m/%Y', localtime);
 
 my $cab = "# Artigo do TCC1 – NeuroSight (versão montada)\n\n"
-  . "Versão de trabalho de $data, montada a partir dos arquivos das Seções I a IV.A desta pasta. As citações já estão com a numeração final, e a lista de referências está no fim. Para mudar o texto, edite o arquivo da seção e monte de novo com `perl Texto-TCC/montar-artigo.pl`, no Git Bash, a partir da pasta do TCC. Para atualizar a versão de entrega, no modelo LaTeX do curso, rode em seguida `perl Texto-TCC/gerar-latex.pl --pdf` (grava a pasta Texto-TCC/LaTeX, o .zip para o Overleaf e o PDF compilado); para a versão em Word, `powershell -ExecutionPolicy Bypass -File .\\Texto-TCC\\gerar-docx.ps1`.\n\n"
+  . "Versão de trabalho de $data, montada a partir dos arquivos das Seções I a IV.A desta pasta e dos apêndices gerados da pasta Especificacao por montar-apendices.pl. As citações já estão com a numeração final, e a lista de referências vem antes dos apêndices. Para mudar o texto, edite o arquivo da seção (ou o artefato da especificação, no caso dos apêndices) e monte de novo com `perl Texto-TCC/montar-artigo.pl`, no Git Bash, a partir da pasta do TCC. Para atualizar a versão de entrega, no modelo LaTeX do curso, rode em seguida `perl Texto-TCC/gerar-latex.pl --pdf` (grava a pasta Texto-TCC/LaTeX, o .zip para o Overleaf e o PDF compilado); para a versão em Word, `powershell -ExecutionPolicy Bypass -File .\\Texto-TCC\\gerar-docx.ps1`.\n\n"
   . "${pendencias}As Seções IV.B, V e VI ficam para o TCC2.\n\n"
   . "---\n\n"
   . "# NeuroSight: sistema de rastreamento ocular e emocional em realidade virtual para estudo e apoio ao diagnóstico de pessoas com distúrbios da consciência\n\n"
-  . "João Vitor Zanini Pedro\n\n"
+  . "João Vitor Zanini Pedro, Lucas Sarnacki Guiraud\n\n"
   . "Setor de Educação Profissional e Tecnológica, Universidade Federal do Paraná\n\n"
   . join("\n\n", map { $resumo{$_} } @rotulos) . "\n\n";
 
 my $refs = "## REFERÊNCIAS\n\n" . join("\n\n", map { "[$num{$_}] $ref{$_}" } @ordem) . "\n";
+
+# apêndices: gerados da pasta Especificacao por montar-apendices.pl, com as figuras e as tabelas
+# numeradas na sequência das do corpo do artigo
+my ($ultFig) = sort { $b <=> $a } ($todos =~ /^\*\*FIGURA (\d+)\*\*/mg);
+my ($ultTab) = sort { $b <=> $a } ($todos =~ /^\*\*TABELA (\d+)\*\*/mg);
+system($^X, "$dir/montar-apendices.pl", ($ultFig // 0) + 1, ($ultTab // 0) + 1) == 0 or die "montar-apendices.pl falhou\n";
+my $apendices = ler("$dir/Apendices.md");
+$apendices =~ s/^.*?(?=^## APÊNDICE)//ms or die "Apendices.md sem apêndices\n";
+
 open my $o, '>', $saida or die "não gravei $saida: $!\n";
-print $o $cab, join("\n", @corpos), "\n", $refs;
+print $o $cab, join("\n", @corpos), "\n", $refs, "\n", $apendices;
 close $o;
 
 printf "%d referências numeradas; %d sem citação: %s\n", scalar @ordem, scalar @sobra, join(' ', @sobra) || '-';

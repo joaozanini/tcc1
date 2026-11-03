@@ -1,4 +1,4 @@
-% Gerado por Texto-TCC/gerar-latex.pl a partir de Artigo-TCC1-NeuroSight.md em 02/11/2026.
+% Gerado por Texto-TCC/gerar-latex.pl a partir de Artigo-TCC1-NeuroSight.md em 03/11/2026.
 % Para mudar o texto, edite os arquivos das seções em Texto-TCC, monte o artigo com
 % montar-artigo.pl e gere de novo este arquivo; mudanças feitas direto aqui se perdem na próxima geração.
 % O preâmbulo e a capa seguem o textoprincipal.tex do modelo do curso. Diferenças: a classe é
@@ -22,6 +22,8 @@
 \usepackage{ifthen}
 \usepackage[pages=some]{background}
 \usepackage{tabularx}
+\usepackage{pdflscape}
+\usepackage{placeins}
 \RequirePackage[obeyspaces,hyphens]{url}
 \RequirePackage[plainpages,pdfpagelabels]{hyperref}	% PDF com links, metadados
 \RequirePackage{bookmark}				% cria um índice no PDF
@@ -42,7 +44,7 @@
 %%%% NÃO MEXER NESTES ARQUIVOS
 %%%% Definições/Estilos customizadas para o TADS, Mais capa
 \input{tads.tex}
-\hypersetup{pdfauthor={João Vitor Zanini Pedro}}
+\hypersetup{pdfauthor={João Vitor Zanini Pedro, Lucas Sarnacki Guiraud}}
 
 % Figura na largura das duas colunas, com legenda e fonte como as do figura do tads.tex
 \newenvironment{figuralarga}[4][!t]
@@ -63,14 +65,55 @@
   \end{figure*}
 }
 
+% Figura e tabela dos apêndices: flutuam perto de onde aparecem, numa coluna só, sem passar do apêndice
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.75}
+\newenvironment{figurasolta}[3]
+{
+  \refstepcounter{figuracounter}
+  \label{#3}
+  \def\fonteval{#2}
+  \begin{figure}[!htbp]
+    \begin{center}
+      \par\medskip\noindent
+      FIGURA~\thefiguracounter~-~#1
+      \par\medskip\noindent
+}
+{
+      \par\noindent
+      \fonte{\fonteval}
+    \end{center}
+  \end{figure}
+}
+\newenvironment{tabelasolta}[3]
+{
+  \refstepcounter{tabelacounter}
+  \label{#3}
+  \def\fonteval{#2}
+  \begin{table}[!htbp]
+    \begin{center}
+      \par\medskip\noindent
+      TABELA~\thetabelacounter~-~#1
+      \par\medskip\noindent
+}
+{
+      \par\noindent
+      \fonte{\fonteval}
+    \end{center}
+  \end{table}
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Definições usadas para geração da capa, folha de rosto e títulos
 \def\autorescapa{
     \textsc{\Large JOÃO VITOR ZANINI PEDRO}\\
+    \textsc{\Large LUCAS SARNACKI GUIRAUD}\\
 }
 \def\autorestitulo{
-  João Vitor Zanini Pedro\refmark{1}
+  João Vitor Zanini Pedro\refmark{1}, Lucas Sarnacki Guiraud\refmark{1}
 }
 \def\titulo{NeuroSight: sistema de rastreamento ocular e emocional em realidade virtual para estudo e apoio ao diagnóstico de pessoas com distúrbios da consciência}
 
@@ -106,7 +149,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Resumo e palavras-chave
 \begin{resumo}
-O diagnóstico do nível de consciência em pessoas com distúrbios da consciência depende da observação de respostas comportamentais que muitos pacientes não conseguem produzir. Experimentos que registram o olhar e as expressões faciais desses pacientes diante de estímulos controlados ajudam a medir essas respostas, mas costumam depender de ferramentas isoladas e de transferência manual de arquivos. O objetivo deste trabalho é modelar e desenvolver o NeuroSight, um sistema de apoio à pesquisa que reúne as etapas desses experimentos em realidade virtual: o cadastro de pacientes e de estímulos, a configuração e o início das sessões, a coleta do olhar e das expressões faciais no Meta Quest Pro, o armazenamento dos dados e a sua análise. O trabalho parte de um protótipo de rastreamento ocular desenvolvido em Iniciação Científica e segue o Scrum adaptado ao trabalho individual. Nesta primeira etapa, foram levantados os requisitos e elaborados os modelos em UML e BPMN, os protótipos das telas e a arquitetura do sistema, formada por um aplicativo em Unreal Engine, um servidor em NestJS, um sistema web em Next.js e um banco de dados PostgreSQL compartilhado por vários grupos de pesquisa, com isolamento dos dados, controle de acesso e auditoria. O sistema não faz diagnóstico: organiza os experimentos e o registro dos dados para a análise dos pesquisadores.
+O diagnóstico do nível de consciência em pessoas com distúrbios da consciência depende da observação de respostas comportamentais que muitos pacientes não conseguem produzir. Experimentos que registram o olhar e as expressões faciais desses pacientes diante de estímulos controlados ajudam a medir essas respostas, mas costumam depender de ferramentas isoladas e de transferência manual de arquivos. O objetivo deste trabalho é modelar e desenvolver o NeuroSight, um sistema de apoio à pesquisa que reúne as etapas desses experimentos em realidade virtual: o cadastro de pacientes e de estímulos, a configuração e o início das sessões, a coleta do olhar e das expressões faciais no Meta Quest Pro, o armazenamento dos dados e a sua análise. O trabalho parte de um protótipo de rastreamento ocular desenvolvido em Iniciação Científica e segue o Scrum adaptado a uma equipe de dois integrantes. Nesta primeira etapa, foram levantados os requisitos e elaborados os modelos em UML e BPMN, os protótipos das telas e a arquitetura do sistema, formada por um aplicativo em Unreal Engine, um servidor em NestJS, um sistema web em Next.js e um banco de dados PostgreSQL compartilhado por vários grupos de pesquisa, com isolamento dos dados, controle de acesso e auditoria. O sistema não faz diagnóstico: organiza os experimentos e o registro dos dados para a análise dos pesquisadores.
 \end{resumo}
 
 \begin{palavraschave}
@@ -116,7 +159,7 @@ Distúrbios da consciência; Rastreamento ocular; Realidade virtual; Expressões
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Abstract e keywords
 \begin{abstract}
-The diagnosis of the level of consciousness in people with disorders of consciousness depends on observing behavioral responses that many patients cannot produce. Experiments that record these patients' gaze and facial expressions in response to controlled stimuli help to measure such responses, but they usually rely on isolated tools and manual file transfers. The objective of this work is to model and develop NeuroSight, a research support system that brings together the steps of these virtual reality experiments: registering patients and stimuli, configuring and starting sessions, collecting gaze and facial expression data with the Meta Quest Pro, storing the data, and analyzing it. The work builds on an eye-tracking prototype developed in an undergraduate research project and follows Scrum adapted to individual work. In this first stage, the requirements were gathered, and the UML and BPMN models, the screen prototypes, and the system architecture were produced. The architecture consists of an Unreal Engine application, a NestJS server, a Next.js web system, and a PostgreSQL database shared by multiple research groups, with data isolation, access control, and auditing. The system does not perform diagnosis: it organizes the experiments and the data recording for the researchers' analysis.
+The diagnosis of the level of consciousness in people with disorders of consciousness depends on observing behavioral responses that many patients cannot produce. Experiments that record these patients' gaze and facial expressions in response to controlled stimuli help to measure such responses, but they usually rely on isolated tools and manual file transfers. The objective of this work is to model and develop NeuroSight, a research support system that brings together the steps of these virtual reality experiments: registering patients and stimuli, configuring and starting sessions, collecting gaze and facial expression data with the Meta Quest Pro, storing the data, and analyzing it. The work builds on an eye-tracking prototype developed in an undergraduate research project and follows Scrum adapted to a two-person team. In this first stage, the requirements were gathered, and the UML and BPMN models, the screen prototypes, and the system architecture were produced. The architecture consists of an Unreal Engine application, a NestJS server, a Next.js web system, and a PostgreSQL database shared by multiple research groups, with data isolation, access control, and auditing. The system does not perform diagnosis: it organizes the experiments and the data recording for the researchers' analysis.
 \end{abstract}
 
 \begin{keywords}
@@ -135,9 +178,9 @@ O comportamento visual tem peso particular nessa avaliação: a fixação susten
 
 O equipamento, porém, resolve apenas parte da questão. Para conduzir esses experimentos, o pesquisador precisa preparar os estímulos de cada paciente, controlar o momento em que cada um é exibido, associar os dados do olhar e das expressões ao estímulo apresentado em cada instante e guardar tudo vinculado ao paciente e à sessão corretos. Sem uma ferramenta que integre essas etapas, o trabalho se divide entre aplicativos isolados, \textit{scripts} e transferência manual de arquivos, situação observada também no desenvolvimento do protótipo que deu origem a este trabalho, em que as sessões ficavam como arquivos locais, sem catalogação~\cite{IC}. Isso aumenta o risco de perda ou troca de dados, dificulta a repetição do mesmo protocolo entre sessões e pacientes e torna a análise mais demorada. Há também a questão da proteção dos dados: informações de saúde são dados pessoais sensíveis segundo a Lei Geral de Proteção de Dados Pessoais (LGPD)~\cite{LGPD}, e os participantes desses estudos, pela própria condição, não conseguem consentir nem acompanhar o uso das suas informações. Por isso, o acesso às sessões precisa ser controlado, e as ações realizadas no sistema, registradas.
 
-Diante desse cenário, o objetivo deste trabalho é modelar e desenvolver o NeuroSight, um sistema de apoio à pesquisa que reúne em uma única ferramenta as etapas de experimentos em realidade virtual com pessoas com DoC: o cadastro dos pacientes, a preparação dos estímulos, a configuração e o início das sessões, a coleta do olhar e das expressões faciais no Meta Quest Pro, o armazenamento dos dados e a sua análise. O sistema é formado por um aplicativo para o óculos, um sistema web e um servidor, e uma mesma instalação atende a diferentes grupos de pesquisa, com os dados de cada um isolados dos demais. O trabalho parte do protótipo de rastreamento ocular em realidade virtual desenvolvido pelo autor em seu projeto de Iniciação Científica (IC)~\cite{IC}. O NeuroSight não faz diagnóstico nem substitui a avaliação clínica: ele organiza a realização dos experimentos e o registro dos dados para que os pesquisadores possam analisá-los.
+Diante desse cenário, o objetivo deste trabalho é modelar e desenvolver o NeuroSight, um sistema de apoio à pesquisa que reúne em uma única ferramenta as etapas de experimentos em realidade virtual com pessoas com DoC: o cadastro dos pacientes, a preparação dos estímulos, a configuração e o início das sessões, a coleta do olhar e das expressões faciais no Meta Quest Pro, o armazenamento dos dados e a sua análise. O sistema é formado por um aplicativo para o óculos, um sistema web e um servidor, e uma mesma instalação atende a diferentes grupos de pesquisa, com os dados de cada um isolados dos demais. O trabalho parte do protótipo de rastreamento ocular em realidade virtual desenvolvido por um dos autores em seu projeto de Iniciação Científica (IC)~\cite{IC}. O NeuroSight não faz diagnóstico nem substitui a avaliação clínica: ele organiza a realização dos experimentos e o registro dos dados para que os pesquisadores possam analisá-los.
 
-Este documento apresenta a primeira etapa do trabalho, dedicada à modelagem do sistema; a implementação será realizada na segunda etapa. A Seção II apresenta a revisão de literatura e os trabalhos semelhantes ao proposto, a Seção III descreve o método de trabalho e as tecnologias escolhidas e a Seção IV apresenta a arquitetura proposta para o sistema.
+Este documento apresenta a primeira etapa do trabalho, dedicada à modelagem do sistema; a implementação será realizada na segunda etapa. A Seção II apresenta a revisão de literatura e os trabalhos semelhantes ao proposto, a Seção III descreve o método de trabalho e as tecnologias escolhidas e a Seção IV apresenta a arquitetura proposta para o sistema. Os apêndices reúnem os doze diagramas de casos de uso e as histórias de usuário.
 
 \section{REVISÃO DE LITERATURA}
 
@@ -194,7 +237,7 @@ O SightLab VR Pro, da WorldViz, é um complemento comercial do ambiente Vizard p
 
 O PsychoPy é um programa gratuito e de código aberto para experimentos de psicologia~\cite{PSYCHOPY-ABOUT}, que define o início e a duração de cada estímulo~\cite{PSYCHOPY-TIMING} e se comunica com rastreadores oculares~\cite{PSYCHOPY-ET}. O suporte a RV, contudo, limita-se ao Oculus Rift~\cite{PSYCHOPY-RIFT}, e a análise de expressões faciais só existe nos experimentos on-line, pela \textit{webcam}~\cite{PSYCHOPY-ONLINE}. Esses experimentos ficam em projetos da plataforma Pavlovia, privados por padrão e compartilhados com outros usuários ou grupos por convite, com os papéis de acesso do GitLab~\cite{PSYCHOPY-PAVLOVIA}. A Tabela 1 resume a comparação.
 
-\begin{tabela*}[!t]{Comparação entre o NeuroSight e ferramentas semelhantes.}{O autor (2026), com base na documentação das ferramentas.}
+\begin{tabela*}[!t]{Comparação entre o NeuroSight e ferramentas semelhantes.}{Os autores (2026), com base na documentação das ferramentas.}
   \footnotesize
   \begin{tabularx}{\textwidth}{l|l|Y|Y|Y|Y|Y}
     \hline
@@ -216,27 +259,23 @@ Como mostra a Tabela 1, nenhuma das ferramentas analisadas reúne, ao mesmo temp
 
 Para desenvolver este trabalho, estudou-se como são conduzidos os experimentos com pessoas com distúrbios da consciência e o que a literatura relata sobre o uso do rastreamento ocular, das expressões faciais e da realidade virtual nesse contexto, conforme apresentado na Seção II. Com base nesse estudo, em reuniões com o orientador\footnote{BRAWERMAN, A. Levantamento de requisitos do NeuroSight. Curitiba, 2026. Informação verbal -- Reuniões de orientação.} e na experiência com o protótipo descrito a seguir, foram levantados os requisitos do sistema: 60 requisitos funcionais, 20 regras de negócio e 26 requisitos não funcionais. Os requisitos funcionais foram classificados por prioridade (essencial, importante ou desejável) e organizados em onze grupos: acesso e conta, usuários e permissões, óculos, pacientes, estímulos, modelos de sessão, sessões, execução no óculos, envio e processamento dos dados, consulta e análise e, por fim, auditoria.
 
-O ponto de partida técnico foi o sistema desenvolvido pelo autor em seu projeto de Iniciação Científica~\cite{IC}, voltado ao estudo da recepção comunicacional. Esse sistema tem três partes: um aplicativo em Unreal Engine para o Meta Quest Pro, que registra o olhar e grava a cena exibida, com o olhar já alinhado ao vídeo; um serviço que recebe as sessões enviadas pelo próprio óculos e monta o vídeo; e uma plataforma web que reproduz cada sessão com mapa de calor. O alinhamento entre o olhar e o vídeo foi verificado em dispositivo real, em testes feitos pelo próprio autor, sem participantes externos~\cite{IC}. O NeuroSight reaproveita o aplicativo e a forma de gravação das sessões e acrescenta o que o protótipo não tinha: a coleta das expressões faciais, o cadastro de pacientes e de estímulos, a configuração e o início das sessões pelo sistema web, o isolamento dos dados entre grupos de pesquisa e o controle de acesso.
+O ponto de partida técnico foi o sistema desenvolvido por um dos autores em seu projeto de Iniciação Científica~\cite{IC}, voltado ao estudo da recepção comunicacional. Esse sistema tem três partes: um aplicativo em Unreal Engine para o Meta Quest Pro, que registra o olhar e grava a cena exibida, com o olhar já alinhado ao vídeo; um serviço que recebe as sessões enviadas pelo próprio óculos e monta o vídeo; e uma plataforma web que reproduz cada sessão com mapa de calor. O alinhamento entre o olhar e o vídeo foi verificado em dispositivo real, em testes feitos pelo próprio autor do protótipo, sem participantes externos~\cite{IC}. O NeuroSight reaproveita o aplicativo e a forma de gravação das sessões e acrescenta o que o protótipo não tinha: a coleta das expressões faciais, o cadastro de pacientes e de estímulos, a configuração e o início das sessões pelo sistema web, o isolamento dos dados entre grupos de pesquisa e o controle de acesso.
 
-O modelo de processo escolhido para conduzir o trabalho foi o Scrum~\cite{SCRUM}, adaptado ao trabalho individual: o autor acumula os papéis previstos no Scrum, e o orientador acompanha o andamento nas revisões. Cada \textit{sprint} dura duas semanas. A reunião de planejamento abre a \textit{sprint} e define quais itens do \textit{backlog} serão feitos; ao final, a revisão com o orientador avalia o que foi produzido, e a retrospectiva registra o que deve mudar no processo. A reunião diária, que serve para alinhar uma equipe, perde o sentido com um único desenvolvedor e foi substituída pela atualização do quadro de tarefas. Complementarmente ao Scrum, adotou-se a abordagem Kanban~\cite{KANBAN} para organizar e acompanhar as tarefas, em um quadro do GitHub Projects~\cite{GITHUB}.
+O modelo de processo escolhido para conduzir o trabalho foi o Scrum~\cite{SCRUM}, adaptado a uma equipe de dois integrantes: os autores dividem entre si os papéis previstos no Scrum, e o orientador acompanha o andamento nas revisões. Cada \textit{sprint} dura duas semanas. A reunião de planejamento abre a \textit{sprint} e define quais itens do \textit{backlog} serão feitos; ao final, a revisão com o orientador avalia o que foi produzido, e a retrospectiva registra o que deve mudar no processo. Em vez da reunião diária, os dois autores se mantêm a par do andamento pela atualização do quadro de tarefas. Complementarmente ao Scrum, adotou-se a abordagem Kanban~\cite{KANBAN} para organizar e acompanhar as tarefas, em um quadro do GitHub Projects~\cite{GITHUB}.
 
 O desenvolvimento do projeto foi dividido em duas etapas: modelagem, realizada na primeira parte do Trabalho de Conclusão de Curso (TCC1) e apresentada neste documento, e desenvolvimento, prevista para a segunda parte (TCC2). Na etapa de modelagem, houve a elicitação dos requisitos e a elaboração dos diagramas de casos de uso, das histórias de usuário, do diagrama de classes, do diagrama de estados da sessão, do diagrama lógico-relacional do banco de dados, dos diagramas de sequência dos seis fluxos principais, dos diagramas de processo de negócio do experimento, como é conduzido hoje e com o NeuroSight, do diagrama macro do fluxo de uma sessão, do diagrama de arquitetura e dos protótipos de tela: 14 do sistema web e 5 do aplicativo do óculos. A notação dos modelos foi a definida pela \textit{Unified Modeling Language} (UML)~\cite{UML}, com exceção dos processos de negócio, descritos em \textit{Business Process Model and Notation} (BPMN)~\cite{BPMN}. Os diagramas foram feitos no draw.io~\cite{DRAWIO}, e os protótipos, em HTML (\textit{HyperText Markup Language}) e CSS (\textit{Cascading Style Sheets}).
 
-Ao todo, foram elaborados doze diagramas de casos de uso, com 60 casos de uso: um diagrama com os atores e um para cada grupo de requisitos. A Figura 1 apresenta os atores e a hierarquia dos perfis. O usuário é um ator abstrato, que representa qualquer pessoa com conta. Dele herda o pesquisador, que cadastra pacientes, estímulos, modelos e sessões, inicia as sessões e analisa os dados; do pesquisador herda o administrador, que, além disso, gerencia os usuários, os óculos, a visibilidade das sessões e a auditoria; e do administrador herda o proprietário, que criou o \textit{tenant} e define quem é administrador. A generalização entre os atores representa os perfis cumulativos: quem herda tem também os casos de uso do ator de quem herda. Completam o modelo o visitante, que conhece o sistema e cria um \textit{tenant}, e o paciente, ator secundário que usa o óculos durante a sessão, mas não acessa o sistema. O aplicativo do óculos faz parte do NeuroSight e, por isso, não aparece como ator. A Figura 2 apresenta, como exemplo, o diagrama de casos de uso das sessões, que reúne o fluxo principal do sistema: o pesquisador cria a sessão, a partir de um modelo ou de forma personalizada, envia-a ao óculos, acompanha o seu estado e a inicia. Só o pesquisador aparece nesse diagrama porque o administrador e o proprietário herdam os casos de uso dele. A documentação completa está disponível on-line\footnote{Disponível em: \url{https://github.com/joaozanini/tcc1} (pasta Especificacao). Acesso em: 2 nov. 2026.}.
+Ao todo, foram elaborados doze diagramas de casos de uso, com 60 casos de uso: um diagrama com os atores e um para cada grupo de requisitos. A Figura 1 apresenta o diagrama de casos de uso das sessões, que reúne o fluxo principal do sistema e os perfis de usuário: o pesquisador cria a sessão, a partir de um modelo ou de forma personalizada, envia-a ao óculos, acompanha o seu estado e a inicia; e o paciente, ator secundário, usa o óculos durante a sessão, mas não acessa o sistema. A generalização entre os atores representa os perfis cumulativos: o administrador tem também os casos de uso do pesquisador e, além deles, gerencia os usuários, os óculos, a visibilidade das sessões e a auditoria; o proprietário, que criou o \textit{tenant} e define quem é administrador, tem todos os casos de uso do administrador. Completam o modelo o usuário, ator abstrato que representa qualquer pessoa com conta e do qual herda o pesquisador, e o visitante, que conhece o sistema e cria um \textit{tenant}. O aplicativo do óculos faz parte do NeuroSight e, por isso, não aparece como ator. Os casos de uso em cinza tracejado pertencem a outros diagramas e aparecem apenas para mostrar as relações de inclusão e extensão. Os doze diagramas, com os 60 casos de uso, estão no Apêndice A, e as histórias de usuário, no Apêndice B. A documentação completa, com os arquivos editáveis dos diagramas e dos protótipos, está disponível on-line\footnote{Disponível em: \url{https://github.com/joaozanini/tcc1} (pasta Especificacao). Acesso em: 2 nov. 2026.}.
 
-\begin{figuralarga}[!t]{Atores do NeuroSight e hierarquia dos perfis.}{O autor (2026).}{fig:1}
-  \includegraphics[width=0.85\textwidth]{figuras/Figura-1-casos-de-uso-UC00-Atores.png}
-\end{figuralarga}
-
-\begin{figuralarga}[!t]{Exemplo de diagrama de casos de uso - Sessões.}{O autor (2026).}{fig:2}
-  \includegraphics[width=0.75\textwidth]{figuras/Figura-2-casos-de-uso-UC07-Sessoes.png}
+\begin{figuralarga}[!t]{Diagrama de casos de uso das sessões, com os perfis de usuário.}{Os autores (2026).}{fig:1}
+  \includegraphics[width=\textwidth]{figuras/Figura-1-casos-de-uso-sessoes-e-perfis.png}
 \end{figuralarga}
 
 A documentação do sistema contempla, também, as histórias de usuário. Cada diagrama de casos de uso foi definido como um épico, que se desdobrou em um conjunto de histórias de usuário no formato <SENDO><QUERO><PARA>~\cite{COHN}, uma para cada caso de uso, com critérios de aceitação e prioridade. Ao todo, são 60 histórias: 35 essenciais, 19 importantes e 6 desejáveis. Na etapa de desenvolvimento, elas formarão o \textit{backlog} das \textit{sprints}, na ordem de prioridade.
 
 Na etapa de desenvolvimento, as tecnologias descritas a seguir serão empregadas para implementar as funcionalidades definidas na modelagem, conforme a arquitetura apresentada na Seção IV. A escolha seguiu dois critérios: reaproveitar o protótipo da IC e usar uma só linguagem no servidor e no sistema web. O aplicativo do óculos continuará em Unreal Engine, em C++, e passará a ler também as expressões faciais, leitura que ainda depende de uma prova de conceito, discutida na Seção IV. O servidor e o sistema web serão escritos em TypeScript, com NestJS no \textit{backend} e Next.js no \textit{frontend}. Como o Next.js é baseado em React, a mesma biblioteca da plataforma web da IC, o reprodutor com mapa de calor poderá ser reaproveitado. O banco de dados será o PostgreSQL, cujo recurso de \textit{Row-Level Security} reforça o isolamento dos dados de cada grupo de pesquisa. A Tabela 2 detalha e descreve brevemente as tecnologias empregadas.
 
-\begin{tabela}[!t]{Tecnologias utilizadas.}{O autor (2026).}{tab:2}
+\begin{tabela}[!t]{Tecnologias utilizadas.}{Os autores (2026).}{tab:2}
   \footnotesize
   \begin{tabularx}{\columnwidth}{l|Y}
     \hline
@@ -263,22 +302,22 @@ Esta seção apresenta o resultado da etapa de modelagem: a arquitetura proposta
 
 \subsection{Arquitetura do Sistema}
 
-A arquitetura geral do sistema é representada pela Figura 3. Conforme apresentado na Tabela 2, ela se baseia em tecnologias atuais e amplamente utilizadas, como Unreal Engine, NestJS, Next.js e PostgreSQL. O sistema tem três partes: o aplicativo de coleta, executado no Meta Quest Pro; o sistema web, acessado pelo navegador; e o servidor, que reúne a interface de programação de aplicações (API, do inglês \textit{Application Programming Interface}), o banco de dados, os arquivos e o processamento das sessões.
+A arquitetura geral do sistema é representada pela Figura 2. Conforme apresentado na Tabela 2, ela se baseia em tecnologias atuais e amplamente utilizadas, como Unreal Engine, NestJS, Next.js e PostgreSQL. O sistema tem três partes: o aplicativo de coleta, executado no Meta Quest Pro; o sistema web, acessado pelo navegador; e o servidor, que reúne a interface de programação de aplicações (API, do inglês \textit{Application Programming Interface}), o banco de dados, os arquivos e o processamento das sessões.
 
-\begin{figuralarga}[!t]{Arquitetura do NeuroSight.}{O autor (2026).}{fig:3}
-  \includegraphics[width=\textwidth]{figuras/Figura-3-arquitetura.png}
+\begin{figuralarga}[!t]{Arquitetura do NeuroSight.}{Os autores (2026).}{fig:2}
+  \includegraphics[width=\textwidth]{figuras/Figura-2-arquitetura.png}
 \end{figuralarga}
 
-Na Figura 3, observa-se o aplicativo de coleta, desenvolvido a partir do protótipo da IC, que baixa a sessão e os estímulos, apresenta os estímulos ao paciente, coleta o olhar e as expressões faciais, captura os quadros da cena e envia os dados ao servidor. O sistema web é a interface dos pesquisadores e dos administradores e não contém regras de negócio. Essas regras ficam na API, que também é responsável pela autenticação, pelo isolamento entre os grupos de pesquisa, pelo registro de auditoria e pela entrega dos arquivos. A API acessa o banco de dados por meio do Prisma e guarda os arquivos (estímulos, dados brutos das sessões, quadros e vídeos) no disco do servidor, atrás de uma interface que permite trocar o disco por um serviço de armazenamento compatível com o Amazon S3 sem alterar o restante do sistema. O processamento é executado em segundo plano, a partir de uma fila de tarefas mantida no próprio banco pela biblioteca pg-boss~\cite{PGBOSS}: ele importa as amostras de cada sessão para o banco e monta o vídeo com o FFmpeg. Por fim, um serviço externo de e-mail envia as mensagens de confirmação de cadastro, de convite e de redefinição de senha.
+Na Figura 2, observa-se o aplicativo de coleta, desenvolvido a partir do protótipo da IC, que baixa a sessão e os estímulos, apresenta os estímulos ao paciente, coleta o olhar e as expressões faciais, captura os quadros da cena e envia os dados ao servidor. O sistema web é a interface dos pesquisadores e dos administradores e não contém regras de negócio. Essas regras ficam na API, que também é responsável pela autenticação, pelo isolamento entre os grupos de pesquisa, pelo registro de auditoria e pela entrega dos arquivos. A API acessa o banco de dados por meio do Prisma e guarda os arquivos (estímulos, dados brutos das sessões, quadros e vídeos) no disco do servidor, atrás de uma interface que permite trocar o disco por um serviço de armazenamento compatível com o Amazon S3 sem alterar o restante do sistema. O processamento é executado em segundo plano, a partir de uma fila de tarefas mantida no próprio banco pela biblioteca pg-boss~\cite{PGBOSS}: ele importa as amostras de cada sessão para o banco e monta o vídeo com o FFmpeg. Por fim, um serviço externo de e-mail envia as mensagens de confirmação de cadastro, de convite e de redefinição de senha.
 
 Os componentes do servidor rodam em contêineres, orquestrados pelo Docker Compose, com um \textit{proxy} reverso responsável pela conexão segura (HTTPS, do inglês \textit{Hypertext Transfer Protocol Secure}). Assim, o sistema pode ser instalado em um servidor virtual privado (VPS, do inglês \textit{Virtual Private Server}) contratado, de preferência hospedado no Brasil, ou em um servidor da própria instituição de pesquisa. A escolha cabe ao protocolo de cada pesquisa, aprovado pelo CEP, já que o art. 13 da LGPD prevê que os dados de estudos em saúde pública sejam tratados dentro do órgão de pesquisa~\cite{LGPD}. O banco de dados e os arquivos terão cópia de segurança diária. Não há comunicação direta entre o sistema web e o óculos: as duas partes falam apenas com a API, como detalhado a seguir.
 
 \subsubsection{Multi-tenant} Cada instituição ou grupo de pesquisa cadastrado no NeuroSight corresponde a um \textit{tenant}, e uma única instalação atende a todos. Os dados ficam em um banco único, em que toda tabela com dados de um \textit{tenant} tem a coluna \texttt{tenant\_id}. O isolamento é feito em duas camadas. Na primeira, a API filtra cada consulta pelo \textit{tenant} do usuário, informado no \textit{token} de acesso. Na segunda, o PostgreSQL aplica em cada tabela uma política de \textit{Row-Level Security} (RLS)~\cite{POSTGRES}, que só devolve as linhas do \textit{tenant} definido para a transação em curso. Assim, um filtro esquecido no código não expõe dados de outro grupo. Como a checagem de chaves estrangeiras não passa pelo RLS, as relações entre as tabelas usam chaves compostas com o \textit{tenant}, o que impede, por exemplo, que uma sessão aponte para o paciente de outro grupo. A API acessa o banco com um papel que não pode ignorar o RLS; um segundo papel, que pode, é usado apenas nas operações feitas antes de existir um \textit{tenant} no contexto, como o autocadastro, o \textit{login} e o pareamento dos óculos. Os arquivos também são separados em pastas por \textit{tenant} e só são entregues pela API, depois da checagem de permissão.
 
-\subsubsection{Comunicação entre sistema web, servidor e óculos} O sistema web e o aplicativo do óculos se comunicam apenas com a API, por HTTPS, no estilo REST (\textit{Representational State Transfer}). A API será documentada em OpenAPI~\cite{OPENAPI}, que serve de contrato entre o servidor e o aplicativo. A Figura 4 resume o fluxo de uma sessão.
+\subsubsection{Comunicação entre sistema web, servidor e óculos} O sistema web e o aplicativo do óculos se comunicam apenas com a API, por HTTPS, no estilo REST (\textit{Representational State Transfer}). A API será documentada em OpenAPI~\cite{OPENAPI}, que serve de contrato entre o servidor e o aplicativo. A Figura 3 resume o fluxo de uma sessão.
 
-\begin{figuralarga}[!t]{Fluxo de uma sessão no NeuroSight.}{O autor (2026).}{fig:4}
-  \includegraphics[width=0.8\textwidth]{figuras/Figura-4-fluxo-de-uma-sessao.png}
+\begin{figuralarga}[!t]{Fluxo de uma sessão no NeuroSight.}{Os autores (2026).}{fig:3}
+  \includegraphics[width=0.8\textwidth]{figuras/Figura-3-fluxo-de-uma-sessao.png}
 \end{figuralarga}
 
 Antes do primeiro uso, cada óculos é pareado ao \textit{tenant}. O aplicativo pede ao servidor um código curto, que exibe na tela, e recebe também um segredo. Um administrador digita o código no sistema web e, a partir daí, o segredo passa a valer como \textit{token} de acesso do aparelho, que pode ser revogado a qualquer momento. O mecanismo simplifica o fluxo de autorização de dispositivos do OAuth 2.0~\cite{RFC8628} e dispensa digitar senhas no óculos.
@@ -436,5 +475,908 @@ Os dados de saúde são dados pessoais sensíveis segundo a LGPD~\cite{LGPD}, e 
 \bibitem{HAYDEN} HAYDEN, S. Meta officially discontinues Quest Pro, its first (and most expensive) mixed reality headset. \textit{Road to VR}, 6 jan. 2025. Disponível em: \url{https://roadtovr.com/meta-discontinues-quest-pro/}. Acesso em: 26 out. 2026.
 
 \end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% APÊNDICES (gerados da pasta Especificacao por montar-apendices.pl), numa coluna só
+
+\onecolumn
+\appendices
+
+\FloatBarrier
+\section{DIAGRAMAS DE CASOS DE USO}
+
+Este apêndice apresenta os doze diagramas de casos de uso do NeuroSight: um com os atores e a hierarquia dos perfis e um para cada grupo de requisitos, totalizando 60 casos de uso. A Figura 1, no corpo do artigo, é o diagrama das sessões (UC07) redesenhado com a hierarquia dos perfis e o paciente. Nos diagramas, os casos de uso com borda tracejada e fundo cinza pertencem a outro diagrama e aparecem apenas para mostrar as relações de inclusão e extensão. Nas tabelas, o ator ``---'' marca os casos de uso incluídos ou estendidos: quem interage neles é o ator do caso base, e a coluna Relações registra, nos casos estendidos, a condição e o ponto de extensão.
+
+\begin{tabelasolta}{Atores do NeuroSight.}{Os autores (2026).}{tab:3}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{l|Y|l}
+    \hline
+    \textbf{Ator} & \textbf{Descrição} & \textbf{Herda de} \\
+    \hline
+    Usuário & Abstrato: qualquer pessoa com conta no tenant & --- \\
+    Pesquisador & Cadastra pacientes, estímulos, modelos e sessões; envia, inicia e analisa as sessões & Usuário \\
+    Administrador & Gerencia usuários, óculos, visibilidade das sessões e auditoria & Pesquisador \\
+    Proprietário & Criou o tenant; define quem é administrador & Administrador \\
+    Visitante & Pessoa sem conta; conhece o sistema e cria um tenant & --- \\
+    Paciente & Não é usuário (RN06). Ator secundário: usa o óculos durante a execução da sessão (UC08.3) & --- \\
+    \hline
+  \end{tabularx}
+\end{tabelasolta}
+
+\begin{tabelasolta}{Resumo dos diagramas de casos de uso e dos épicos.}{Os autores (2026).}{tab:4}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{Y|l|Y|l|l}
+    \hline
+    \textbf{Diagrama / épico} & \textbf{Grupo de requisitos} & \textbf{Atores} & \textbf{Casos de uso} & \textbf{Requisitos} \\
+    \hline
+    UC01 / E01 -- Acesso e conta & 2.1 & Visitante, Usuário, Proprietário & 8 & RF01--RF08 \\
+    UC02 / E02 -- Usuários e permissões & 2.2 & Administrador, Proprietário & 6 & RF09--RF12 \\
+    UC03 / E03 -- Óculos & 2.3 & Administrador & 4 & RF13--RF16 \\
+    UC04 / E04 -- Pacientes & 2.4 & Pesquisador, Administrador & 5 & RF17--RF21 \\
+    UC05 / E05 -- Estímulos & 2.5 & Pesquisador & 5 & RF22--RF26 \\
+    UC06 / E06 -- Modelos de sessão & 2.6 & Pesquisador & 7 & RF27--RF29 \\
+    UC07 / E07 -- Sessões & 2.7 & Pesquisador & 8 & RF30--RF37 \\
+    UC08 / E08 -- Execução no óculos & 2.8 & Pesquisador, Paciente & 6 & RF38--RF47 \\
+    UC09 / E09 -- Envio e processamento & 2.9 & Pesquisador & 2 & RF48--RF51 \\
+    UC10 / E10 -- Consulta e análise & 2.10 & Pesquisador & 7 & RF52--RF58 \\
+    UC11 / E11 -- Auditoria & 2.11 & Administrador & 2 & RF59--RF60 \\
+    \hline
+  \end{tabularx}
+\end{tabelasolta}
+
+\subsection{UC00 -- Atores e perfis}
+
+\begin{figurasolta}{Diagrama de casos de uso UC00 -- Atores e perfis.}{Os autores (2026).}{fig:4}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{figuras/apendices/Casos-de-uso--UC00-Atores-e-perfis.png}
+\end{figurasolta}
+
+\subsection{UC01 -- Acesso e conta}
+
+\begin{figurasolta}{Diagrama de casos de uso UC01 -- Acesso e conta.}{Os autores (2026).}{fig:5}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{figuras/apendices/Casos-de-uso--UC01-Acesso-e-conta.png}
+\end{figurasolta}
+
+\begin{tabelasolta}{Casos de uso do diagrama UC01 -- Acesso e conta.}{Os autores (2026).}{tab:5}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{Y|l|Y|l}
+    \hline
+    \textbf{Caso de uso} & \textbf{Ator} & \textbf{Relações} & \textbf{Requisitos} \\
+    \hline
+    UC01.1 Conhecer o NeuroSight & Visitante & --- & RF01 \\
+    UC01.2 Criar tenant & Visitante & inclui UC01.3 & RF02 \\
+    UC01.3 Confirmar e-mail & --- & incluído por UC01.2 & RF03 \\
+    UC01.4 Entrar e sair do sistema & Usuário & estendido por UC01.5 & RF04 \\
+    UC01.5 Recuperar senha & --- & estende UC01.4 (condição: o usuário esqueceu a senha; ponto de extensão: tela de entrada) & RF05 \\
+    UC01.6 Alterar meus dados e senha & Usuário & --- & RF06 \\
+    UC01.7 Alterar dados do tenant & Proprietário & --- & RF07 \\
+    UC01.8 Transferir propriedade do tenant & Proprietário & --- & RF08 \\
+    \hline
+  \end{tabularx}
+\end{tabelasolta}
+
+\subsection{UC02 -- Usuários e permissões}
+
+\begin{figurasolta}{Diagrama de casos de uso UC02 -- Usuários e permissões.}{Os autores (2026).}{fig:6}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{figuras/apendices/Casos-de-uso--UC02-Usuarios-e-permissoes.png}
+\end{figurasolta}
+
+\begin{tabelasolta}{Casos de uso do diagrama UC02 -- Usuários e permissões.}{Os autores (2026).}{tab:6}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{Y|l|l|l}
+    \hline
+    \textbf{Caso de uso} & \textbf{Ator} & \textbf{Relações} & \textbf{Requisitos} \\
+    \hline
+    UC02.1 Cadastrar usuário & Administrador & inclui UC02.2 & RF09 \\
+    UC02.2 Enviar convite por e-mail & --- & incluído por UC02.1 & RF09 \\
+    UC02.3 Consultar usuários & Administrador & --- & RF10 \\
+    UC02.4 Editar ou desativar usuário & Administrador & --- & RF10 \\
+    UC02.5 Definir administradores & Proprietário & --- & RF11 \\
+    UC02.6 Definir quem vê uma sessão & Administrador & --- & RF12 \\
+    \hline
+  \end{tabularx}
+\end{tabelasolta}
+
+\subsection{UC03 -- Óculos}
+
+\begin{figurasolta}{Diagrama de casos de uso UC03 -- Óculos.}{Os autores (2026).}{fig:7}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{figuras/apendices/Casos-de-uso--UC03-Oculos.png}
+\end{figurasolta}
+
+\begin{tabelasolta}{Casos de uso do diagrama UC03 -- Óculos.}{Os autores (2026).}{tab:7}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{Y|l|l|l}
+    \hline
+    \textbf{Caso de uso} & \textbf{Ator} & \textbf{Relações} & \textbf{Requisitos} \\
+    \hline
+    UC03.1 Parear óculos & Administrador & --- & RF13, RF14 \\
+    UC03.2 Consultar óculos & Administrador & --- & RF15 \\
+    UC03.3 Renomear óculos & Administrador & --- & RF16 \\
+    UC03.4 Desfazer pareamento & Administrador & --- & RF16 \\
+    \hline
+  \end{tabularx}
+\end{tabelasolta}
+
+\subsection{UC04 -- Pacientes}
+
+\begin{figurasolta}{Diagrama de casos de uso UC04 -- Pacientes.}{Os autores (2026).}{fig:8}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{figuras/apendices/Casos-de-uso--UC04-Pacientes.png}
+\end{figurasolta}
+
+\begin{tabelasolta}{Casos de uso do diagrama UC04 -- Pacientes.}{Os autores (2026).}{tab:8}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{Y|l|l|l}
+    \hline
+    \textbf{Caso de uso} & \textbf{Ator} & \textbf{Relações} & \textbf{Requisitos} \\
+    \hline
+    UC04.1 Cadastrar paciente & Pesquisador & --- & RF17 \\
+    UC04.2 Editar paciente & Pesquisador & --- & RF18 \\
+    UC04.3 Consultar pacientes & Pesquisador & --- & RF19 \\
+    UC04.4 Ver histórico do paciente & Pesquisador & --- & RF20 \\
+    UC04.5 Excluir paciente e seus dados & Administrador & --- & RF21 \\
+    \hline
+  \end{tabularx}
+\end{tabelasolta}
+
+\subsection{UC05 -- Estímulos}
+
+\begin{figurasolta}{Diagrama de casos de uso UC05 -- Estímulos.}{Os autores (2026).}{fig:9}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{figuras/apendices/Casos-de-uso--UC05-Estimulos.png}
+\end{figurasolta}
+
+\begin{tabelasolta}{Casos de uso do diagrama UC05 -- Estímulos.}{Os autores (2026).}{tab:9}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{Y|l|l|l}
+    \hline
+    \textbf{Caso de uso} & \textbf{Ator} & \textbf{Relações} & \textbf{Requisitos} \\
+    \hline
+    UC05.1 Enviar estímulos & Pesquisador & --- & RF22 \\
+    UC05.2 Consultar estímulos & Pesquisador & --- & RF23 \\
+    UC05.3 Editar informações do estímulo & Pesquisador & --- & RF24 \\
+    UC05.4 Marcar estímulo como pessoal & Pesquisador & --- & RF25 \\
+    UC05.5 Arquivar estímulo & Pesquisador & --- & RF26 \\
+    \hline
+  \end{tabularx}
+\end{tabelasolta}
+
+\subsection{UC06 -- Modelos de sessão}
+
+\begin{figurasolta}{Diagrama de casos de uso UC06 -- Modelos de sessão.}{Os autores (2026).}{fig:10}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{figuras/apendices/Casos-de-uso--UC06-Modelos-de-sessao.png}
+\end{figurasolta}
+
+\begin{tabelasolta}{Casos de uso do diagrama UC06 -- Modelos de sessão.}{Os autores (2026).}{tab:10}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{Y|l|Y|l}
+    \hline
+    \textbf{Caso de uso} & \textbf{Ator} & \textbf{Relações} & \textbf{Requisitos} \\
+    \hline
+    UC06.1 Cadastrar modelo de sessão & Pesquisador & inclui UC06.6 & RF27 \\
+    UC06.2 Consultar modelos & Pesquisador & --- & RF28 \\
+    UC06.3 Editar modelo & Pesquisador & inclui UC06.6 & RF28 \\
+    UC06.4 Duplicar modelo & Pesquisador & --- & RF28 \\
+    UC06.5 Excluir modelo & Pesquisador & --- & RF28 \\
+    UC06.6 Montar sequência de estímulos & --- & incluído por UC06.1, UC06.3 e UC07.2; estendido por UC06.7 & RF27, RF31 \\
+    UC06.7 Definir tela neutra entre estímulos & --- & estende UC06.6 (condição: o pesquisador opta por inserir uma tela neutra; ponto de extensão: montagem da sequência) & RF29 \\
+    \hline
+  \end{tabularx}
+\end{tabelasolta}
+
+\subsection{UC07 -- Sessões}
+
+\begin{figurasolta}{Diagrama de casos de uso UC07 -- Sessões.}{Os autores (2026).}{fig:11}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{figuras/apendices/Casos-de-uso--UC07-Sessoes.png}
+\end{figurasolta}
+
+\begin{tabelasolta}{Casos de uso do diagrama UC07 -- Sessões.}{Os autores (2026).}{tab:11}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{Y|l|Y|l}
+    \hline
+    \textbf{Caso de uso} & \textbf{Ator} & \textbf{Relações} & \textbf{Requisitos} \\
+    \hline
+    UC07.1 Criar sessão a partir de modelo & Pesquisador & estendido por UC07.3 & RF30 \\
+    UC07.2 Criar sessão personalizada & Pesquisador & inclui UC06.6; estendido por UC07.3 & RF31 \\
+    UC07.3 Registrar estado clínico do dia & --- & estende UC07.1 e UC07.2 (condição: o pesquisador opta por registrar o estado clínico do dia, que é opcional; ponto de extensão: antes de salvar a sessão) & RF32 \\
+    UC07.4 Enviar sessão ao óculos & Pesquisador & inclui UC08.1 & RF33 \\
+    UC07.5 Acompanhar estado da sessão & Pesquisador & --- & RF34 \\
+    UC07.6 Iniciar sessão & Pesquisador & inclui UC08.3 & RF35 \\
+    UC07.7 Cancelar sessão & Pesquisador & --- & RF36 \\
+    UC07.8 Consultar sessões & Pesquisador & --- & RF37 \\
+    \hline
+  \end{tabularx}
+\end{tabelasolta}
+
+\subsection{UC08 -- Execução no óculos}
+
+\begin{landscape}
+\begin{figurasolta}{Diagrama de casos de uso UC08 -- Execução no óculos.}{Os autores (2026).}{fig:12}
+  \includegraphics[width=\linewidth,height=0.84\textheight,keepaspectratio]{figuras/apendices/Casos-de-uso--UC08-Execucao-no-oculos.png}
+\end{figurasolta}
+\end{landscape}
+
+\begin{tabelasolta}{Casos de uso do diagrama UC08 -- Execução no óculos.}{Os autores (2026).}{tab:12}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{Y|l|Y|l}
+    \hline
+    \textbf{Caso de uso} & \textbf{Ator} & \textbf{Relações} & \textbf{Requisitos} \\
+    \hline
+    UC08.1 Baixar sessão e estímulos & --- & incluído por UC07.4; inclui UC08.2 & RF38, RF40 \\
+    UC08.2 Verificar rastreamento do óculos & --- & incluído por UC08.1 & RF39 \\
+    UC08.3 Executar sessão & Paciente (secundário) & incluído por UC07.6; inclui UC08.4, UC08.5, UC08.6 e UC09.1 & RF41, RF42 \\
+    UC08.4 Registrar olhar e expressões & --- & incluído por UC08.3 & RF43, RF44, RF45 \\
+    UC08.5 Gravar a cena & --- & incluído por UC08.3 & RF46 \\
+    UC08.6 Salvar dados no óculos & --- & incluído por UC08.3 & RF47 \\
+    \hline
+  \end{tabularx}
+\end{tabelasolta}
+
+\subsection{UC09 -- Envio e processamento}
+
+\begin{figurasolta}{Diagrama de casos de uso UC09 -- Envio e processamento.}{Os autores (2026).}{fig:13}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{figuras/apendices/Casos-de-uso--UC09-Envio-e-processamento.png}
+\end{figurasolta}
+
+\begin{tabelasolta}{Casos de uso do diagrama UC09 -- Envio e processamento.}{Os autores (2026).}{tab:13}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{Y|l|Y|l}
+    \hline
+    \textbf{Caso de uso} & \textbf{Ator} & \textbf{Relações} & \textbf{Requisitos} \\
+    \hline
+    UC09.1 Enviar dados da sessão & --- & incluído por UC08.3; inclui UC09.2 & RF48, RF49 \\
+    UC09.2 Processar dados recebidos & --- & incluído por UC09.1 & RF50, RF51 \\
+    \hline
+  \end{tabularx}
+\end{tabelasolta}
+
+\subsection{UC10 -- Consulta e análise}
+
+\begin{figurasolta}{Diagrama de casos de uso UC10 -- Consulta e análise.}{Os autores (2026).}{fig:14}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{figuras/apendices/Casos-de-uso--UC10-Consulta-e-analise.png}
+\end{figurasolta}
+
+\begin{tabelasolta}{Casos de uso do diagrama UC10 -- Consulta e análise.}{Os autores (2026).}{tab:14}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{Y|l|Y|l}
+    \hline
+    \textbf{Caso de uso} & \textbf{Ator} & \textbf{Relações} & \textbf{Requisitos} \\
+    \hline
+    UC10.1 Assistir à sessão & Pesquisador & estendido por UC10.2 e UC10.3 & RF52 \\
+    UC10.2 Ver heatmap do olhar & --- & estende UC10.1 (condição: o pesquisador ativa o heatmap; ponto de extensão: reprodução do vídeo) & RF53 \\
+    UC10.3 Usar modo validação & --- & estende UC10.1 (condição: o pesquisador ativa o modo validação; ponto de extensão: reprodução do vídeo) & RF54 \\
+    UC10.4 Ver gráficos das expressões & Pesquisador & --- & RF55 \\
+    UC10.5 Ver resumo por estímulo & Pesquisador & --- & RF56 \\
+    UC10.6 Registrar anotações & Pesquisador & --- & RF57 \\
+    UC10.7 Exportar dados da sessão & Pesquisador & --- & RF58 \\
+    \hline
+  \end{tabularx}
+\end{tabelasolta}
+
+\subsection{UC11 -- Auditoria}
+
+\begin{figurasolta}{Diagrama de casos de uso UC11 -- Auditoria.}{Os autores (2026).}{fig:15}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{figuras/apendices/Casos-de-uso--UC11-Auditoria.png}
+\end{figurasolta}
+
+\begin{tabelasolta}{Casos de uso do diagrama UC11 -- Auditoria.}{Os autores (2026).}{tab:15}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{Y|l|Y|l}
+    \hline
+    \textbf{Caso de uso} & \textbf{Ator} & \textbf{Relações} & \textbf{Requisitos} \\
+    \hline
+    UC11.1 Consultar auditoria & Administrador & --- & RF60 \\
+    UC11.2 Registrar ações automaticamente & --- & incluído pelos casos de uso que criam, alteram, excluem ou visualizam dados (no diagrama, UC07.6 aparece como exemplo) & RF59 \\
+    \hline
+  \end{tabularx}
+\end{tabelasolta}
+
+\FloatBarrier
+\section{HISTÓRIAS DE USUÁRIO}
+
+Cada diagrama de casos de uso corresponde a um épico, e cada caso de uso tem uma história de usuário com o mesmo número (UC07.6 e HU07.6, por exemplo), no formato ``sendo, quero, para'', com critérios de aceitação. A prioridade de cada história é a maior entre as dos requisitos ligados a ela: são 35 histórias essenciais, 19 importantes e 6 desejáveis. As histórias dos casos de uso incluídos ou estendidos são escritas do ponto de vista do ator do caso base.
+
+\subsection{E01 -- Acesso e conta}
+
+\paragraph*{HU01.1 -- Conhecer o NeuroSight}
+\textbf{Sendo} visitante, \textbf{quero} conhecer o NeuroSight numa página de apresentação, \textbf{para} decidir se crio um tenant para o meu grupo.
+
+\textit{RF01 · Importante}
+
+\begin{itemize}
+  \item A página explica o que o sistema faz e o que não faz (não faz diagnóstico).
+  \item A página dá acesso ao autocadastro e ao login.
+\end{itemize}
+
+\paragraph*{HU01.2 -- Criar tenant}
+\textbf{Sendo} visitante, \textbf{quero} criar um tenant para a minha instituição ou grupo, \textbf{para} usar o sistema sem precisar de uma instalação própria.
+
+\textit{RF02 · Essencial}
+
+\begin{itemize}
+  \item Informo o nome da instituição ou do grupo, meu nome, e-mail e senha.
+  \item Ao concluir, sou o proprietário do tenant (RN03).
+  \item O tenant começa vazio e isolado dos demais (RN01).
+\end{itemize}
+
+\paragraph*{HU01.3 -- Confirmar e-mail}
+\textbf{Sendo} visitante que criou um tenant, \textbf{quero} confirmar meu e-mail, \textbf{para} garantir que a conta é minha.
+
+\textit{RF03 · Importante}
+
+\begin{itemize}
+  \item Recebo um link de confirmação, que expira depois de um prazo.
+  \item Sem confirmar, não consigo entrar.
+\end{itemize}
+
+\paragraph*{HU01.4 -- Entrar e sair do sistema}
+\textbf{Sendo} usuário, \textbf{quero} entrar com e-mail e senha e sair quando terminar, \textbf{para} acessar os dados do meu tenant com segurança.
+
+\textit{RF04 · Essencial}
+
+\begin{itemize}
+  \item Com credenciais erradas, a mensagem não diz se o erro está no e-mail ou na senha.
+  \item Depois de entrar, vejo apenas dados do meu tenant (RN01).
+  \item Cada entrada fica registrada na auditoria (RF59).
+\end{itemize}
+
+\paragraph*{HU01.5 -- Recuperar senha}
+\textbf{Sendo} usuário, \textbf{quero} recuperar minha senha por e-mail, \textbf{para} voltar a acessar o sistema se eu a esquecer.
+
+\textit{RF05 · Importante}
+
+\begin{itemize}
+  \item Recebo um link de redefinição de uso único, com prazo.
+  \item A mensagem exibida não revela se o e-mail tem conta.
+\end{itemize}
+
+\paragraph*{HU01.6 -- Alterar meus dados e senha}
+\textbf{Sendo} usuário, \textbf{quero} alterar meus dados e minha senha, \textbf{para} manter minha conta atualizada.
+
+\textit{RF06 · Desejável}
+
+\begin{itemize}
+  \item Para trocar a senha, informo a senha atual.
+\end{itemize}
+
+\paragraph*{HU01.7 -- Alterar dados do tenant}
+\textbf{Sendo} proprietário, \textbf{quero} alterar os dados do tenant, \textbf{para} corrigir o nome da instituição ou do grupo.
+
+\textit{RF07 · Desejável}
+
+\begin{itemize}
+  \item Só o proprietário vê essa opção.
+\end{itemize}
+
+\paragraph*{HU01.8 -- Transferir propriedade do tenant}
+\textbf{Sendo} proprietário, \textbf{quero} transferir a propriedade do tenant para um administrador, \textbf{para} que o grupo continue gerido se eu sair.
+
+\textit{RF08 · Desejável}
+
+\begin{itemize}
+  \item Só um administrador do mesmo tenant pode receber a propriedade.
+  \item Depois da transferência, passo a ser administrador, e o tenant continua com um único proprietário (RN03).
+\end{itemize}
+
+\subsection{E02 -- Usuários e permissões}
+
+\paragraph*{HU02.1 -- Cadastrar usuário}
+\textbf{Sendo} administrador, \textbf{quero} cadastrar pessoas da equipe com nome, e-mail e perfil, \textbf{para} que elas usem o sistema.
+
+\textit{RF09 · Essencial}
+
+\begin{itemize}
+  \item O e-mail não pode estar em uso por outro usuário (RN02).
+  \item Só o proprietário pode cadastrar alguém como administrador (RN04).
+  \item O cadastro fica registrado na auditoria.
+\end{itemize}
+
+\paragraph*{HU02.2 -- Enviar convite por e-mail}
+\textbf{Sendo} pessoa cadastrada por um administrador, \textbf{quero} receber um convite por e-mail para definir minha senha, \textbf{para} não depender de uma senha criada por outra pessoa.
+
+\textit{RF09 · Essencial}
+
+\begin{itemize}
+  \item O link do convite é de uso único e expira.
+\end{itemize}
+
+\paragraph*{HU02.3 -- Consultar usuários}
+\textbf{Sendo} administrador, \textbf{quero} ver a lista de usuários do tenant, com perfil e situação, \textbf{para} saber quem tem acesso.
+
+\textit{RF10 · Essencial}
+
+\begin{itemize}
+  \item A lista mostra nome, e-mail, perfil e se o usuário está ativo.
+\end{itemize}
+
+\paragraph*{HU02.4 -- Editar ou desativar usuário}
+\textbf{Sendo} administrador, \textbf{quero} editar ou desativar um usuário, \textbf{para} manter os acessos corretos quando alguém muda de função ou sai do grupo.
+
+\textit{RF10 · Essencial}
+
+\begin{itemize}
+  \item Um usuário desativado não consegue entrar, mas o histórico dele é mantido.
+  \item O proprietário não pode ser desativado.
+\end{itemize}
+
+\paragraph*{HU02.5 -- Definir administradores}
+\textbf{Sendo} proprietário, \textbf{quero} conceder e retirar o perfil de administrador, \textbf{para} decidir quem gerencia o tenant.
+
+\textit{RF11 · Essencial}
+
+\begin{itemize}
+  \item Só o proprietário faz isso (RN04).
+  \item A mudança fica registrada na auditoria.
+\end{itemize}
+
+\paragraph*{HU02.6 -- Definir quem vê uma sessão}
+\textbf{Sendo} administrador, \textbf{quero} definir quais pesquisadores podem ver cada sessão, \textbf{para} restringir o acesso a dados de saúde.
+
+\textit{RF12 · Essencial}
+
+\begin{itemize}
+  \item Por padrão, veem a sessão quem a criou, os administradores e o proprietário (RN18).
+  \item Liberar e retirar o acesso fica registrado na auditoria.
+\end{itemize}
+
+\subsection{E03 -- Óculos}
+
+\paragraph*{HU03.1 -- Parear óculos}
+\textbf{Sendo} administrador, \textbf{quero} parear um óculos ao tenant digitando o código que aparece nele, \textbf{para} que o aparelho possa receber as sessões do grupo.
+
+\textit{RF13, RF14 · Essencial}
+
+\begin{itemize}
+  \item O app mostra um código enquanto o óculos não está pareado (RF13); o código expira em poucos minutos.
+  \item Ao parear, dou um nome ao aparelho, e ele recebe um acesso próprio (RNF04).
+\end{itemize}
+
+\paragraph*{HU03.2 -- Consultar óculos}
+\textbf{Sendo} administrador, \textbf{quero} ver os óculos do tenant com situação e último contato, \textbf{para} saber quais estão prontos para uso.
+
+\textit{RF15 · Importante}
+
+\begin{itemize}
+  \item ``Online'' significa contato com o servidor nos últimos segundos.
+  \item A lista mostra a sessão atual de cada óculos, se houver.
+\end{itemize}
+
+\paragraph*{HU03.3 -- Renomear óculos}
+\textbf{Sendo} administrador, \textbf{quero} renomear um óculos, \textbf{para} identificá-lo com facilidade (por exemplo, ``Quest do laboratório 2'').
+
+\textit{RF16 · Importante}
+
+\begin{itemize}
+  \item O nome é único no tenant.
+\end{itemize}
+
+\paragraph*{HU03.4 -- Desfazer pareamento}
+\textbf{Sendo} administrador, \textbf{quero} desfazer o pareamento de um óculos, \textbf{para} cortar o acesso de um aparelho perdido ou que saiu do grupo.
+
+\textit{RF16 · Importante}
+
+\begin{itemize}
+  \item O acesso do aparelho é revogado na hora, e o app volta a mostrar um código de pareamento.
+  \item Sessões enviadas a ele e ainda não iniciadas voltam a ser rascunho.
+\end{itemize}
+
+\subsection{E04 -- Pacientes}
+
+\paragraph*{HU04.1 -- Cadastrar paciente}
+\textbf{Sendo} pesquisador, \textbf{quero} cadastrar um paciente com código e dados clínicos mínimos, \textbf{para} vincular a ele as sessões.
+
+\textit{RF17 · Essencial}
+
+\begin{itemize}
+  \item O código é obrigatório e único no tenant; o nome é opcional.
+  \item Os demais campos são os do RF17: ano de nascimento, sexo, etiologia, data da lesão, diagnóstico atual, escore CRS-R e observações.
+\end{itemize}
+
+\paragraph*{HU04.2 -- Editar paciente}
+\textbf{Sendo} pesquisador, \textbf{quero} editar os dados de um paciente, \textbf{para} mantê-los atualizados (por exemplo, um novo diagnóstico ou escore CRS-R).
+
+\textit{RF18 · Essencial}
+
+\begin{itemize}
+  \item A alteração fica registrada na auditoria.
+\end{itemize}
+
+\paragraph*{HU04.3 -- Consultar pacientes}
+\textbf{Sendo} pesquisador, \textbf{quero} listar os pacientes e buscá-los pelo código, \textbf{para} encontrar rapidamente quem vai participar da sessão.
+
+\textit{RF19 · Essencial}
+
+\begin{itemize}
+  \item A busca encontra o paciente por parte do código.
+\end{itemize}
+
+\paragraph*{HU04.4 -- Ver histórico do paciente}
+\textbf{Sendo} pesquisador, \textbf{quero} ver o histórico de sessões de um paciente, \textbf{para} acompanhar os experimentos feitos com ele.
+
+\textit{RF20 · Essencial}
+
+\begin{itemize}
+  \item Aparecem só as sessões que tenho permissão de ver (RN18).
+\end{itemize}
+
+\paragraph*{HU04.5 -- Excluir paciente e seus dados}
+\textbf{Sendo} administrador, \textbf{quero} excluir um paciente e os dados das suas sessões, \textbf{para} atender a um pedido de exclusão de dados.
+
+\textit{RF21 · Importante}
+
+\begin{itemize}
+  \item O sistema pede confirmação antes de excluir.
+  \item A exclusão fica registrada na auditoria, sem guardar os dados apagados.
+\end{itemize}
+
+\subsection{E05 -- Estímulos}
+
+\paragraph*{HU05.1 -- Enviar estímulos}
+\textbf{Sendo} pesquisador, \textbf{quero} enviar imagens e vídeos para o acervo do tenant, \textbf{para} usá-los como estímulos nas sessões.
+
+\textit{RF22 · Essencial}
+
+\begin{itemize}
+  \item São aceitos JPEG, PNG e MP4 (H.264) até o tamanho máximo configurado (RNF19).
+  \item Arquivos em outro formato são recusados com uma mensagem clara.
+\end{itemize}
+
+\paragraph*{HU05.2 -- Consultar estímulos}
+\textbf{Sendo} pesquisador, \textbf{quero} listar, buscar e pré-visualizar os estímulos, \textbf{para} escolher o que vou usar.
+
+\textit{RF23 · Essencial}
+
+\begin{itemize}
+  \item A busca considera nome e etiquetas.
+  \item Imagens e vídeos podem ser vistos sem baixar o arquivo.
+\end{itemize}
+
+\paragraph*{HU05.3 -- Editar informações do estímulo}
+\textbf{Sendo} pesquisador, \textbf{quero} editar nome, descrição e etiquetas de um estímulo, \textbf{para} organizar o acervo.
+
+\textit{RF24 · Importante}
+
+\begin{itemize}
+  \item O arquivo em si não pode ser trocado; para isso, envia-se um novo estímulo.
+\end{itemize}
+
+\paragraph*{HU05.4 -- Marcar estímulo como pessoal}
+\textbf{Sendo} pesquisador, \textbf{quero} marcar um estímulo como pessoal de um paciente (por exemplo, a foto de um familiar), \textbf{para} usá-lo só nas sessões dele.
+
+\textit{RF25 · Importante}
+
+\begin{itemize}
+  \item O estímulo pessoal só aparece na montagem de sessões desse paciente (RN12).
+\end{itemize}
+
+\paragraph*{HU05.5 -- Arquivar estímulo}
+\textbf{Sendo} pesquisador, \textbf{quero} arquivar um estímulo, \textbf{para} tirá-lo das novas sessões sem perder o histórico.
+
+\textit{RF26 · Importante}
+
+\begin{itemize}
+  \item Um estímulo já usado não pode ser excluído, só arquivado (RN13).
+  \item Sessões antigas continuam mostrando o estímulo arquivado.
+\end{itemize}
+
+\subsection{E06 -- Modelos de sessão}
+
+\paragraph*{HU06.1 -- Cadastrar modelo de sessão}
+\textbf{Sendo} pesquisador, \textbf{quero} cadastrar um modelo de sessão, \textbf{para} aplicar o mesmo protocolo a vários pacientes.
+
+\textit{RF27 · Essencial}
+
+\begin{itemize}
+  \item O modelo tem nome e pelo menos um estímulo.
+\end{itemize}
+
+\paragraph*{HU06.2 -- Consultar modelos}
+\textbf{Sendo} pesquisador, \textbf{quero} consultar os modelos do tenant, \textbf{para} escolher qual aplicar.
+
+\textit{RF28 · Importante}
+
+\begin{itemize}
+  \item A lista mostra o número de estímulos e a duração total de cada modelo.
+\end{itemize}
+
+\paragraph*{HU06.3 -- Editar modelo}
+\textbf{Sendo} pesquisador, \textbf{quero} editar um modelo, \textbf{para} ajustar o protocolo.
+
+\textit{RF28 · Importante}
+
+\begin{itemize}
+  \item As sessões já criadas a partir dele não mudam (RN11).
+\end{itemize}
+
+\paragraph*{HU06.4 -- Duplicar modelo}
+\textbf{Sendo} pesquisador, \textbf{quero} duplicar um modelo, \textbf{para} criar uma variação sem montar tudo de novo.
+
+\textit{RF28 · Importante}
+
+\begin{itemize}
+  \item A cópia recebe um nome novo e pode ser editada à parte.
+\end{itemize}
+
+\paragraph*{HU06.5 -- Excluir modelo}
+\textbf{Sendo} pesquisador, \textbf{quero} excluir um modelo, \textbf{para} manter só os protocolos em uso.
+
+\textit{RF28 · Importante}
+
+\begin{itemize}
+  \item As sessões já criadas a partir dele não são afetadas (RN11).
+\end{itemize}
+
+\paragraph*{HU06.6 -- Montar sequência de estímulos}
+\textbf{Sendo} pesquisador, \textbf{quero} montar a sequência de estímulos, escolhendo a ordem e o tempo de exibição de cada um, \textbf{para} definir exatamente o que o paciente vai ver.
+
+\textit{RF27, RF31 · Essencial}
+
+\begin{itemize}
+  \item Só entram estímulos do acervo que não estejam arquivados (RN09).
+  \item Todo tempo de exibição é maior que zero (RN10), e a duração total aparece na tela.
+  \item Um estímulo pessoal só entra em sessões do paciente dele (RN12).
+\end{itemize}
+
+\paragraph*{HU06.7 -- Definir tela neutra entre estímulos}
+\textbf{Sendo} pesquisador, \textbf{quero} inserir uma tela neutra entre os estímulos, com duração configurável, \textbf{para} ter uma linha de base das expressões.
+
+\textit{RF29 · Desejável}
+
+\begin{itemize}
+  \item A duração da tela neutra entra na duração total da sessão.
+\end{itemize}
+
+\subsection{E07 -- Sessões}
+
+\paragraph*{HU07.1 -- Criar sessão a partir de modelo}
+\textbf{Sendo} pesquisador, \textbf{quero} criar uma sessão para um paciente a partir de um modelo, podendo ajustá-la, \textbf{para} repetir um protocolo sem retrabalho.
+
+\textit{RF30 · Essencial}
+
+\begin{itemize}
+  \item Toda sessão tem exatamente um paciente (RN07).
+  \item Ajustar a sessão não altera o modelo (RN11).
+  \item A sessão nasce como rascunho.
+\end{itemize}
+
+\paragraph*{HU07.2 -- Criar sessão personalizada}
+\textbf{Sendo} pesquisador, \textbf{quero} criar uma sessão personalizada, \textbf{para} montar na hora um protocolo específico para o paciente.
+
+\textit{RF31 · Essencial}
+
+\begin{itemize}
+  \item A sequência é montada como em HU06.6.
+  \item A sessão nasce como rascunho.
+\end{itemize}
+
+\paragraph*{HU07.3 -- Registrar estado clínico do dia}
+\textbf{Sendo} pesquisador, \textbf{quero} registrar na sessão o estado clínico do paciente no dia, \textbf{para} relacionar as respostas com o estado dele naquele momento.
+
+\textit{RF32 · Desejável}
+
+\begin{itemize}
+  \item Os campos são opcionais: diagnóstico e escore CRS-R.
+\end{itemize}
+
+\paragraph*{HU07.4 -- Enviar sessão ao óculos}
+\textbf{Sendo} pesquisador, \textbf{quero} enviar a sessão a um óculos pareado, \textbf{para} que ele a baixe antes da coleta.
+
+\textit{RF33 · Essencial}
+
+\begin{itemize}
+  \item Só aparecem óculos do mesmo tenant sem outra sessão pendente (RN14).
+  \item Depois do envio, a sessão não pode ser editada (RN16).
+\end{itemize}
+
+\paragraph*{HU07.5 -- Acompanhar estado da sessão}
+\textbf{Sendo} pesquisador, \textbf{quero} acompanhar o estado da sessão e do óculos, \textbf{para} saber quando posso iniciar e quando os dados estão prontos.
+
+\textit{RF34 · Essencial}
+
+\begin{itemize}
+  \item Os estados são: rascunho, enviada ao óculos, baixada, início solicitado, em execução, enviando, processando, concluída ou falha.
+  \item A tela mostra se o óculos de destino está online.
+\end{itemize}
+
+\paragraph*{HU07.6 -- Iniciar sessão}
+\textbf{Sendo} pesquisador, \textbf{quero} iniciar a sessão por um botão no sistema web depois de colocar o óculos no paciente, \textbf{para} não precisar usar o controle.
+
+\textit{RF35 · Essencial}
+
+\begin{itemize}
+  \item O botão só fica liberado com o óculos online e a sessão baixada (RN15).
+  \item O óculos começa em até cerca de 2 s depois do clique (RNF13).
+  \item Quem iniciou a sessão fica registrado na auditoria.
+\end{itemize}
+
+\paragraph*{HU07.7 -- Cancelar sessão}
+\textbf{Sendo} pesquisador, \textbf{quero} cancelar uma sessão antes do início, \textbf{para} corrigi-la ou desistir da coleta.
+
+\textit{RF36 · Importante}
+
+\begin{itemize}
+  \item Depois do início não é possível cancelar nem interromper (RN16).
+  \item Se a sessão já estava no óculos, ele a descarta.
+\end{itemize}
+
+\paragraph*{HU07.8 -- Consultar sessões}
+\textbf{Sendo} pesquisador, \textbf{quero} listar as sessões que posso ver, filtrando por paciente, estado e período, \textbf{para} encontrar uma coleta.
+
+\textit{RF37 · Essencial}
+
+\begin{itemize}
+  \item Aparecem só as sessões que tenho permissão de ver (RN18).
+\end{itemize}
+
+\subsection{E08 -- Execução no óculos}
+
+\paragraph*{HU08.1 -- Baixar sessão e estímulos}
+\textbf{Sendo} pesquisador, \textbf{quero} que o óculos baixe sozinho a sessão enviada a ele, com todos os estímulos, \textbf{para} que a exibição não dependa da rede.
+
+\textit{RF38, RF40 · Essencial}
+
+\begin{itemize}
+  \item Enquanto espera, o óculos consulta o servidor a cada \textasciitilde{}1 s.
+  \item Ao terminar o download, avisa o servidor e mostra o código do paciente, o número de estímulos e a duração (RF40).
+  \item O paciente aparece só pelo código (RN19).
+\end{itemize}
+
+\paragraph*{HU08.2 -- Verificar rastreamento do óculos}
+\textbf{Sendo} pesquisador, \textbf{quero} ser avisado se o rastreamento ocular ou facial do óculos não estiver ativo, \textbf{para} corrigir isso antes de colocar o óculos no paciente.
+
+\textit{RF39 · Importante}
+
+\begin{itemize}
+  \item O aviso aparece no sistema web, junto ao estado do óculos.
+\end{itemize}
+
+\paragraph*{HU08.3 -- Executar sessão}
+\textbf{Sendo} pesquisador, \textbf{quero} que o óculos execute a sessão exatamente como configurada e termine sozinho, \textbf{para} que todos os pacientes passem pelo mesmo protocolo.
+
+\textit{RF41, RF42 · Essencial}
+
+\begin{itemize}
+  \item O app começa ao receber o comando e confirma o início ao servidor (RF41).
+  \item Exibe os estímulos na ordem e pelo tempo configurados (RN08) e termina sozinho, sem uso do controle (RNF22).
+  \item Depois de iniciada, a sessão não depende da rede (RNF09) e não pode ser interrompida pelo sistema (RN16).
+\end{itemize}
+
+\paragraph*{HU08.4 -- Registrar olhar e expressões}
+\textbf{Sendo} pesquisador, \textbf{quero} que o olhar e as expressões faciais do paciente sejam registrados junto com o início e o fim de cada estímulo, \textbf{para} analisar as reações a cada um.
+
+\textit{RF43, RF44, RF45 · Essencial}
+
+\begin{itemize}
+  \item O olhar é registrado a cada quadro (\textasciitilde{}72 a 90 Hz), com validade, confiança, ponto 3D e posições (u,v) (RNF14).
+  \item As expressões baseadas no FACS são registradas com intensidade e validade.
+  \item Tudo usa o mesmo relógio do óculos (RNF16), e nenhuma imagem do rosto é guardada (RNF06).
+\end{itemize}
+
+\paragraph*{HU08.5 -- Gravar a cena}
+\textbf{Sendo} pesquisador, \textbf{quero} que a cena exibida ao paciente seja gravada, \textbf{para} rever depois o que ele viu.
+
+\textit{RF46 · Essencial}
+
+\begin{itemize}
+  \item A taxa, a resolução e a qualidade da captura são configuráveis (RNF15).
+\end{itemize}
+
+\paragraph*{HU08.6 -- Salvar dados no óculos}
+\textbf{Sendo} pesquisador, \textbf{quero} que os dados sejam salvos no óculos durante a sessão, \textbf{para} não perdê-los se o app fechar.
+
+\textit{RF47 · Essencial}
+
+\begin{itemize}
+  \item Os dados são gravados em intervalos curtos (cerca de 5 s).
+\end{itemize}
+
+\subsection{E09 -- Envio e processamento}
+
+\paragraph*{HU09.1 -- Enviar dados da sessão}
+\textbf{Sendo} pesquisador, \textbf{quero} que os dados e a gravação sejam enviados sozinhos ao servidor no fim da sessão, \textbf{para} não precisar transferir arquivos.
+
+\textit{RF48, RF49 · Essencial}
+
+\begin{itemize}
+  \item O envio é feito em lotes, e os lotes que falharem são repetidos.
+  \item Sem conexão, o óculos guarda a sessão e a reenvia depois (RF49).
+  \item Os dados só saem do óculos depois que o servidor confirma o recebimento (RNF10), e reenviar um lote não duplica dados (RNF11).
+\end{itemize}
+
+\paragraph*{HU09.2 -- Processar dados recebidos}
+\textbf{Sendo} pesquisador, \textbf{quero} que o servidor monte o vídeo da sessão e associe tudo à sessão e ao paciente, \textbf{para} encontrar os dados prontos no sistema web.
+
+\textit{RF50, RF51 · Essencial}
+
+\begin{itemize}
+  \item A montagem roda em segundo plano, com a sessão no estado ``processando''.
+  \item Ao terminar, a sessão fica ``concluída''; se der erro, fica ``falha''.
+\end{itemize}
+
+\subsection{E10 -- Consulta e análise}
+
+\paragraph*{HU10.1 -- Assistir à sessão}
+\textbf{Sendo} pesquisador, \textbf{quero} abrir uma sessão concluída e assistir ao vídeo, \textbf{para} rever o que o paciente viu.
+
+\textit{RF52 · Essencial}
+
+\begin{itemize}
+  \item Só abre a sessão quem tem permissão de vê-la (RN18).
+  \item A visualização fica registrada na auditoria (RF59).
+\end{itemize}
+
+\paragraph*{HU10.2 -- Ver heatmap do olhar}
+\textbf{Sendo} pesquisador, \textbf{quero} ver o heatmap do olhar sobre o vídeo, ajustando a janela temporal, o raio e a opacidade, \textbf{para} identificar para onde o paciente olhou.
+
+\textit{RF53 · Essencial}
+
+\begin{itemize}
+  \item Os ajustes valem durante a reprodução, sem recarregar o vídeo.
+\end{itemize}
+
+\paragraph*{HU10.3 -- Usar modo validação}
+\textbf{Sendo} pesquisador, \textbf{quero} ativar o modo validação, com o ponto do olhar desenhado sobre o vídeo, \textbf{para} conferir a qualidade do rastreamento.
+
+\textit{RF54 · Importante}
+
+\begin{itemize}
+  \item O modo pode ser ligado e desligado durante a reprodução.
+\end{itemize}
+
+\paragraph*{HU10.4 -- Ver gráficos das expressões}
+\textbf{Sendo} pesquisador, \textbf{quero} ver as expressões faciais ao longo do tempo, com a marcação de cada estímulo, \textbf{para} relacionar reações e estímulos.
+
+\textit{RF55 · Essencial}
+
+\begin{itemize}
+  \item Dá para escolher quais expressões aparecem no gráfico.
+\end{itemize}
+
+\paragraph*{HU10.5 -- Ver resumo por estímulo}
+\textbf{Sendo} pesquisador, \textbf{quero} um resumo por estímulo, com o tempo de olhar no estímulo, a porcentagem de amostras válidas e a intensidade média das expressões, \textbf{para} comparar as respostas entre estímulos.
+
+\textit{RF56 · Importante}
+
+\begin{itemize}
+  \item O resumo usa os instantes reais de cada estímulo, registrados no óculos (RF43).
+\end{itemize}
+
+\paragraph*{HU10.6 -- Registrar anotações}
+\textbf{Sendo} pesquisador, \textbf{quero} registrar anotações na sessão, \textbf{para} guardar observações da coleta (por exemplo, ``o paciente fechou os olhos'' ou ``o óculos foi retirado'').
+
+\textit{RF57 · Importante}
+
+\begin{itemize}
+  \item Anotações e dados descritivos podem ser editados; os dados coletados, não (RN17).
+\end{itemize}
+
+\paragraph*{HU10.7 -- Exportar dados da sessão}
+\textbf{Sendo} pesquisador, \textbf{quero} exportar os dados da sessão em JSON e CSV, \textbf{para} analisá-los em outras ferramentas.
+
+\textit{RF58 · Desejável}
+
+\begin{itemize}
+  \item A exportação fica registrada na auditoria.
+\end{itemize}
+
+\subsection{E11 -- Auditoria}
+
+\paragraph*{HU11.1 -- Consultar auditoria}
+\textbf{Sendo} administrador, \textbf{quero} consultar os registros de auditoria, filtrando por usuário, ação e período, \textbf{para} saber quem fez o quê e quando.
+
+\textit{RF60 · Essencial}
+
+\begin{itemize}
+  \item Aparecem só os registros do meu tenant (RN01).
+\end{itemize}
+
+\paragraph*{HU11.2 -- Registrar ações automaticamente}
+\textbf{Sendo} administrador, \textbf{quero} que toda ação relevante seja registrada automaticamente, \textbf{para} responder por cada alteração e atender à LGPD.
+
+\textit{RF59 · Essencial}
+
+\begin{itemize}
+  \item Cada registro guarda quem fez, quando, a ação e o registro afetado.
+  \item Entram login, criação, edição, exclusão, envio e início de sessões, visualização de dados de sessão e mudanças de permissão.
+  \item Os registros não podem ser alterados nem excluídos (RN20).
+\end{itemize}
+
 
 \end{document}

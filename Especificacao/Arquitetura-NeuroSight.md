@@ -6,8 +6,8 @@ Versão de trabalho de 26/10/2026. Base: [Decisoes-tecnicas-NeuroSight.md](Decis
 
 O arquivo [Arquitetura-NeuroSight.drawio](Arquitetura-NeuroSight.drawio) tem duas páginas, já no formato de figura do artigo (sem título dentro da imagem, porque o título vai na legenda, como no modelo).
 
-1. **Figura – Arquitetura.** Legenda sugerida: "FIGURA n - Arquitetura do NeuroSight." e, abaixo, "FONTE: O autor (2026)".
-2. **Figura – Fluxo de uma sessão.** Substitui a Figura 1 do 1.2. Legenda sugerida: "FIGURA n - Fluxo de uma sessão no NeuroSight." e "FONTE: O autor (2026)".
+1. **Figura – Arquitetura.** Legenda sugerida: "FIGURA n - Arquitetura do NeuroSight." e, abaixo, "FONTE: Os autores (2026)".
+2. **Figura – Fluxo de uma sessão.** Substitui a Figura 1 do 1.2. Legenda sugerida: "FIGURA n - Fluxo de uma sessão no NeuroSight." e "FONTE: Os autores (2026)".
 
 Para exportar no draw.io, use Arquivo → Exportar como. PNG com zoom de 300% e a opção de recortar serve para o Word. PDF ou SVG serve para o LaTeX.
 

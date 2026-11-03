@@ -5,9 +5,11 @@ Versão de trabalho de 26/10/2026. Base: os grupos 2.1 a 2.11 de [Requisitos-Neu
 - Como no modelo do TCC ("cada diagrama de caso de uso foi definido com um épico"), cada grupo de requisitos virou **um diagrama de casos de uso e um épico** (UC01/E01 a UC11/E11). Há também o diagrama UC00, com os atores e os perfis.
 - Cada caso de uso tem **uma história de usuário com o mesmo número** (UC07.6 ↔ HU07.6), no formato SENDO / QUERO / PARA, com critérios de aceitação.
 - A prioridade de cada história é a maior entre as dos requisitos ligados a ela. São 35 Essenciais, 19 Importantes e 6 Desejáveis.
-- Os diagramas estão em [Casos-de-uso-NeuroSight.drawio](Casos-de-uso-NeuroSight.drawio), uma página por diagrama. Abra no draw.io (aplicativo ou diagrams.net no navegador), ajuste o que quiser e exporte cada página em PNG ou PDF para o TCC. Para a figura de exemplo da Seção III, o UC07 (Sessões) é o que melhor mostra o fluxo principal.
+- Os diagramas estão em [Casos-de-uso-NeuroSight.drawio](Casos-de-uso-NeuroSight.drawio), uma página por diagrama. Abra no draw.io (aplicativo ou diagrams.net no navegador), ajuste o que quiser e exporte cada página em PNG ou PDF para o TCC. Para a figura de exemplo da Seção III, a página "Figura – Sessões e perfis" junta o UC07 (Sessões), que melhor mostra o fluxo principal, com a hierarquia dos perfis do UC00 e o paciente (UC08.3), como no exemplo do curso, que tem uma única figura de casos de uso.
 
 Nos diagramas, os casos de uso com borda tracejada e fundo cinza pertencem a outro diagrama e aparecem só para mostrar a ligação entre eles.
+
+Nas tabelas, o ator "—" marca os casos de uso incluídos ou estendidos: quem interage neles é o ator do caso base (o pesquisador em UC06.6, UC06.7, UC07.3, UC10.2 e UC10.3; o visitante em UC01.3; o usuário em UC01.5), e por isso a história de cada um é escrita do ponto de vista desse ator. Nos casos estendidos, a coluna Relações registra a condição da extensão e o ponto de extensão do caso base.
 
 ## Atores (diagrama UC00)
 
@@ -46,7 +48,7 @@ A herança representa os perfis cumulativos (RN05): cada perfil faz tudo o que o
 | UC01.2 Criar tenant | Visitante | inclui UC01.3 | RF02 |
 | UC01.3 Confirmar e-mail | — | incluído por UC01.2 | RF03 |
 | UC01.4 Entrar e sair do sistema | Usuário | estendido por UC01.5 | RF04 |
-| UC01.5 Recuperar senha | — | estende UC01.4 | RF05 |
+| UC01.5 Recuperar senha | — | estende UC01.4 (condição: o usuário esqueceu a senha; ponto de extensão: tela de entrada) | RF05 |
 | UC01.6 Alterar meus dados e senha | Usuário | — | RF06 |
 | UC01.7 Alterar dados do tenant | Proprietário | — | RF07 |
 | UC01.8 Transferir propriedade do tenant | Proprietário | — | RF08 |
@@ -262,7 +264,7 @@ A herança representa os perfis cumulativos (RN05): cada perfil faz tudo o que o
 | UC06.4 Duplicar modelo | Pesquisador | — | RF28 |
 | UC06.5 Excluir modelo | Pesquisador | — | RF28 |
 | UC06.6 Montar sequência de estímulos | — | incluído por UC06.1, UC06.3 e UC07.2; estendido por UC06.7 | RF27, RF31 |
-| UC06.7 Definir tela neutra entre estímulos | — | estende UC06.6 | RF29 |
+| UC06.7 Definir tela neutra entre estímulos | — | estende UC06.6 (condição: o pesquisador opta por inserir uma tela neutra; ponto de extensão: montagem da sequência) | RF29 |
 
 #### HU06.1 – Cadastrar modelo de sessão
 **Sendo** pesquisador, **quero** cadastrar um modelo de sessão, **para** aplicar o mesmo protocolo a vários pacientes.
@@ -307,7 +309,7 @@ A herança representa os perfis cumulativos (RN05): cada perfil faz tudo o que o
 |---|---|---|---|
 | UC07.1 Criar sessão a partir de modelo | Pesquisador | estendido por UC07.3 | RF30 |
 | UC07.2 Criar sessão personalizada | Pesquisador | inclui UC06.6; estendido por UC07.3 | RF31 |
-| UC07.3 Registrar estado clínico do dia | — | estende UC07.1 e UC07.2 | RF32 |
+| UC07.3 Registrar estado clínico do dia | — | estende UC07.1 e UC07.2 (condição: o pesquisador opta por registrar o estado clínico do dia, que é opcional; ponto de extensão: antes de salvar a sessão) | RF32 |
 | UC07.4 Enviar sessão ao óculos | Pesquisador | inclui UC08.1 | RF33 |
 | UC07.5 Acompanhar estado da sessão | Pesquisador | — | RF34 |
 | UC07.6 Iniciar sessão | Pesquisador | inclui UC08.3 | RF35 |
@@ -434,8 +436,8 @@ A herança representa os perfis cumulativos (RN05): cada perfil faz tudo o que o
 | Caso de uso | Ator | Relações | Requisitos |
 |---|---|---|---|
 | UC10.1 Assistir à sessão | Pesquisador | estendido por UC10.2 e UC10.3 | RF52 |
-| UC10.2 Ver heatmap do olhar | — | estende UC10.1 | RF53 |
-| UC10.3 Usar modo validação | — | estende UC10.1 | RF54 |
+| UC10.2 Ver heatmap do olhar | — | estende UC10.1 (condição: o pesquisador ativa o heatmap; ponto de extensão: reprodução do vídeo) | RF53 |
+| UC10.3 Usar modo validação | — | estende UC10.1 (condição: o pesquisador ativa o modo validação; ponto de extensão: reprodução do vídeo) | RF54 |
 | UC10.4 Ver gráficos das expressões | Pesquisador | — | RF55 |
 | UC10.5 Ver resumo por estímulo | Pesquisador | — | RF56 |
 | UC10.6 Registrar anotações | Pesquisador | — | RF57 |

@@ -22,8 +22,9 @@ for ($k = 0; $k -lt $linhas.Count; $k++) { if ($linhas[$k] -like '# NeuroSight:*
 if ($ini -lt 0) { throw 'Título do artigo não encontrado.' }
 $linhas = $linhas[$ini..($linhas.Count - 1)]
 $titulo = $linhas[0].Substring(2)
-$autor = ''
-foreach ($l in $linhas[1..5]) { if ($l -match '\S' -and $l -notlike '**Resumo*') { $autor = $l; break } }
+# Os autores vêm na mesma linha, separados por vírgula
+$autores = @()
+foreach ($l in $linhas[1..5]) { if ($l -match '\S' -and $l -notlike '**Resumo*') { $autores = @($l -split ', '); break } }
 
 $notas = @{}
 foreach ($l in $linhas) { if ($l -match '^\[\^(\d+)\]: (.+)$') { $notas[$Matches[1]] = $Matches[2] } }
@@ -33,7 +34,7 @@ $largTexto = 16.0          # 21 cm menos as margens de 3 cm e 2 cm
 $espColunas = 0.6
 $largColuna = ($largTexto - $espColunas) / 2
 # Figuras ocupam a largura toda da página (como figure* no LaTeX), para o texto continuar legível
-$larguras = @{ 'Figura-1' = 14.0; 'Figura-2' = 12.0; 'Figura-3' = 16.0; 'Figura-4' = 13.0 }
+$larguras = @{ 'Figura-1' = 16.0; 'Figura-2' = 16.0; 'Figura-3' = 13.0 }
 $padrao = '\*\*(.+?)\*\*|\*(.+?)\*|`([^`]+)`|\[\^(\d+)\]|\\([<>])'
 
 $jaAberto = @(Get-Process WINWORD -ErrorAction SilentlyContinue).Count -gt 0
@@ -97,6 +98,11 @@ function Linha([string]$texto, [double]$espAntes, [int]$alinh, [double]$tam, [bo
   $sel.TypeParagraph()
 }
 
+# Nomes dos autores em maiúsculas, um por linha, como na capa do modelo do curso
+function Autores([double]$espAntes) {
+  foreach ($a in $autores) { Linha $a.ToUpper() $espAntes 1 12 $false; $espAntes = 0 }
+}
+
 # Bloco recuado à direita da folha de rosto (natureza do trabalho e orientador)
 function Natureza([string]$texto, [double]$espAntes) {
   $sel.Style = $estNormal
@@ -157,7 +163,7 @@ function Tabela($linhasTab, [string]$estilo, $alvo = $null) {
   $cab.HeadingFormat = -1
   $t.AutoFitBehavior(1)
   $t.AutoFitBehavior(2)
-  if ($nc -eq 2 -and -not $aninhada) {
+  if ($nc -eq 2 -and -not $aninhada -and -not $apendice) {
     $t.AllowAutoFit = $false
     $t.Columns.Item(1).Width = 2.6 * $cm
     $t.Columns.Item(2).Width = ($largColuna - 2.6) * $cm
@@ -273,17 +279,18 @@ try {
   $estRef = Novo-Estilo 'Referência IEEE' { param($s) $s.Font.Size = 8; $s.ParagraphFormat.Alignment = 3; $s.ParagraphFormat.LeftIndent = 0.6 * $cm; $s.ParagraphFormat.FirstLineIndent = -0.6 * $cm; $s.ParagraphFormat.SpaceAfter = 2 }
 
   # ------------------------------------------------------------------ capa (o desenho do prédio entra no fim)
-  $autorMai = $autor.ToUpper()
+  # cada autor a mais ocupa uma linha (cerca de 0,5 cm), descontada do espaço antes do título para a página não crescer
+  $linhasAMais = ($autores.Count - 1) * 0.5 * $cm
   Linha 'UNIVERSIDADE FEDERAL DO PARANÁ' 0 1 12 $false
-  Linha $autorMai (3.0 * $cm) 1 12 $false
-  Linha $titulo (9.0 * $cm) 1 12 $true
+  Autores (3.0 * $cm)
+  Linha $titulo (9.0 * $cm - $linhasAMais) 1 12 $true
   Linha $Cidade (8.0 * $cm) 1 12 $true
   Linha $Ano 0 1 12 $false
   $sel.InsertBreak(7)
 
   # ------------------------------------------------------------------ folha de rosto
-  Linha $autorMai (0.5 * $cm) 1 12 $false
-  Linha $titulo (10.0 * $cm) 1 12 $true
+  Autores (0.5 * $cm)
+  Linha $titulo (10.0 * $cm - $linhasAMais) 1 12 $true
   $natureza = 'Trabalho de conclusão de curso apresentado ao curso de graduação em Análise e Desenvolvimento de Sistemas, Setor de Educação Profissional e Tecnológica, Universidade Federal do Paraná, como requisito parcial à obtenção do título de tecnólogo.'
   Natureza $natureza (1.0 * $cm)
   Natureza "Orientador: $Orientador." 6.0
@@ -306,7 +313,7 @@ try {
   $rodape.LinkToPrevious = $false
   $null = $rodape.PageNumbers.Add(1, $true)
 
-  $k = 0; $cabecalho = $true; $autorFeito = $false; $nasReferencias = $false
+  $k = 0; $cabecalho = $true; $autorFeito = $false; $nasReferencias = $false; $apendice = $false
   while ($k -lt $linhas.Count) {
     $l = $linhas[$k]
     if ($l -match '^\s*$' -or $l -eq '---' -or $l -match '^\[\^\d+\]: ') { $k++; continue }
@@ -325,7 +332,12 @@ try {
       Inline $Matches[2]
       $sel.Font.Reset(); $sel.TypeParagraph(); $k++; continue
     }
-    if ($l -like '## *') { $nasReferencias = ($l -eq '## REFERÊNCIAS'); Paragrafo $estH1 $l.Substring(3); $k++; continue }
+    if ($l -like '## *') {
+      # os apêndices (gerados da pasta Especificacao) vão numa coluna só, com figuras e tabelas no lugar
+      if ($l -like '## APÊNDICE*' -and -not $apendice) { Esvaziar-Fila $true; Colunas 1; $apendice = $true }
+      $nasReferencias = ($l -eq '## REFERÊNCIAS'); Paragrafo $estH1 $l.Substring(3); $k++; continue
+    }
+    if ($l -like '#### *') { Paragrafo $estH2 $l.Substring(5); $k++; continue }
     if ($l -like '### *') { Paragrafo $estH2 $l.Substring(4); $k++; continue }
     if ($l -match '^\*\*(FIGURA|TABELA) (\d+)\*\* - (.+)$') {
       $legenda = "{0} {1} - {2}" -f $Matches[1], $Matches[2], $Matches[3]
@@ -335,14 +347,26 @@ try {
         $null = $linhas[$j] -match '^!\[[^\]]*\]\(([^)]+)\)'
         $caminho = Join-Path $pasta $Matches[1]
         $j++; while ($j -lt $linhas.Count -and $linhas[$j] -match '^\s*$') { $j++ }
-        $null = $fila.Add([pscustomobject]@{ Legenda = $legenda; Figura = $caminho; Linhas = $null; Fonte = $linhas[$j]; Pagina = (Pagina-Atual) })
+        if ($apendice) {
+          # figura no lugar, na largura da página
+          Paragrafo $estLegenda $legenda
+          $sel.Style = $estFigura
+          $img = $sel.InlineShapes.AddPicture($caminho, $false, $true)
+          $img.LockAspectRatio = -1
+          $img.Width = $largTexto * $cm
+          if ($img.Height -gt 22 * $cm) { $img.Height = 22 * $cm }
+          $sel.TypeParagraph()
+          Paragrafo $estFonte $linhas[$j]
+        } else {
+          $null = $fila.Add([pscustomobject]@{ Legenda = $legenda; Figura = $caminho; Linhas = $null; Fonte = $linhas[$j]; Pagina = (Pagina-Atual) })
+        }
         $k = $j + 1; continue
       }
       $tab = @(); while ($j -lt $linhas.Count -and $linhas[$j] -like '|*') { $tab += $linhas[$j]; $j++ }
       while ($j -lt $linhas.Count -and $linhas[$j] -match '^\s*$') { $j++ }
       $fonteTab = $linhas[$j]
       $linhasTab = Linhas-Da-Tabela $tab
-      if ($linhasTab[0].Count -gt 3) {
+      if ($linhasTab[0].Count -gt 3 -and -not $apendice) {
         $null = $fila.Add([pscustomobject]@{ Legenda = $legenda; Figura = $null; Linhas = $linhasTab; Fonte = $fonteTab; Pagina = (Pagina-Atual) })
       } else {
         # tabela estreita fica na coluna, como a Tabela 1 do exemplo
@@ -357,6 +381,7 @@ try {
       Tabela (Linhas-Da-Tabela $tab) $estTabela; continue
     }
     if ($l -like '- *') { Paragrafo $estLista $l.Substring(2); $k++; continue }
+    if ($l -match '^\d+\. ') { Paragrafo $estLista $l; $k++; continue }
     if ($nasReferencias) { Paragrafo $estRef $l; $k++; continue }
     Paragrafo $estNormal $l; $k++
   }
