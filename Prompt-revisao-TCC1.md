@@ -11,7 +11,7 @@ A pasta de trabalho é `C:\Users\joaoz\OneDrive\Documentos\TCC`. Leia **tudo** a
 - `Especificacao/`: todos os artefatos de modelagem. Cada diagrama tem um `.drawio` (XML, dá para ler direto) e um `.md` que o descreve: arquitetura, BPMN do experimento, BPMN do processo atual, casos de uso (12 páginas) e histórias, diagrama de classes, diagrama de estados da sessão, diagramas de sequência (6 fluxos), modelo lógico-relacional com dicionário de dados, requisitos (RFs e RNFs) e decisões técnicas.
 - `Especificacao/Prototipos-NeuroSight/`: protótipos em HTML e as imagens exportadas em `imagens/` (W01–W14 web, A1–A5 app do óculos).
 - `Checklist-TCC1-NeuroSight.md`: o que eu considero feito e o que falta.
-- `Referencias-e-modelos/` e `TCC_TADS_Exemplo_Sistema_de_Estágios/`: o modelo oficial do curso (PDF de exemplo, template de especificação .docx e o LaTeX de exemplo). Use como referência de formato e de seções esperadas.
+- `Referencias-e-modelos/` e `TCC_TADS_Exemplo_Sistema_de_Estágios/`: o modelo oficial do curso (PDF de exemplo, template de especificação .docx e o LaTeX de exemplo). Use como referência só de formato (capa, legendas, citações e nomes das seções); a completude não se mede pelo exemplo, e sim pela pasta Especificacao, cujos artefatos devem estar todos na entrega (regra em CLAUDE.md).
 - `Entregas-anteriores/`: entregas 1.1 (problema) e 1.2 (descrição do software). O TCC final não pode contradizer o que foi entregue sem explicar a mudança.
 
 ## Como ler

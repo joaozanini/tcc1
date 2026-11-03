@@ -1,6 +1,6 @@
 # Checklist do TCC1 — NeuroSight
 
-Tudo o que falta para a entrega do TCC1, que vai até **IV. Resultados → A. Arquitetura do Sistema**. As seções estão na ordem sugerida de trabalho. Marque `[x]` conforme for concluindo. A revisão final de 02/11/2026 está na seção 10: um item bloqueante (o link da nota 2) e os ajustes recomendados.
+Tudo o que falta para a entrega do TCC1, que vai até **IV. Resultados → A. Arquitetura do Sistema**. As seções estão na ordem sugerida de trabalho. Marque `[x]` conforme for concluindo. A revisão final de 02/11/2026 está na seção 10: um item bloqueante (o link da nota 2) e os ajustes recomendados. A seção 11 (03/11/2026) registra a mudança de rumo: o exemplo do curso é só formato, e todos os artefatos da pasta `Especificacao` entram na entrega.
 
 As decisões técnicas e os motivos de cada uma estão em [Decisoes-tecnicas-NeuroSight.md](Especificacao/Decisoes-tecnicas-NeuroSight.md).
 
@@ -16,7 +16,7 @@ As decisões técnicas e os motivos de cada uma estão em [Decisoes-tecnicas-Neu
 - [x] Quest Pro disponível: o grupo tem o aparelho usado na IC
 - [x] Definir de onde vêm os requisitos: literatura, protótipo da IC e reuniões com o orientador (nota de informação verbal na Seção III)
 - [x] Definir o que o pesquisador pode editar nos dados registrados (só anotações) e se haverá exportação (desejável, RF58 de [Requisitos-NeuroSight.md](Especificacao/Requisitos-NeuroSight.md))
-- [x] Documentação completa: repositório https://github.com/joaozanini/tcc1 (remoto `origin` deste repositório Git), com README na raiz e as 28 páginas dos `.drawio` exportadas em PNG em `Especificacao/imagens-dos-diagramas`. O endereço está na nota 2 da Seção III. Falta só o `git push`, e o repositório precisa estar público (seção 10)
+- [x] Documentação completa: repositório https://github.com/joaozanini/tcc1 (remoto `origin` deste repositório Git), com README na raiz e as 29 páginas dos `.drawio` exportadas em PNG em `Especificacao/imagens-dos-diagramas`. O endereço está na nota 2 da Seção III. Falta só o `git push`, e o repositório precisa estar público (seção 10)
 - [x] Combinado: não há limite de páginas, o TCC1 termina na IV.A (sem cronograma nem fechamento) e a documentação entra por link
 - [x] Separar o que dá para reaproveitar do relatório final da IC: o texto usa o relatório [11] para o protótipo, a gravação (88 MB por minuto, 22 Hz) e os testes feitos pelo autor; a figura de arquitetura foi refeita para o NeuroSight
 
@@ -28,7 +28,7 @@ O modelo cita todos estes; confirme com o orientador quais são obrigatórios.
 - [x] Diagrama de processo de negócio (BPMN) do experimento com o NeuroSight: [BPMN-Experimento-NeuroSight.drawio](Especificacao/BPMN-Experimento-NeuroSight.drawio) e [BPMN-Experimento-NeuroSight.md](Especificacao/BPMN-Experimento-NeuroSight.md)
 - [x] (Opcional) BPMN do processo atual, sem o NeuroSight, a partir da Seção II.E: [BPMN-Processo-atual.drawio](Especificacao/BPMN-Processo-atual.drawio) e [BPMN-Processo-atual.md](Especificacao/BPMN-Processo-atual.md)
 - [x] Atualizar o diagrama macro do fluxo (Figura 1 do 1.2): nova versão na página "Figura – Fluxo de uma sessão" de [Arquitetura-NeuroSight.drawio](Especificacao/Arquitetura-NeuroSight.drawio)
-- [x] Diagramas de casos de uso: 12 páginas em [Casos-de-uso-NeuroSight.drawio](Especificacao/Casos-de-uso-NeuroSight.drawio). UC00 e UC07 estão no artigo como Figuras 1 e 2, e todas as páginas estão exportadas em `Especificacao/imagens-dos-diagramas`. A notação de UC11.2 foi ajustada em 02/11/2026 (seção 10)
+- [x] Diagramas de casos de uso: 12 páginas em [Casos-de-uso-NeuroSight.drawio](Especificacao/Casos-de-uso-NeuroSight.drawio). A página "Figura – Sessões e perfis" (UC07 com a hierarquia dos perfis, o administrador e o paciente) é a Figura 1 do artigo, e todas as páginas estão exportadas em `Especificacao/imagens-dos-diagramas`. A notação de UC11.2 foi ajustada em 02/11/2026 (seção 10)
 - [x] Histórias de usuário: um épico por diagrama, no formato <SENDO><QUERO><PARA> ([Casos-de-uso-e-historias-NeuroSight.md](Especificacao/Casos-de-uso-e-historias-NeuroSight.md))
 - [x] Diagrama de classes ([Diagrama-de-classes-NeuroSight.drawio](Especificacao/Diagrama-de-classes-NeuroSight.drawio) e [Diagrama-de-classes-NeuroSight.md](Especificacao/Diagrama-de-classes-NeuroSight.md))
 - [x] (Opcional) Diagrama de estados da sessão, a partir da tabela "Estados da sessão": [Diagrama-de-estados-da-sessao.drawio](Especificacao/Diagrama-de-estados-da-sessao.drawio) e [Diagrama-de-estados-da-sessao.md](Especificacao/Diagrama-de-estados-da-sessao.md)
@@ -40,14 +40,14 @@ O modelo cita todos estes; confirme com o orientador quais são obrigatórios.
 
 ## 2. III. Método e tecnologias
 
-O texto está em [III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologias.md), com as Figuras 1 e 2 na pasta `Texto-TCC/figuras`.
+O texto está em [III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologias.md), com a Figura 1 na pasta `Texto-TCC/figuras`.
 
 - [x] Método de pesquisa: revisão bibliográfica, protótipo da IC e reuniões com o orientador
 - [x] Ponto de partida: o protótipo da IC
-- [x] Processo de desenvolvimento: Scrum adaptado ao trabalho individual, sprints de duas semanas e Kanban no GitHub Projects
+- [x] Processo de desenvolvimento: Scrum adaptado a uma equipe de dois integrantes (até 03/11/2026, ao trabalho individual), sprints de duas semanas e Kanban no GitHub Projects
 - [x] Etapas: modelagem (TCC1) e desenvolvimento (TCC2)
 - [x] Lista dos artefatos produzidos e das notações (UML, BPMN), incluindo os protótipos de tela
-- [x] Figura 1 com os atores e a hierarquia dos perfis (UC00), acrescentada em 02/11/2026, e Figura 2 com um diagrama de casos de uso de exemplo (UC07 – Sessões)
+- [x] Figura 1 com um diagrama de casos de uso de exemplo (UC07 – Sessões) e, nele, a hierarquia dos perfis, o administrador e o paciente. Até 03/11/2026 eram duas figuras (UC00 e UC07); foram juntadas numa só, como no exemplo do curso, que tem uma única figura de casos de uso Revisto em 03/11/2026: a figura continua no corpo, mas os doze diagramas entram em apêndice (seção 11)
 - [x] Parágrafo sobre as histórias de usuário (épicos, formato SENDO/QUERO/PARA)
 - [x] Nota de rodapé com o link da documentação completa: https://github.com/joaozanini/tcc1 (pasta Especificacao), na linha 59 de [III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologias.md). Artigo montado, LaTeX, pacote do Overleaf e Word regenerados em 02/11/2026; o PDF ainda precisa ser recompilado (seção 10)
 - [x] Nome do orientador na nota de informação verbal (BRAWERMAN, A.)
@@ -56,18 +56,18 @@ O texto está em [III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologia
 
 ## 3. IV. Resultados (abertura) + A. Arquitetura do Sistema
 
-O texto está em [IV-A-Arquitetura-do-sistema.md](Texto-TCC/IV-A-Arquitetura-do-sistema.md), com as Figuras 3 e 4 na pasta `Texto-TCC/figuras`.
+O texto está em [IV-A-Arquitetura-do-sistema.md](Texto-TCC/IV-A-Arquitetura-do-sistema.md), com as Figuras 2 e 3 na pasta `Texto-TCC/figuras`.
 
 - [x] Parágrafo de abertura do capítulo
-- [x] Figura de arquitetura com a tecnologia de cada bloco (Figura 3)
+- [x] Figura de arquitetura com a tecnologia de cada bloco (Figura 2)
 - [x] Descrição dos componentes: app do óculos (Unreal), API (NestJS), banco (PostgreSQL), armazenamento de arquivos, sistema web (Next.js), montagem do vídeo (FFmpeg)
 - [x] 1) Multi-tenant: `tenant_id` + RLS e arquivos separados por tenant
-- [x] 2) Comunicação entre sistema web, servidor e óculos: pareamento, envio da sessão, início por consulta ao servidor e envio dos dados, com a figura do fluxo atualizada (Figura 4)
+- [x] 2) Comunicação entre sistema web, servidor e óculos: pareamento, envio da sessão, início por consulta ao servidor e envio dos dados, com a figura do fluxo atualizada (Figura 3)
 - [x] 3) Dados coletados e gravação: estrutura do JSON (eventos de estímulo, olhar, expressões), quadros e MP4
 - [x] 4) Segurança e auditoria: perfis, visibilidade das sessões, registro das ações, LGPD, paciente identificado só por código
 - [x] 5) Riscos e limitações: rastreamento facial no Unreal, Quest Pro fora de linha (o grupo tem o aparelho da IC; o risco é a reposição) e internet no início
-- [x] Hospedagem: o texto deixa as duas opções, VPS no Brasil ou servidor da instituição, conforme o protocolo aprovado pelo CEP (LGPD, art. 13); a Figura 3 diz "Servidor (VPS ou da instituição)"
-- [x] Aplicar as mudanças da seção 7 do arquivo de decisões: estão no texto da IV.A e na Figura 4. Ao reaproveitar trechos do 1.2 em outras seções, não trazer o espelhamento nem a exigência de mesma rede
+- [x] Hospedagem: o texto deixa as duas opções, VPS no Brasil ou servidor da instituição, conforme o protocolo aprovado pelo CEP (LGPD, art. 13); a Figura 2 diz "Servidor (VPS ou da instituição)"
+- [x] Aplicar as mudanças da seção 7 do arquivo de decisões: estão no texto da IV.A e na Figura 3. Ao reaproveitar trechos do 1.2 em outras seções, não trazer o espelhamento nem a exigência de mesma rede
 
 ## 4. I. Introdução (base: 1.1)
 
@@ -112,11 +112,12 @@ O texto está em [Resumo-e-Abstract.md](Texto-TCC/Resumo-e-Abstract.md) e já en
 
 ## 8. Pré-textuais e cabeçalho
 
-- [x] Capa: UFPR, autor, título, Curitiba, PR, ano, com o desenho do prédio da UFPR ao fundo, como no exemplo (no LaTeX e no Word)
+- [x] Capa: UFPR, autores (um nome por linha), título, Curitiba, PR, ano, com o desenho do prédio da UFPR ao fundo, como no exemplo (no LaTeX e no Word)
 - [x] Folha de rosto: o mesmo, mais a natureza do trabalho e o orientador (no LaTeX e no Word)
 - [x] Nome do orientador na folha de rosto (no LaTeX e no Word)
 - [ ] Termo de aprovação: a página 3 tem só o aviso em vermelho do modelo; o termo entra depois da banca
-- [x] Título, autor e afiliação no início do artigo
+- [x] Título, autores e afiliação no início do artigo
+- [x] Segundo autor (03/11/2026): Lucas Sarnacki Guiraud entrou na capa, na folha de rosto e no cabeçalho do artigo (no LaTeX e no Word), nos metadados do PDF e no README. Os nomes estão em [montar-artigo.pl](Texto-TCC/montar-artigo.pl), numa linha só e separados por vírgula; `gerar-latex.pl` e `gerar-docx.ps1` põem um nome por linha na capa. O texto passou para o plural: "FONTE: Os autores (2026)" nas figuras e tabelas, "um dos autores" onde o texto fala da IC, que foi feita só pelo João, e Scrum adaptado a uma equipe de dois integrantes (Seção III, Resumo e Abstract). PDF e Word regenerados, com 14 páginas cada, como antes
 
 ## 9. Formatação e revisão final
 
@@ -124,17 +125,17 @@ O artigo montado está em [Artigo-TCC1-NeuroSight.md](Texto-TCC/Artigo-TCC1-Neur
 
 - [x] Versão em LaTeX no modelo do curso: capa, folha de rosto, termo (PDF do modelo, a trocar depois da banca) e artigo, com as mesmas chaves de citação dos arquivos das seções
 - [x] Compilar a versão em LaTeX e conferir o PDF: recompilado em 02/11/2026 com o TinyTeX reinstalado em `%APPDATA%\TinyTeX` (TinyTeX v2026.11, TeX Live 2026, mais os pacotes background, everypage, babel-portuges e hyphen-portuguese), sem erros, em [TCC1-NeuroSight.pdf](Texto-TCC/TCC1-NeuroSight.pdf): 13 páginas, autor nos metadados, 65 citações em ordem, Figura 3 centrada, nota 2 com o link. O TinyTeX não foi posto no PATH; o `gerar-latex.pl --pdf` o encontra pelo `%APPDATA%`. Para gerar de novo, rode `perl Texto-TCC/gerar-latex.pl --pdf`
-- [x] Versão em Word no formato do exemplo: capa, folha de rosto, página do termo de aprovação e o artigo em duas colunas (A4, Times New Roman 10, título em 24, seções em versalete, numeração de página embaixo), com as Figuras 1 a 4 e a Tabela 1 no alto da página, na largura toda, e a Tabela 2 dentro da coluna. São 14 páginas, das quais 11 são o artigo. A opção `-Pdf arquivo.pdf` também exporta um PDF
+- [x] Versão em Word no formato do exemplo: capa, folha de rosto, página do termo de aprovação e o artigo em duas colunas (A4, Times New Roman 10, título em 24, seções em versalete, numeração de página embaixo), com as Figuras 1 a 3 e a Tabela 1 no alto da página, na largura toda, e a Tabela 2 dentro da coluna. São 14 páginas, das quais 11 são o artigo. A opção `-Pdf arquivo.pdf` também exporta um PDF
 
-- [x] Legendas "FIGURA n - Título." acima e "FONTE: O autor (2026)" abaixo; o mesmo padrão nas tabelas
-- [x] Tirar o título que está dentro da imagem da Figura 1 do 1.2 (a Figura 4 da IV.A substitui essa figura e não tem título dentro)
+- [x] Legendas "FIGURA n - Título." acima e "FONTE: Os autores (2026)" abaixo, como no exemplo do curso; o mesmo padrão nas tabelas
+- [x] Tirar o título que está dentro da imagem da Figura 1 do 1.2 (a figura do fluxo da IV.A substitui essa figura e não tem título dentro)
 - [x] Trocar "seção 1.1" pela numeração nova (o artigo não cita mais o 1.1 nem o 1.2)
 - [x] Toda figura e tabela citada no texto antes de aparecer (a Tabela 2 fica no alto da coluna, acima da frase que a cita, na mesma página: comportamento normal do *float*, igual ao do exemplo)
 - [x] Termos estrangeiros em itálico e siglas definidas na primeira ocorrência (conferido no artigo montado; refaça a conferência se mudar o texto)
 - [x] Tempo verbal: modelagem no passado; sistema no presente ou no futuro
-- [x] Limite de páginas: não há (o artigo tem cerca de 5.450 palavras, 4 figuras, 2 tabelas e 65 referências)
+- [x] Limite de páginas: não há (o artigo tem cerca de 5.450 palavras, 3 figuras, 2 tabelas e 65 referências)
 - [x] Conferido em 02/11/2026: `Texto-TCC/TCC1-NeuroSight.pdf` e `Texto-TCC/LaTeX/build/textoprincipal.pdf` são o mesmo arquivo; o `.zip` tem exatamente os arquivos da pasta `LaTeX`; os `.md` regeneram um `.tex` idêntico ao entregue; o log não tem erro, *overfull* nem referência indefinida; os PNGs de `Texto-TCC/figuras` e `Texto-TCC/LaTeX/figuras` são idênticos, com fundo branco opaco e resolução efetiva acima de 430 dpi no PDF; os 19 protótipos estão completos, em português e coerentes entre si; nomes de estados, atores e perfis são os mesmos no texto, nos requisitos, nas classes, no banco, nos diagramas e nas telas; todo RF tem caso de uso e toda tela tem caso de uso
-- [x] Comparação com o exemplo do curso (02/11/2026): até a IV.A, a estrutura é a mesma (pré-textuais, cabeçalho, resumo e abstract com quatro palavras-chave, Seções I a IV.A com o mesmo padrão de títulos, legendas e referências ABNT numéricas); o texto tem cerca de 6.300 palavras até a IV.A contra cerca de 2.900 do exemplo. O exemplo só tem a mais o link da documentação resolvido (nota 2) e as Seções IV.B, V e VI, que ficam para o TCC2
+- [x] Comparação com o exemplo do curso (02/11/2026): até a IV.A, a estrutura é a mesma (pré-textuais, cabeçalho, resumo e abstract com quatro palavras-chave, Seções I a IV.A com o mesmo padrão de títulos, legendas e referências ABNT numéricas); o texto tem cerca de 6.300 palavras até a IV.A contra cerca de 2.900 do exemplo. O exemplo só tem a mais o link da documentação resolvido (nota 2) e as Seções IV.B, V e VI, que ficam para o TCC2 Revisto em 03/11/2026: a comparação vale só para o formato; a completude está na seção 11
 
 ## 10. Pendências da revisão final (02/11/2026)
 
@@ -142,24 +143,25 @@ Revisão completa do PDF, dos fontes, dos oito `.drawio`, dos 19 protótipos, do
 
 ### Bloqueante
 
-- [x] Nota 2 da Seção III: trocada em 02/11/2026 por `² Disponível em: https://github.com/joaozanini/tcc1 (pasta Especificacao). Acesso em: 2 nov. 2026.` ([III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologias.md), linha 59). O repositório é o remoto `origin` deste Git; entraram um README na raiz e as 28 páginas dos `.drawio` em PNG em `Especificacao/imagens-dos-diagramas`. Artigo montado, LaTeX, zip do Overleaf e Word regenerados
+- [x] Nota 2 da Seção III: trocada em 02/11/2026 por `² Disponível em: https://github.com/joaozanini/tcc1 (pasta Especificacao). Acesso em: 2 nov. 2026.` ([III-Metodo-e-tecnologias.md](Texto-TCC/III-Metodo-e-tecnologias.md), linha 59). O repositório é o remoto `origin` deste Git; entraram um README na raiz e as 29 páginas dos `.drawio` em PNG em `Especificacao/imagens-dos-diagramas`. Artigo montado, LaTeX, zip do Overleaf e Word regenerados
 - [x] `git push` feito em 02/11/2026: `origin/main` tem os 26 commits, com um commit de limpeza dos temporários do Edge por cima do histórico que já estava no GitHub (um push forçado deixaria o histórico mais enxuto, mas não foi usado)
 - [ ] Deixar o repositório público: hoje está privado (a API do GitHub responde 404 sem autenticação), e o link da nota 2 só abre para a banca depois disso. No GitHub: Settings, General, Danger Zone, Change repository visibility
-- [x] PDF recompilado em 02/11/2026 depois de reinstalar o TinyTeX (seção 9): 13 páginas, sem erro; figura do fluxo (hoje Figura 4) centrada e com texto maior, Tabela 1 com "Parcial (projetos no Pavlovia)" (p. 8), nota 2 com o link (p. 8), 65 referências em ordem (p. 12 e 13), autor nos metadados
+- [x] PDF recompilado em 02/11/2026 depois de reinstalar o TinyTeX (seção 9): 13 páginas, sem erro; figura do fluxo (hoje Figura 3) centrada e com texto maior, Tabela 1 com "Parcial (projetos no Pavlovia)" (p. 8), nota 2 com o link (p. 8), 65 referências em ordem (p. 12 e 13), autor nos metadados
 
 ### Importantes
 
-- [x] Figura do fluxo (Figura 3 na época, hoje Figura 4): nota sem "(SD02)" no `.drawio` e PNG regenerado em 02/11/2026 com recorte e margens iguais às das outras figuras (renderizado com o visualizador do diagrams.net no Edge, que reproduziu a Figura 2 pixel a pixel no teste). Copiado para `Texto-TCC/figuras` e `Texto-TCC/LaTeX/figuras`; o PDF só mostra a figura nova depois de recompilado
+- [x] Figura do fluxo (hoje Figura 3): nota sem "(SD02)" no `.drawio` e PNG regenerado em 02/11/2026 com recorte e margens iguais às das outras figuras (renderizado com o visualizador do diagrams.net no Edge, que reproduziu a Figura 2 pixel a pixel no teste). Copiado para `Texto-TCC/figuras` e `Texto-TCC/LaTeX/figuras`; o PDF só mostra a figura nova depois de recompilado
 - [x] Tabela 1: a II.F ganhou uma frase para o Cognitive3D (o Quest Pro está na lista de dispositivos em fim de vida da documentação, nova referência [COG3D-HARDWARE]) e outra para o PsychoPy (projetos privados no Pavlovia, compartilhados por convite com os papéis do GitLab, nova referência [PSYCHOPY-PAVLOVIA]); a célula virou "Parcial (projetos no Pavlovia)" (02/11/2026)
 - [x] Licença do NeuroSight na Tabela 1: mantida como "A definir" por decisão do autor em 02/11/2026 (o protótipo da IC no GitHub não tem arquivo de licença, então código aberto ainda não está formalizado)
 - [x] BPMN do experimento: o evento de mensagem "Comando recebido" saiu, e "Enviar o comando de início" liga direto a "Executar a sessão…"; o `.md` foi ajustado (02/11/2026)
 - [x] BPMN do experimento: "Falha registrada" virou evento de fim do tipo terminar, que encerra também o ramo do pesquisador que ficaria preso no join paralelo (02/11/2026)
 - [x] UC11: UC07.6 "Iniciar sessão" entrou em cinza tracejado com «include» para UC11.2, e a tabela de casos de uso do `.md` registra o exemplo (02/11/2026)
+- [x] Apêndices com os casos de uso e as histórias de usuário (03/11/2026): o exemplo do curso é só referência de formato, não de completude (regra em [CLAUDE.md](CLAUDE.md)). O artigo ganhou dois apêndices, gerados da pasta `Especificacao` por [montar-apendices.pl](Texto-TCC/montar-apendices.pl), que `montar-artigo.pl` chama: A, os doze diagramas de casos de uso com as tabelas de cada um, e B, as 60 histórias de usuário. No LaTeX os apêndices vão numa coluna só, com figuras e tabelas flutuantes dentro de cada apêndice (`placeins`, instalado no TinyTeX) e as figuras largas em página paisagem (`pdflscape`); as imagens vêm de `Especificacao/imagens-dos-diagramas` (fator 2) e ficam em `Texto-TCC/figuras/apendices`. A Seção III passou a remeter aos apêndices, e a legenda da Figura 1 deixou de dizer "exemplo". Uma montagem com nove apêndices (82 páginas) foi desfeita no mesmo dia a pedido do autor (seção 11)
 
 ### Menores (fazer se der tempo)
 
-- [ ] Texto das Figuras 2 e 3 (UC07 e arquitetura) fica com cerca de 5 pt na impressão. Em [gerar-latex.pl](Texto-TCC/gerar-latex.pl), mudar `'Figura-2' => '0.75\textwidth'` para `'\textwidth'`, ou aumentar a fonte para 14 px no draw.io antes de exportar
-- [x] Siglas da Figura 3 (arquitetura): VPS definida e pg-boss citado pelo nome na IV.A (02/11/2026)
+- [x] Texto das figuras de casos de uso e de arquitetura ficava com cerca de 5 pt na impressão: em 03/11/2026 as duas passaram a ocupar `\textwidth` em [gerar-latex.pl](Texto-TCC/gerar-latex.pl) e 16 cm no Word
+- [x] Siglas da Figura 2 (arquitetura): VPS definida e pg-boss citado pelo nome na IV.A (02/11/2026)
 - [x] "heatmap" nas telas W01, W11 e W14 trocado por "mapa de calor" e as três imagens regeneradas (02/11/2026). Nos documentos da especificação o termo heatmap continua, como nome técnico
 - [x] RF59 passou a incluir a exportação de dados de sessão (02/11/2026)
 - [x] Tabela de rotas dos diagramas de sequência: `GET /sessoes/{id}` marcada como "SD03 (só como nota), SD06" (02/11/2026)
@@ -168,10 +170,27 @@ Revisão completa do PDF, dos fontes, dos oito `.drawio`, dos 19 protótipos, do
 - [x] Decisões técnicas alinhadas ao RNF13: início em até cerca de 2 s, com consulta a cada ~1 s (02/11/2026)
 - [ ] Opcionais de estilo: "o óculos" no singular em todo o texto (a norma culta pede "os óculos"); dizer na IV.A.2 que o espelhamento previsto na descrição inicial foi abandonado; "Multi-tenant" em itálico no título da subseção 1); distinguir a duração das sprints por etapa, como faz o exemplo
 
+## 11. Completude: o exemplo do curso é só formato (03/11/2026)
+
+Mudança de rumo registrada em 03/11/2026: o exemplo do curso vinha sendo usado também como medida de completude (uma figura de casos de uso "como exemplo" e o resto só no link da nota 2). Ele é referência apenas de formato. O levantamento completo, com as decisões a tomar (Decidir 1 a 7), as mudanças no texto, nos diagramas e nos scripts, está em [Pendencias-completude-TCC1.md](Pendencias-completude-TCC1.md). Os artefatos entram por etapas, conforme o autor pedir: na tarde de 03/11/2026 entraram só os diagramas de casos de uso e as histórias de usuário (Apêndices A e B). Uma montagem com nove apêndices (requisitos, classes, estados, sequência, modelo lógico, BPMN e protótipos, 82 páginas) chegou a ser gerada no mesmo dia e foi desfeita a pedido do autor; os blocos desses artefatos continuam prontos em [montar-apendices.pl](Texto-TCC/montar-apendices.pl), desligados na lista `@ativos`.
+
+- [x] Apêndice A – Diagramas de casos de uso UC00 a UC11, com a tabela de atores, o resumo dos diagramas e a tabela de casos de cada um (03/11/2026)
+- [x] Apêndice B – Histórias de usuário HU01.1 a HU11.2, com critérios de aceitação e prioridade (03/11/2026; a rastreabilidade RF → UC está na coluna Requisitos das tabelas do Apêndice A)
+- [x] Script de geração dos apêndices a partir dos `.md` e das imagens da `Especificacao` (`montar-apendices.pl`, chamado por `montar-artigo.pl`), com suporte a apêndices em `gerar-latex.pl` (coluna única, `placeins`, `pdflscape`, figuras e tabelas flutuantes) e em `gerar-docx.ps1` (coluna única, figuras no lugar) (03/11/2026)
+- [x] Texto: tirada a palavra "exemplo" da legenda da Figura 1 e da Seção III; as Seções I e III remetem aos Apêndices A e B; o restante da documentação continua on-line, pela nota 2 (03/11/2026)
+- [x] Cabeçalho de trabalho da Seção III e [Prompt-revisao-TCC1.md](Prompt-revisao-TCC1.md): o modelo é referência só de formato (03/11/2026)
+- [x] Montar, gerar PDF e Word com os dois apêndices (03/11/2026: PDF de 34 páginas; figuras e tabelas numeradas na sequência do corpo; log sem erro)
+- [ ] Decidir com o orientador se os demais artefatos entram como apêndices no mesmo PDF ou na Especificação Técnica no template `.docx` do curso (Decidir 1), e em que ordem: requisitos, classes, estados, sequência e rotas da API, modelo lógico e dicionário de dados, BPMN, protótipos. Para ligar um bloco, basta acrescentar a chave dele em `@ativos` no script
+- [ ] Decidir a numeração das figuras nos apêndices (hoje contínua), se a Figura 1 composta continua no corpo e se algum diagrama vai para a IV.A (Decidir 2 a 4)
+- [ ] Definir a meta de legibilidade das figuras impressas (7 a 8 pt) e se haverá páginas em paisagem (Decidir 5). Hoje os diagramas de casos de uso entram com as imagens de fator 2 e fonte de 11 px, que imprimem com cerca de 5 pt; UC08, o mais largo, vai em página paisagem
+- [ ] Subir a fonte dos doze diagramas de casos de uso no `.drawio` (16 px, como sugere a seção 5.1 do levantamento) e exportá-los em fator 3; depois, os demais diagramas, quando forem pedidos
+- [ ] Resolver [Historias-de-usuario-refeitas.md](Especificacao/Historias-de-usuario-refeitas.md): incorporar o que valer e apagar, ou manter fora do repositório (Decidir 7)
+- [ ] Repositório público; commit e push quando o autor pedir
+
 ## Fica para o TCC2 (não fazer agora)
 
 - IV.B Apresentação do Sistema, V. Considerações finais e VI. Artefatos
-- Especificação técnica no template do curso ([Template Especificação Técnica TCC TADS UFPR.docx](Referencias-e-modelos/Template%20Especificação%20Técnica%20TCC%20TADS%20UFPR.docx)), com os apêndices de casos de uso, classes, histórias com protótipos e sequência, modelo do banco em pé de galinha e APIs: os artefatos da pasta `Especificacao` já cobrem esses apêndices (confirmar com o orientador se é entrega do TCC2)
+- Especificação técnica no template do curso ([Template Especificação Técnica TCC TADS UFPR.docx](Referencias-e-modelos/Template%20Especificação%20Técnica%20TCC%20TADS%20UFPR.docx)): só se o orientador exigir o documento separado. Os apêndices com todos os artefatos entram agora, no TCC1 (seção 11)
 - Termo de aprovação (fornecido depois da banca)
 - Prova de conceito com o olhar e as expressões faciais juntos no Unreal, como primeira tarefa do desenvolvimento (se falhar, o plano B é Unity)
 - Testes práticos: medir o tamanho do envio de uma sessão real (a IV.A estima cerca de 300 MB por sessão de 5 min) e testar a internet no local da coleta antes dos experimentos
