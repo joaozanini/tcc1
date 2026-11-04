@@ -1,6 +1,6 @@
 # II. Revisão de literatura
 
-Versão de trabalho de 26/10/2026. Texto para passar ao modelo do TCC, escrito a partir do 1.1 e no formato da Seção II do exemplo: parágrafo de abertura e subseções com letras. Os estudos e as normas foram conferidos nas fontes originais, e as ferramentas da Subseção F, na documentação oficial de cada uma.
+Versão de trabalho de 26/10/2026 (títulos das subseções com iniciais maiúsculas e legenda sem ponto final desde 03/11/2026, como no modelo `Referencias-e-modelos/TCC_Artigo_Modelo_2026.pdf`). Texto escrito a partir do 1.1 e no formato da Seção II do modelo: parágrafo de abertura e subseções com letras, a última com a tabela de comparação das soluções correlatas. Os estudos e as normas foram conferidos nas fontes originais, e as ferramentas da Subseção F, na documentação oficial de cada uma.
 
 ## Como usar este arquivo
 
@@ -15,13 +15,13 @@ Versão de trabalho de 26/10/2026. Texto para passar ao modelo do TCC, escrito a
 
 Esta seção reúne os conceitos e os estudos que fundamentam o NeuroSight. As subseções tratam da avaliação clínica dos distúrbios da consciência, do uso do rastreamento ocular e das expressões faciais, da realidade virtual, da proteção dos dados, da forma como esses experimentos são conduzidos hoje e dos trabalhos semelhantes ao proposto.
 
-### A. Distúrbios da consciência e avaliação clínica
+### A. Distúrbios da Consciência e Avaliação Clínica
 
 Os DoC surgem após uma lesão cerebral grave, de origem traumática, vascular ou anóxica. No coma, o paciente não abre os olhos e não tem ciclo de sono e vigília. Na SVNR, os olhos se abrem e esse ciclo retorna, mas não há sinais de percepção de si ou do ambiente [LAUREYS]. No EMC, surgem sinais de consciência mínimos e flutuantes, porém reproduzíveis, como acompanhar um objeto com os olhos ou cumprir uma ordem simples [GIACINO2002].
 
 A distinção entre esses estados é feita pela observação do paciente à beira do leito. A CRS-R, um dos instrumentos padronizados mais utilizados, examina seis domínios: audição, visão, motricidade, funções oromotoras e verbais, comunicação e nível de alerta [GIACINO2004]. Mesmo com uma escala padronizada, o resultado depende da interpretação do examinador e de respostas que podem não aparecer por motivos alheios à consciência, como paralisia, espasticidade, déficits sensoriais ou oscilações do nível de alerta. Schnakers et al. [SCHNAKERS] acompanharam 103 pacientes e verificaram que, dos 44 classificados em estado vegetativo pelo consenso da equipe médica, 18 (41%) estavam em EMC quando avaliados com a CRS-R; os autores alertam que esse erro pode ter consequências graves, principalmente em decisões de fim de vida. Em um estudo com 353 adultos de seis centros, Bodien et al. [BODIEN] identificaram a dissociação cognitivo-motora, em que o paciente executa tarefas mentais sem nenhuma resposta comportamental, em 60 dos 241 participantes (25%) sem resposta observável a comandos. A detecção dependeu de ressonância magnética funcional e de eletroencefalografia com tarefas, recursos de alto custo que, segundo os autores, ainda não estão amplamente disponíveis na avaliação clínica.
 
-### B. Rastreamento ocular e expressões faciais
+### B. Rastreamento Ocular e Expressões Faciais
 
 O comportamento visual tem peso particular nessa avaliação. A fixação sustentada e a perseguição visual em resposta a estímulos em movimento ou relevantes estão entre os comportamentos que caracterizam o EMC [GIACINO2002]. À beira do leito, porém, esses comportamentos são julgados a olho nu: o examinador move um objeto ou um espelho diante do paciente e decide se os olhos o acompanharam. Movimentos pequenos, lentos ou inconsistentes podem passar despercebidos, e o exame não gera um registro que possa ser revisto depois.
 
@@ -29,13 +29,13 @@ O rastreamento ocular permite medir esses comportamentos de forma objetiva e dei
 
 O tipo de estímulo também interfere na resposta. Na revisão sistemática de Magliacano et al. [MAGLIACANO], a maior parte dos estudos indicou que estímulos com significado pessoal, como o rosto do próprio paciente, rostos e vozes de familiares e o próprio nome, tendem a provocar mais respostas comportamentais e eletrofisiológicas do que imagens ou sons neutros, embora a qualidade geral das evidências seja baixa. Esse resultado reforça o interesse em observar, além do olhar, a reação emocional do paciente ao que é apresentado. As expressões faciais podem ser descritas de forma objetiva pelo FACS, que decompõe o rosto em unidades de ação associadas aos músculos faciais [EKMAN], e o reconhecimento de estados emocionais por sistemas computacionais é um dos temas da computação afetiva [PICARD].
 
-### C. Realidade virtual e Meta Quest Pro
+### C. Realidade Virtual e Meta Quest Pro
 
 A realidade virtual (RV) oferece um meio controlado para apresentar esses estímulos. Em óculos de RV, a imagem acompanha os movimentos da cabeça e permanece à mesma distância dos olhos, e o ambiente ao redor deixa de ser visto; como a cena é gerada por computador, ela é conhecida e pode ser reproduzida da mesma forma entre participantes, o que ajuda a padronizar as condições de cada sessão [CLAY]. Hyun et al. [HYUN] já empregaram RV combinada a rastreamento ocular na avaliação de 5 pacientes crônicos em estado vegetativo, em um estudo experimental de caso único: com três estímulos voltados à fixação, à perseguição e ao sobressalto visual, o sistema detectou fixação em três pacientes, o que a avaliação clínica não havia verificado.
 
 Equipamentos como o Meta Quest Pro reúnem no mesmo dispositivo a exibição dos estímulos, o rastreamento ocular e o rastreamento das expressões faciais por câmeras internas [META-MOVE]. O rastreamento facial converte os movimentos do rosto em valores de expressões baseadas no FACS, cada um indicando uma intensidade. O aplicativo recebe apenas esses valores: as imagens das câmeras são processadas no próprio óculos e descartadas [META-FACE-PRIV].
 
-### D. Proteção de dados e ética em pesquisa
+### D. Proteção de Dados e Ética em Pesquisa
 
 Informações de saúde são dados pessoais sensíveis segundo a LGPD (art. 5º, II) [LGPD]. O tratamento desses dados só pode ocorrer nas hipóteses do art. 11, entre elas o consentimento do titular ou de seu responsável legal e, sem consentimento, a realização de estudos por órgão de pesquisa, garantida, sempre que possível, a anonimização dos dados. Para estudos em saúde pública, o art. 13 determina que os dados sejam tratados em ambiente controlado e seguro, com anonimização ou pseudonimização sempre que possível. A pseudonimização é o tratamento pelo qual o dado perde a possibilidade de associação a um indivíduo, senão pelo uso de informação adicional mantida separadamente pelo controlador [LGPD].
 
@@ -43,7 +43,7 @@ A pesquisa com seres humanos segue, ainda, a Resolução nº 466/2012 do Conselh
 
 Assim, o consentimento para a participação fica a cargo do protocolo de cada pesquisa, por meio do termo assinado pelo representante legal, e não é tratado pelo sistema. Cabe ao sistema reduzir os dados ao necessário, identificar o paciente por um código, o que corresponde à pseudonimização, controlar o acesso às sessões e registrar as ações realizadas.
 
-### E. Como os experimentos são conduzidos hoje
+### E. Como os Experimentos São Conduzidos Hoje
 
 Nos estudos citados, os experimentos com rastreamento ocular em pacientes com DoC seguem, em linhas gerais, o seguinte fluxo:
 
@@ -54,7 +54,7 @@ Nos estudos citados, os experimentos com rastreamento ocular em pacientes com Do
 
 No protótipo da IC [IC], o fluxo era parecido, mas já reunia parte das etapas: o pesquisador abria o aplicativo no óculos e encerrava a sessão por um botão do controle, que enviava os dados ao servidor; sem rede, os arquivos eram copiados do óculos por cabo e enviados depois por um *script*. Não havia cadastro de pacientes nem de estímulos, e associar cada sessão ao paciente correto ficava a cargo do pesquisador. Nesse fluxo, as etapas dependem de programas diferentes e de transferências manuais, e não há controle de quem acessa os dados nem registro das ações.
 
-### F. Trabalhos semelhantes
+### F. Trabalhos Semelhantes
 
 Os estudos apresentados na Subseção B usaram instrumentos montados para cada pesquisa, sem uma ferramenta que organizasse o experimento do cadastro do paciente à análise. Entre as ferramentas disponíveis para pesquisas com rastreamento ocular, foram analisadas cinco, escolhidas por apresentarem estímulos, registrarem o olhar ou trabalharem com RV: iMotions, Tobii Pro Lab, SightLab VR Pro, Cognitive3D e PsychoPy. A análise foi feita a partir da documentação oficial de cada uma, consultada em outubro de 2026.
 
@@ -64,7 +64,7 @@ O SightLab VR Pro, da WorldViz, é um complemento comercial do ambiente Vizard p
 
 O PsychoPy é um programa gratuito e de código aberto para experimentos de psicologia [PSYCHOPY-ABOUT], que define o início e a duração de cada estímulo [PSYCHOPY-TIMING] e se comunica com rastreadores oculares [PSYCHOPY-ET]. O suporte a RV, contudo, limita-se ao Oculus Rift [PSYCHOPY-RIFT], e a análise de expressões faciais só existe nos experimentos on-line, pela *webcam* [PSYCHOPY-ONLINE]. Esses experimentos ficam em projetos da plataforma Pavlovia, privados por padrão e compartilhados com outros usuários ou grupos por convite, com os papéis de acesso do GitLab [PSYCHOPY-PAVLOVIA]. A Tabela 1 resume a comparação.
 
-**TABELA 1** - Comparação entre o NeuroSight e ferramentas semelhantes.
+**TABELA 1** - Comparação entre as ferramentas semelhantes e o NeuroSight
 
 | Ferramenta | Licença | Olhar no Meta Quest Pro | Expressões faciais | Sequência de estímulos com tempo | Dados de vários grupos, com papéis | Registro de auditoria |
 |---|---|---|---|---|---|---|
@@ -75,7 +75,7 @@ O PsychoPy é um programa gratuito e de código aberto para experimentos de psic
 | PsychoPy | Gratuita | Não (só Oculus Rift) | Pela *webcam*, só on-line | Sim | Parcial (projetos no Pavlovia) | Não encontrado |
 | NeuroSight | A definir | Sim | Valores do óculos | Sim | Sim | Sim |
 
-FONTE: Os autores (2026), com base na documentação das ferramentas.
+FONTE: Os autores (2026), com base na documentação das ferramentas
 
 Como mostra a Tabela 1, nenhuma das ferramentas analisadas reúne, ao mesmo tempo, a coleta do olhar e das expressões faciais no Meta Quest Pro, a apresentação de uma sequência de estímulos com tempo definido e o armazenamento centralizado dos dados de vários grupos de pesquisa, com controle de acesso e auditoria. O SightLab VR Pro é o mais próximo no que se refere ao óculos, mas guarda os dados localmente; o Cognitive3D é o mais próximo na gestão dos dados, mas não apresenta estímulos nem lê as expressões faciais. Também não foram encontrados, em nenhuma delas, recursos voltados a pacientes com DoC, como estímulos pessoais vinculados a cada paciente. Essa lacuna motiva o desenvolvimento do NeuroSight.
 
@@ -146,7 +146,7 @@ A numeração foi conferida por script, pela ordem da primeira citação na Intr
 ## O que conferir antes de passar para o modelo
 
 1. **Política de dados da Meta:** o § 3.1 da política limita o uso dos dados de olhar e de expressões a operar e melhorar o aplicativo, a análises agregadas ou desidentificadas e ao cumprimento da lei. Confirmado com o orientador: o uso em pesquisa está de acordo com a política.
-2. **Hospedagem e LGPD:** o art. 13 fala em tratar os dados "exclusivamente dentro do órgão" de pesquisa e veda a transferência a terceiro. Por isso, a IV.A deixa as duas opções: uma VPS contratada no Brasil ou um servidor da instituição, conforme o protocolo aprovado pelo CEP.
+2. **Hospedagem e LGPD:** o art. 13 fala em tratar os dados "exclusivamente dentro do órgão" de pesquisa e veda a transferência a terceiro. Por isso, a Subseção III.C deixa as duas opções: uma VPS contratada no Brasil ou um servidor da instituição, conforme o protocolo aprovado pelo CEP.
 3. **Ferramentas:** as informações vêm de páginas dos fabricantes e podem mudar. A informação de que o Tobii Pro Lab não tem mais projetos em RV vem de um artigo de suporte que não abriu por completo, por isso o texto diz "não foram encontrados".
 4. **Estudos:** o texto integral de Hyun et al. e de Bagnato et al. é pago; os dados citados vêm dos resumos.
 5. **Tamanho:** a seção tem cerca de 2.000 palavras e 28 referências novas. Se precisar cortar, as primeiras candidatas são as revisões de 2026 na Subseção B e o detalhamento de cada ferramenta na Subseção F, que a Tabela 1 já resume.

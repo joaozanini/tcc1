@@ -1,6 +1,6 @@
 # Processo atual (BPMN), sem o NeuroSight
 
-Versão de trabalho de 27/10/2026. Base: Subseção "E. Como os experimentos são conduzidos hoje" de [II-Revisao-de-literatura.md](../Texto-TCC/II-Revisao-de-literatura.md).
+Versão de trabalho de 27/10/2026. Base: Subseção "E. Como os Experimentos São Conduzidos Hoje" de [II-Revisao-de-literatura.md](../Texto-TCC/II-Revisao-de-literatura.md).
 
 O diagrama está em [BPMN-Processo-atual.drawio](BPMN-Processo-atual.drawio). Ele mostra o processo **sem o NeuroSight** (o processo atual, ou as-is), para comparar com o [BPMN do experimento com o NeuroSight](BPMN-Experimento-NeuroSight.md). Junta os dois fluxos da Subseção II.E: o dos estudos citados, em tópicos, e o do protótipo da IC, no parágrafo seguinte.
 

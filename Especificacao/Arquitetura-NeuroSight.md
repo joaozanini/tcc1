@@ -1,15 +1,15 @@
-# Arquitetura do NeuroSight (Seção IV.A)
+# Arquitetura do NeuroSight (Subseção III.C do artigo e contextualização da Especificação Técnica)
 
 Versão de trabalho de 26/10/2026. Base: [Decisoes-tecnicas-NeuroSight.md](Decisoes-tecnicas-NeuroSight.md), [Modelo-logico-relacional-NeuroSight.md](Modelo-logico-relacional-NeuroSight.md) e [Diagramas-de-sequencia-NeuroSight.md](Diagramas-de-sequencia-NeuroSight.md).
 
 ## Figuras para o artigo
 
-O arquivo [Arquitetura-NeuroSight.drawio](Arquitetura-NeuroSight.drawio) tem duas páginas, já no formato de figura do artigo (sem título dentro da imagem, porque o título vai na legenda, como no modelo).
+O arquivo [Arquitetura-NeuroSight.drawio](Arquitetura-NeuroSight.drawio) tem duas páginas, já no formato de figura do artigo (sem título dentro da imagem, porque o título vai na legenda, como no modelo). Desde 03/11/2026 são as únicas figuras do artigo, que segue o modelo de 2026 (`Referencias-e-modelos/TCC_Artigo_Modelo_2026.pdf`) e não traz diagramas de modelagem; ficam na Subseção III.C. A primeira também abre a contextualização da Especificação Técnica.
 
-1. **Figura – Arquitetura.** Legenda sugerida: "FIGURA n - Arquitetura do NeuroSight." e, abaixo, "FONTE: Os autores (2026)".
-2. **Figura – Fluxo de uma sessão.** Substitui a Figura 1 do 1.2. Legenda sugerida: "FIGURA n - Fluxo de uma sessão no NeuroSight." e "FONTE: Os autores (2026)".
+1. **Figura – Arquitetura.** Figura 1 do artigo: "FIGURA 1 - Arquitetura do NeuroSight" e, abaixo, "FONTE: Os autores (2026)", sem ponto final, como no modelo.
+2. **Figura – Fluxo de uma sessão.** Figura 2 do artigo (substituiu a Figura 1 do 1.2): "FIGURA 2 - Fluxo de uma sessão no NeuroSight" e "FONTE: Os autores (2026)".
 
-Para exportar no draw.io, use Arquivo → Exportar como. PNG com zoom de 300% e a opção de recortar serve para o Word. PDF ou SVG serve para o LaTeX.
+Para exportar no draw.io, use Arquivo → Exportar como, PNG com zoom de 300% e a opção de recortar, e grave em `Texto-TCC/figuras/` como `Figura-1-arquitetura.png` e `Figura-2-fluxo-de-uma-sessao.png`. Sem o draw.io, use o processo do CLAUDE.md (visualizador do diagrams.net no Edge sem janela).
 
 **O que mudou em relação à figura do 1.2:**
 - Saiu a seta direta entre o sistema web e o Meta Quest Pro ("início da sessão e espelhamento, mesma rede").
@@ -50,25 +50,10 @@ Não há comunicação direta entre o sistema web e o óculos, nem exigência de
 - **Arquivos:** um volume persistente, organizado em pastas por tenant (`/dados/<tenant_id>/...`).
 - **Cópia de segurança:** diária, do banco e do volume de arquivos (RNF12).
 
-## Roteiro para o texto da IV.A
+## Roteiro para o texto do artigo (Subseções III.C e III.D)
 
-O texto escrito a partir deste roteiro está em [IV-A-Arquitetura-do-sistema.md](../Texto-TCC/IV-A-Arquitetura-do-sistema.md).
+O texto escrito a partir deste roteiro está em [III-Metodo-tecnologias-e-arquitetura.md](../Texto-TCC/III-Metodo-tecnologias-e-arquitetura.md). Até 03/11/2026 ele formava a Seção IV.A, com subseções numeradas ("1) Multi-tenant"); no modelo de 2026 a arquitetura é a Subseção C da Seção III e as regras de negócio, a Subseção D, ambas em parágrafos corridos, sem subseções numeradas. Para o NeuroSight:
 
-O modelo do TCC abre a Seção IV com um parágrafo e, em IV.A, apresenta a figura da arquitetura, descreve os componentes e detalha a integração em subseções numeradas ("1) Integração com o SIGA"). Para o NeuroSight:
-
-1. **Abertura da Seção IV.** Um parágrafo dizendo que a seção apresenta a arquitetura proposta; as telas ficam para o TCC2.
-2. **A. Arquitetura do Sistema.** A Figura de arquitetura e um parágrafo por componente, com base na tabela "Componentes".
-3. **1) Multi-tenant.** `tenant_id` em todas as tabelas com RLS, FKs compostas para garantir o mesmo tenant, os três papéis do banco e os arquivos separados por tenant. Fonte: modelo lógico.
-4. **2) Comunicação entre sistema web, servidor e óculos.** A figura do fluxo, mais o pareamento (SD02), o envio da sessão e o início por consulta ao servidor (SD03, SD04) e o envio dos dados (SD05). Vale explicar por que não há espelhamento nem WebSocket.
-5. **3) Dados coletados e gravação.**
-   - O JSON: eventos de estímulo, olhar a cada quadro e expressões FACS.
-   - Os quadros viram um MP4 montado no servidor.
-   - A importação das amostras para tabelas, com o JSON original guardado.
-   - O volume estimado: cerca de 300 MB por sessão de 5 min a 15 quadros/s. A base é a IC, que mediu 88 MB por minuto a ~22 quadros/s, com quadros de 1024 × 1024; falta medir no NeuroSight.
-6. **4) Segurança e auditoria.**
-   - Proteção do acesso: HTTPS, JWT e token do óculos.
-   - Quem vê o quê: perfis cumulativos e visibilidade das sessões.
-   - Auditoria que não pode ser alterada.
-   - LGPD: minimização de dados, paciente identificado só por código no óculos e nenhuma imagem do rosto guardada.
-   - O consentimento fica a cargo do protocolo da pesquisa.
-7. **Limitações a citar.** O Meta Quest Pro saiu de linha; o rastreamento facial no Unreal ainda depende de prova de conceito; e o óculos precisa de internet no momento do início.
+1. **C. Arquitetura do Sistema.** A Figura 1 e um parágrafo por componente, com base na tabela "Componentes"; a implantação (contêineres, VPS ou servidor da instituição, LGPD art. 13); o multi-tenant (`tenant_id` em todas as tabelas com RLS, FKs compostas, os papéis do banco e os arquivos separados por tenant, do modelo lógico); a comunicação (Figura 2, pareamento de SD02, envio e início por consulta ao servidor de SD03 e SD04, por que não há espelhamento nem WebSocket); e o controle de acesso (HTTPS, JWT e token do óculos, perfis cumulativos).
+2. **D. Regras de Negócio e Processamento dos Dados.** As regras das sessões (modelo e sessão personalizada, estímulos pessoais, uma sessão pendente por óculos, os nove estados, sem edição depois do envio e sem interrupção depois do início); os dados coletados (JSON com eventos de estímulo, olhar a cada quadro e expressões FACS, mais os quadros JPEG); o envio em lotes e o processamento (importação das amostras para tabelas, MP4 com FFmpeg, JSON original guardado, dados coletados imutáveis, volume estimado de cerca de 300 MB por sessão de 5 min, com base nos 88 MB por minuto da IC); a análise no sistema web (mapa de calor, modo validação, gráficos, resumo por estímulo); quem vê o quê e a auditoria imutável; LGPD (minimização, paciente só por código no óculos, nenhuma imagem do rosto, consentimento a cargo do protocolo da pesquisa).
+3. **Limitações.** Vão na Seção IV (Considerações Finais), não na arquitetura: o rastreamento facial no Unreal depende de prova de conceito; o Meta Quest Pro saiu de linha; e o óculos precisa de internet no momento do início.

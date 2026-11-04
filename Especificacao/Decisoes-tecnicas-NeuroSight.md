@@ -1,6 +1,6 @@
 # Decisões técnicas do NeuroSight
 
-Registro das decisões fechadas em 25/10/2026. Serve de base para a Tabela 2 (Seção III) e para a Seção IV.A do TCC1.
+Registro das decisões fechadas em 25/10/2026. Serve de base para a Tabela 2 (Subseção III.B) e para as Subseções III.C e III.D do artigo, e para a contextualização da Especificação Técnica.
 
 ## 1. Resumo
 

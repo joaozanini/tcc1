@@ -1,6 +1,6 @@
 # I. Introdução
 
-Versão de trabalho de 26/10/2026. Texto para passar ao modelo do TCC, escrito a partir do 1.1 e no formato da Introdução do exemplo: contexto, problema, objetivo e organização do documento. O detalhamento do 1.1 (escalas, estudos com rastreamento ocular, estímulos pessoais, computação afetiva) fica para a Seção II.
+Versão de trabalho de 26/10/2026, revista em 03/11/2026. Texto escrito a partir do 1.1 e no formato da Introdução do modelo de 2026 (`Referencias-e-modelos/TCC_Artigo_Modelo_2026.pdf`), sem subseções: contexto, problema, objetivo e organização do documento. O detalhamento do 1.1 (escalas, estudos com rastreamento ocular, estímulos pessoais, computação afetiva) fica para a Seção II.
 
 ## Como usar este arquivo
 
@@ -20,13 +20,13 @@ O equipamento, porém, resolve apenas parte da questão. Para conduzir esses exp
 
 Diante desse cenário, o objetivo deste trabalho é modelar e desenvolver o NeuroSight, um sistema de apoio à pesquisa que reúne em uma única ferramenta as etapas de experimentos em realidade virtual com pessoas com DoC: o cadastro dos pacientes, a preparação dos estímulos, a configuração e o início das sessões, a coleta do olhar e das expressões faciais no Meta Quest Pro, o armazenamento dos dados e a sua análise. O sistema é formado por um aplicativo para o óculos, um sistema web e um servidor, e uma mesma instalação atende a diferentes grupos de pesquisa, com os dados de cada um isolados dos demais. O trabalho parte do protótipo de rastreamento ocular em realidade virtual desenvolvido por um dos autores em seu projeto de Iniciação Científica (IC) [IC]. O NeuroSight não faz diagnóstico nem substitui a avaliação clínica: ele organiza a realização dos experimentos e o registro dos dados para que os pesquisadores possam analisá-los.
 
-Este documento apresenta a primeira etapa do trabalho, dedicada à modelagem do sistema; a implementação será realizada na segunda etapa. A Seção II apresenta a revisão de literatura e os trabalhos semelhantes ao proposto, a Seção III descreve o método de trabalho e as tecnologias escolhidas e a Seção IV apresenta a arquitetura proposta para o sistema. Os apêndices reúnem os doze diagramas de casos de uso e as histórias de usuário.
+Este artigo apresenta a primeira etapa do trabalho, dedicada à modelagem do sistema; a implementação será realizada na segunda etapa. A Seção II apresenta a revisão de literatura e os trabalhos semelhantes ao proposto; a Seção III descreve o método de trabalho, as tecnologias escolhidas, a arquitetura proposta e as regras de negócio do sistema; e a Seção IV traz as considerações finais. Os artefatos da modelagem, como os diagramas de casos de uso, as histórias de usuário, o diagrama de classes, o modelo do banco de dados e os protótipos das telas, estão na Especificação Técnica que acompanha este artigo.
 
 ---
 
 ## Referências citadas nesta seção
 
-Como a Introdução é a primeira seção com citações, a numeração final destas referências já pode ser fixada. As obras sem lista aqui estão nas outras seções: [EKMAN] e [LGPD] na IV.A, [META-MOVE] e [IC] na III.
+Como a Introdução é a primeira seção com citações, a numeração final destas referências já pode ser fixada. As obras sem lista aqui estão na Seção III: [EKMAN], [LGPD], [META-MOVE] e [IC].
 
 | Chave | Número | Onde está a referência completa |
 |---|---|---|
@@ -36,12 +36,12 @@ Como a Introdução é a primeira seção com citações, a numeração final de
 | [SCHNAKERS] | [4] | Abaixo |
 | [BODIEN] | [5] | Abaixo |
 | [TROJANO] | [6] | Abaixo |
-| [EKMAN] | [7] | [IV-A-Arquitetura-do-sistema.md](IV-A-Arquitetura-do-sistema.md) |
+| [EKMAN] | [7] | [III-Metodo-tecnologias-e-arquitetura.md](III-Metodo-tecnologias-e-arquitetura.md) |
 | [MAGLIACANO] | [8] | Abaixo |
 | [CLAY] | [9] | Abaixo |
-| [META-MOVE] | [10] | [III-Metodo-e-tecnologias.md](III-Metodo-e-tecnologias.md) |
-| [IC] | [11] | [III-Metodo-e-tecnologias.md](III-Metodo-e-tecnologias.md) |
-| [LGPD] | [12] | [IV-A-Arquitetura-do-sistema.md](IV-A-Arquitetura-do-sistema.md) |
+| [META-MOVE] | [10] | [III-Metodo-tecnologias-e-arquitetura.md](III-Metodo-tecnologias-e-arquitetura.md) |
+| [IC] | [11] | [III-Metodo-tecnologias-e-arquitetura.md](III-Metodo-tecnologias-e-arquitetura.md) |
+| [LGPD] | [12] | [III-Metodo-tecnologias-e-arquitetura.md](III-Metodo-tecnologias-e-arquitetura.md) |
 
 - **[LAUREYS]** LAUREYS, S. *et al*. Unresponsive wakefulness syndrome: a new name for the vegetative state or apallic syndrome. *BMC Medicine*, v. 8, art. 68, 2010. DOI: 10.1186/1741-7015-8-68.
 - **[GIACINO2002]** GIACINO, J. T. *et al*. The minimally conscious state: definition and diagnostic criteria. *Neurology*, v. 58, n. 3, p. 349-353, 2002. DOI: 10.1212/WNL.58.3.349.
@@ -68,6 +68,6 @@ Na busca, apareceram duas revisões recentes que podem servir à Seção II: uma
 ## O que conferir antes de passar para o modelo
 
 1. **Frase de objetivo:** "modelar e desenvolver" vale para o TCC1 e o TCC2. Se o orientador preferir um objetivo só do TCC1, troque por "modelar".
-2. **Organização do documento:** o último parágrafo cita só as Seções II a IV. Se o TCC1 tiver fechamento ou cronograma, acrescente a seção.
+2. **Organização do documento:** o último parágrafo cita as Seções II a IV e remete a modelagem à Especificação Técnica, o segundo documento da entrega (03/11/2026).
 3. **Afirmação sobre a IC:** o texto usa o relatório da IC para mostrar que as sessões ficavam como arquivos locais. Confirme que você concorda com essa leitura.
-4. **Tamanho:** são cerca de 700 palavras, um pouco mais que a Introdução do exemplo.
+4. **Tamanho:** são cerca de 700 palavras, um pouco mais que a Introdução do modelo de 2026, que tem cerca de 500.
