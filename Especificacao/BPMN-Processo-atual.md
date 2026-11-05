@@ -1,8 +1,8 @@
 # Processo atual (BPMN), sem o NeuroSight
 
-Versão de trabalho de 27/10/2026. Base: Subseção "E. Como os Experimentos São Conduzidos Hoje" de [II-Revisao-de-literatura.md](../Texto-TCC/II-Revisao-de-literatura.md).
+Versão de trabalho de 27/10/2026. Base: a descrição de como os experimentos são conduzidos hoje, no terceiro parágrafo da Introdução do artigo ([I-Introducao.md](../Texto-TCC/I-Introducao.md)). Até 05/11/2026 ela era a Subseção "E. Como os Experimentos São Conduzidos Hoje" da Seção II, com o fluxo dos estudos em quatro tópicos; por observação do orientador, foi adaptada e levada para a Introdução, e a tabela abaixo ainda se refere a esses tópicos.
 
-O diagrama está em [BPMN-Processo-atual.drawio](BPMN-Processo-atual.drawio). Ele mostra o processo **sem o NeuroSight** (o processo atual, ou as-is), para comparar com o [BPMN do experimento com o NeuroSight](BPMN-Experimento-NeuroSight.md). Junta os dois fluxos da Subseção II.E: o dos estudos citados, em tópicos, e o do protótipo da IC, no parágrafo seguinte.
+O diagrama está em [BPMN-Processo-atual.drawio](BPMN-Processo-atual.drawio). Ele mostra o processo **sem o NeuroSight** (o processo atual, ou as-is), para comparar com o [BPMN do experimento com o NeuroSight](BPMN-Experimento-NeuroSight.md). Junta os dois fluxos descritos no texto: o dos estudos citados e o do protótipo da IC.
 
 ## Como ler
 
@@ -14,7 +14,7 @@ O diagrama está em [BPMN-Processo-atual.drawio](BPMN-Processo-atual.drawio). El
 
 ## De onde saiu cada parte
 
-| Elemento | Raia | Trecho da Subseção II.E |
+| Elemento | Raia | Trecho do texto (os tópicos são os da antiga Subseção II.E, hoje na Introdução) |
 |---|---|---|
 | Paciente incluído na pesquisa (início) | Pesquisador | Não vem do texto: é o mesmo início do BPMN com o NeuroSight, para facilitar a comparação |
 | Escolher estímulos de fixação e perseguição | Pesquisador | 1º tópico: o pesquisador escolhe estímulos que testam a fixação e a perseguição visual, muitas vezes inspirados nos itens da CRS-R |

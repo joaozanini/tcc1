@@ -198,8 +198,9 @@ while ($k < @l) {
       my $f = fonte($l[$j], "TABELA $num");
       my @cel = celulas(\@tab);
       # tabela com mais de 3 colunas ocupa as duas colunas da página, como a Tabela 1 na versão em Word
+      # a tabela estreita fica onde está no texto, se couber na coluna, ou no alto da coluna seguinte ([!htb]), para não flutuar para outra subseção (observação do orientador, 05/11/2026)
       if (@{ $cel[0] } > 3) { push @corpo, "\\begin{tabela*}[!t]{$leg}{$f}", tabela(\@cel, '\textwidth'), '\end{tabela*}', '' }
-      else                  { push @corpo, "\\begin{tabela}[!t]{$leg}{$f}{tab:$num}", tabela(\@cel, '\columnwidth'), '\end{tabela}', '' }
+      else                  { push @corpo, "\\begin{tabela}[!htb]{$leg}{$f}{tab:$num}", tabela(\@cel, '\columnwidth'), '\end{tabela}', '' }
     }
     $k = $j + 1;
     next;
