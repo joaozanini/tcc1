@@ -1,6 +1,6 @@
 # ESPECIFICAÇÃO TÉCNICA DO SISTEMA NEUROSIGHT
 
-Gerado em 03/11/2026 por montar-especificacao.pl a partir de Contextualizacao.md, Resumo-e-Abstract.md e da pasta Especificacao. Não edite aqui: mude a fonte e monte de novo. O arquivo gerar-especificacao-docx.ps1 lê este .md e preenche o template do curso no Word.
+Gerado em 05/11/2026 por montar-especificacao.pl a partir de Contextualizacao.md, Resumo-e-Abstract.md e da pasta Especificacao. Não edite aqui: mude a fonte e monte de novo. O arquivo gerar-especificacao-docx.ps1 lê este .md e preenche o template do curso no Word.
 
 Autores: João Vitor Zanini Pedro, Lucas Sarnacki Guiraud
 
@@ -2117,7 +2117,7 @@ FONTE: Os autores (2026)
 
 **TABELA 60** - Origem de cada elemento do processo atual
 
-| Elemento | Raia | Trecho da Subseção II.E |
+| Elemento | Raia | Trecho do texto (os tópicos são os da antiga Subseção II.E, hoje na Introdução) |
 |---|---|---|
 | Paciente incluído na pesquisa (início) | Pesquisador | Não vem do texto: é o mesmo início do BPMN com o NeuroSight, para facilitar a comparação |
 | Escolher estímulos de fixação e perseguição | Pesquisador | 1º tópico: o pesquisador escolhe estímulos que testam a fixação e a perseguição visual, muitas vezes inspirados nos itens da CRS-R |

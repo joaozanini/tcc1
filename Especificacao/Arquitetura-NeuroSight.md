@@ -17,6 +17,8 @@ Para exportar no draw.io, use Arquivo → Exportar como, PNG com zoom de 300% e 
 - A gravação passou a aparecer como quadros enviados ao servidor, que monta o vídeo.
 - Entrou uma nota sobre o pareamento do óculos.
 
+**Revisão de 05/11/2026 (a pedido do autor):** na Figura 1, as setas passaram a indicar o sentido dos dados (duplas onde há leitura e gravação), a fila do pg-boss foi para a caixa do banco, onde o texto diz que ela fica, e o proxy reverso entrou na figura, porque o texto o cita. A Figura 2 deixou de ser um diagrama de componentes com listas de responsabilidades e virou um fluxo numerado (1 a 10), no estilo de um diagrama de sequência resumido, com os passos que faltavam: o aviso de "pronto" do óculos, a liberação do botão "Iniciar" e a confirmação do início na consulta seguinte. Os nomes dos componentes ficaram iguais nas duas figuras ("App de coleta", "Sistema web", "Servidor"). Fonte de 13 px nas duas páginas e as duas figuras na largura das duas colunas.
+
 ## Componentes
 
 | Componente | Tecnologia | Responsabilidade |
@@ -28,7 +30,7 @@ Para exportar no draw.io, use Arquivo → Exportar como, PNG com zoom de 300% e 
 | Arquivos | Disco do servidor (volume Docker), atrás de uma interface que permite trocar por S3 | Estímulos, JSON originais, quadros (temporários) e vídeos MP4 |
 | Processamento | Worker com pg-boss e FFmpeg (mesmo código da API, em outro contêiner) | Importa eventos e amostras para o banco e monta o MP4 |
 | Serviço de e-mail | SMTP de um provedor externo | Confirmação de e-mail, convite e redefinição de senha |
-| Proxy reverso | Caddy ou Nginx | HTTPS (RNF02) e encaminhamento para a API e o sistema web; não aparece na figura |
+| Proxy reverso | Caddy ou Nginx | HTTPS (RNF02) e encaminhamento para a API e o sistema web; aparece na Figura 1 desde 05/11/2026 |
 
 ## Comunicação
 
