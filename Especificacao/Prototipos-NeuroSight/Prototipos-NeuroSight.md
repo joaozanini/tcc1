@@ -78,11 +78,8 @@ Todos os dados são inventados e batem de uma tela para outra.
 
 ## Como usar no TCC
 
-- **No TCC1:** os protótipos entram como artefato de modelagem. Cite-os na Seção III, junto com os outros artefatos, e ponha as imagens no apêndice ou no link da documentação completa.
-- **Se quiser alguma tela no corpo do artigo:** as que mais explicam o sistema são W10 (início da sessão pelo sistema web), W11 (análise) e A3 (sessão pronta no óculos).
-  - Legenda acima: "FIGURA n - Protótipo da tela de análise da sessão."
-  - Abaixo: "FONTE: Os autores (2026)".
-- **No TCC2:** a Seção IV.B (Apresentação do Sistema) mostra as telas reais, e os protótipos servem de comparação.
+- **No TCC1:** os protótipos entram no Apêndice C da Especificação Técnica, cada tela na primeira história de usuário que a usa, com a legenda "FIGURA n - Protótipo da tela W11 Análise da sessão" e "FONTE: Os autores (2026)" (sem ponto final). O gerador `Especificacao-Tecnica/montar-especificacao.pl` lê as duas tabelas acima (coluna "Casos de uso", com listas como "UC05.1 a UC05.5") e a lista "Casos de uso sem tela própria" (um item em negrito por grupo de casos, com a explicação depois dos dois-pontos): mantenha esses formatos ao editar. O artigo, pelo modelo de 2026, só cita os protótipos na Subseção III.A.
+- **No TCC2:** o artigo ganha a apresentação do sistema com as telas reais, e os protótipos servem de comparação.
 
 ## Ferramenta
 

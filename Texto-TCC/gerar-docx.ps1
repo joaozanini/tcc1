@@ -1,4 +1,4 @@
-﻿# Gera a versão em Word (.docx) do TCC no formato do artigo de exemplo (TCC_TADS_Exemplo.pdf):
+﻿# Gera a versão em Word (.docx) do artigo no formato do modelo do curso (Referencias-e-modelos/TCC_Artigo_Modelo_2026.pdf):
 # capa, folha de rosto, página do termo de aprovação e o artigo em duas colunas.
 # Usa o Microsoft Word instalado no computador.
 # Uso, na pasta do TCC (depois de montar o artigo com montar-artigo.pl):
@@ -34,7 +34,7 @@ $largTexto = 16.0          # 21 cm menos as margens de 3 cm e 2 cm
 $espColunas = 0.6
 $largColuna = ($largTexto - $espColunas) / 2
 # Figuras ocupam a largura toda da página (como figure* no LaTeX), para o texto continuar legível
-$larguras = @{ 'Figura-1' = 16.0; 'Figura-2' = 16.0; 'Figura-3' = 13.0 }
+$larguras = @{ 'Figura-1' = 16.0; 'Figura-2' = 13.0 }
 $padrao = '\*\*(.+?)\*\*|\*(.+?)\*|`([^`]+)`|\[\^(\d+)\]|\\([<>])'
 
 $jaAberto = @(Get-Process WINWORD -ErrorAction SilentlyContinue).Count -gt 0
@@ -163,7 +163,7 @@ function Tabela($linhasTab, [string]$estilo, $alvo = $null) {
   $cab.HeadingFormat = -1
   $t.AutoFitBehavior(1)
   $t.AutoFitBehavior(2)
-  if ($nc -eq 2 -and -not $aninhada -and -not $apendice) {
+  if ($nc -eq 2 -and -not $aninhada) {
     $t.AllowAutoFit = $false
     $t.Columns.Item(1).Width = 2.6 * $cm
     $t.Columns.Item(2).Width = ($largColuna - 2.6) * $cm
@@ -313,7 +313,7 @@ try {
   $rodape.LinkToPrevious = $false
   $null = $rodape.PageNumbers.Add(1, $true)
 
-  $k = 0; $cabecalho = $true; $autorFeito = $false; $nasReferencias = $false; $apendice = $false
+  $k = 0; $cabecalho = $true; $autorFeito = $false; $nasReferencias = $false
   while ($k -lt $linhas.Count) {
     $l = $linhas[$k]
     if ($l -match '^\s*$' -or $l -eq '---' -or $l -match '^\[\^\d+\]: ') { $k++; continue }
@@ -332,11 +332,7 @@ try {
       Inline $Matches[2]
       $sel.Font.Reset(); $sel.TypeParagraph(); $k++; continue
     }
-    if ($l -like '## *') {
-      # os apêndices (gerados da pasta Especificacao) vão numa coluna só, com figuras e tabelas no lugar
-      if ($l -like '## APÊNDICE*' -and -not $apendice) { Esvaziar-Fila $true; Colunas 1; $apendice = $true }
-      $nasReferencias = ($l -eq '## REFERÊNCIAS'); Paragrafo $estH1 $l.Substring(3); $k++; continue
-    }
+    if ($l -like '## *') { $nasReferencias = ($l -eq '## REFERÊNCIAS'); Paragrafo $estH1 $l.Substring(3); $k++; continue }
     if ($l -like '#### *') { Paragrafo $estH2 $l.Substring(5); $k++; continue }
     if ($l -like '### *') { Paragrafo $estH2 $l.Substring(4); $k++; continue }
     if ($l -match '^\*\*(FIGURA|TABELA) (\d+)\*\* - (.+)$') {
@@ -347,26 +343,14 @@ try {
         $null = $linhas[$j] -match '^!\[[^\]]*\]\(([^)]+)\)'
         $caminho = Join-Path $pasta $Matches[1]
         $j++; while ($j -lt $linhas.Count -and $linhas[$j] -match '^\s*$') { $j++ }
-        if ($apendice) {
-          # figura no lugar, na largura da página
-          Paragrafo $estLegenda $legenda
-          $sel.Style = $estFigura
-          $img = $sel.InlineShapes.AddPicture($caminho, $false, $true)
-          $img.LockAspectRatio = -1
-          $img.Width = $largTexto * $cm
-          if ($img.Height -gt 22 * $cm) { $img.Height = 22 * $cm }
-          $sel.TypeParagraph()
-          Paragrafo $estFonte $linhas[$j]
-        } else {
-          $null = $fila.Add([pscustomobject]@{ Legenda = $legenda; Figura = $caminho; Linhas = $null; Fonte = $linhas[$j]; Pagina = (Pagina-Atual) })
-        }
+        $null = $fila.Add([pscustomobject]@{ Legenda = $legenda; Figura = $caminho; Linhas = $null; Fonte = $linhas[$j]; Pagina = (Pagina-Atual) })
         $k = $j + 1; continue
       }
       $tab = @(); while ($j -lt $linhas.Count -and $linhas[$j] -like '|*') { $tab += $linhas[$j]; $j++ }
       while ($j -lt $linhas.Count -and $linhas[$j] -match '^\s*$') { $j++ }
       $fonteTab = $linhas[$j]
       $linhasTab = Linhas-Da-Tabela $tab
-      if ($linhasTab[0].Count -gt 3 -and -not $apendice) {
+      if ($linhasTab[0].Count -gt 3) {
         $null = $fila.Add([pscustomobject]@{ Legenda = $legenda; Figura = $null; Linhas = $linhasTab; Fonte = $fonteTab; Pagina = (Pagina-Atual) })
       } else {
         # tabela estreita fica na coluna, como a Tabela 1 do exemplo

@@ -1,8 +1,10 @@
 #!/usr/bin/perl
-# Junta as seções do TCC1 num arquivo só, troca as chaves de citação pela
+# Junta as seções do artigo do TCC1 num arquivo só, troca as chaves de citação pela
 # numeração final (ordem da primeira citação) e monta a lista de referências.
 # Uso (no Git Bash, na pasta do TCC): perl Texto-TCC/montar-artigo.pl
 # Sem argumentos, lê as seções da pasta do script e grava Artigo-TCC1-NeuroSight.md nela.
+# O artigo segue o modelo Referencias-e-modelos/TCC_Artigo_Modelo_2026.pdf: Seções I a IV e as
+# referências, sem apêndices. A modelagem completa vai na Especificação Técnica (Especificacao-Tecnica/).
 use strict;
 use warnings;
 use utf8;
@@ -14,10 +16,10 @@ my $dir   = $ARGV[0] // $FindBin::Bin;
 my $saida = $ARGV[1] // "$dir/Artigo-TCC1-NeuroSight.md";
 
 my @secoes = (
-  ['I-Introducao.md',               qr/^## I\. INTRODUÇÃO/m,            qr/^## Referências citadas/m],
-  ['II-Revisao-de-literatura.md',   qr/^## II\. REVISÃO DE LITERATURA/m, qr/^## Referências novas/m],
-  ['III-Metodo-e-tecnologias.md',   qr/^## III\. MÉTODO E TECNOLOGIAS/m, qr/^## Referências citadas/m],
-  ['IV-A-Arquitetura-do-sistema.md', qr/^## IV\. RESULTADOS/m,           qr/^## Referências novas/m],
+  ['I-Introducao.md',                         qr/^## I\. INTRODUÇÃO/m,                           qr/^## Referências citadas/m],
+  ['II-Revisao-de-literatura.md',             qr/^## II\. REVISÃO DE LITERATURA/m,               qr/^## Referências novas/m],
+  ['III-Metodo-tecnologias-e-arquitetura.md', qr/^## III\. MÉTODO, TECNOLOGIAS E ARQUITETURA/m,  qr/^## Referências citadas/m],
+  ['IV-Consideracoes-finais.md',              qr/^## IV\. CONSIDERAÇÕES FINAIS/m,                qr/^## Referências novas/m],
 );
 
 sub ler { my ($f) = @_; open my $h, '<', $f or die "não abri $f: $!\n"; local $/; my $t = <$h>; close $h; $t =~ s/\r\n/\n/g; return $t; }
@@ -67,14 +69,29 @@ while ($todos =~ /\[([A-Z][A-Z0-9-]+)\]/g) {
 s/\[([A-Z][A-Z0-9-]+)\]/exists $num{$1} ? "[$num{$1}]" : "[$1]"/ge for @corpos;
 my @sobra = grep { !exists $num{$_} } sort keys %ref;
 
+# ---------------------------------------------------------------- conferências de formato
+# Figuras e tabelas numeradas em sequência e citadas no texto; legendas e fontes sem ponto final
+my @figs = $todos =~ /^\*\*FIGURA (\d+)\*\* - /mg;
+my @tabs = $todos =~ /^\*\*TABELA (\d+)\*\* - /mg;
+for my $x (['Figura', \@figs], ['Tabela', \@tabs]) {
+  my ($nome, $lista) = @$x;
+  for my $i (0 .. $#$lista) {
+    die "$nome $lista->[$i] fora de sequência (esperava " . ($i + 1) . ")\n" unless $lista->[$i] == $i + 1;
+    die "$nome $lista->[$i] não é citada no texto\n" unless $todos =~ /\b$nome $lista->[$i]\b/;
+  }
+}
+for my $l ($todos =~ /^(\*\*(?:FIGURA|TABELA) \d+\*\* - .+|FONTE: .+)$/mg) {
+  warn "legenda ou fonte com ponto final (o modelo não usa): $l\n" if $l =~ /\.$/;
+}
+
 # ---------------------------------------------------------------- saída
 # resumo e abstract: lidos de Resumo-e-Abstract.md, se o arquivo existir
 my @rotulos = ('Resumo', 'Palavras-chave', 'Abstract', 'Keywords');
 my %vazio = (
   'Resumo'         => '[A escrever por último: parágrafo único com objetivo, método, tecnologias e resultado.]',
-  'Palavras-chave' => '[quatro palavras-chave].',
+  'Palavras-chave' => '[cinco palavras-chave, como no modelo].',
   'Abstract'       => '[To be written last.]',
-  'Keywords'       => '[four keywords].',
+  'Keywords'       => '[five keywords].',
 );
 my %resumo = map { $_ => "**$_:** $vazio{$_}" } @rotulos;
 my $tem_resumo = -e "$dir/Resumo-e-Abstract.md";
@@ -86,15 +103,12 @@ if ($tem_resumo) {
   }
 }
 
-my @falta;
-push @falta, 'Resumo e Abstract' unless $tem_resumo;
-my $falta = @falta > 1 ? join(', ', @falta[0 .. $#falta - 1]) . ' e ' . $falta[-1] : $falta[0];
-my $pendencias = @falta ? "**Ainda falta:** $falta. " : '';
+my $pendencias = $tem_resumo ? '' : '**Ainda falta:** Resumo e Abstract. ';
 my $data = strftime('%d/%m/%Y', localtime);
 
 my $cab = "# Artigo do TCC1 – NeuroSight (versão montada)\n\n"
-  . "Versão de trabalho de $data, montada a partir dos arquivos das Seções I a IV.A desta pasta e dos apêndices gerados da pasta Especificacao por montar-apendices.pl. As citações já estão com a numeração final, e a lista de referências vem antes dos apêndices. Para mudar o texto, edite o arquivo da seção (ou o artefato da especificação, no caso dos apêndices) e monte de novo com `perl Texto-TCC/montar-artigo.pl`, no Git Bash, a partir da pasta do TCC. Para atualizar a versão de entrega, no modelo LaTeX do curso, rode em seguida `perl Texto-TCC/gerar-latex.pl --pdf` (grava a pasta Texto-TCC/LaTeX, o .zip para o Overleaf e o PDF compilado); para a versão em Word, `powershell -ExecutionPolicy Bypass -File .\\Texto-TCC\\gerar-docx.ps1`.\n\n"
-  . "${pendencias}As Seções IV.B, V e VI ficam para o TCC2.\n\n"
+  . "Versão de trabalho de $data, montada a partir dos arquivos das Seções I a IV desta pasta, no formato do modelo do curso (Referencias-e-modelos/TCC_Artigo_Modelo_2026.pdf). As citações já estão com a numeração final, e a lista de referências vem no fim. Para mudar o texto, edite o arquivo da seção e monte de novo com `perl Texto-TCC/montar-artigo.pl`, no Git Bash, a partir da pasta do TCC. Para atualizar a versão de entrega, no modelo LaTeX do curso, rode em seguida `perl Texto-TCC/gerar-latex.pl --pdf` (grava a pasta Texto-TCC/LaTeX, o .zip para o Overleaf e o PDF compilado); para a versão em Word, `powershell -ExecutionPolicy Bypass -File .\\Texto-TCC\\gerar-docx.ps1`.\n\n"
+  . "${pendencias}Os artefatos de modelagem não entram no artigo: estão na Especificação Técnica (pasta Especificacao-Tecnica). O desenvolvimento do sistema fica para o TCC2.\n\n"
   . "---\n\n"
   . "# NeuroSight: sistema de rastreamento ocular e emocional em realidade virtual para estudo e apoio ao diagnóstico de pessoas com distúrbios da consciência\n\n"
   . "João Vitor Zanini Pedro, Lucas Sarnacki Guiraud\n\n"
@@ -103,17 +117,10 @@ my $cab = "# Artigo do TCC1 – NeuroSight (versão montada)\n\n"
 
 my $refs = "## REFERÊNCIAS\n\n" . join("\n\n", map { "[$num{$_}] $ref{$_}" } @ordem) . "\n";
 
-# apêndices: gerados da pasta Especificacao por montar-apendices.pl, com as figuras e as tabelas
-# numeradas na sequência das do corpo do artigo
-my ($ultFig) = sort { $b <=> $a } ($todos =~ /^\*\*FIGURA (\d+)\*\*/mg);
-my ($ultTab) = sort { $b <=> $a } ($todos =~ /^\*\*TABELA (\d+)\*\*/mg);
-system($^X, "$dir/montar-apendices.pl", ($ultFig // 0) + 1, ($ultTab // 0) + 1) == 0 or die "montar-apendices.pl falhou\n";
-my $apendices = ler("$dir/Apendices.md");
-$apendices =~ s/^.*?(?=^## APÊNDICE)//ms or die "Apendices.md sem apêndices\n";
-
 open my $o, '>', $saida or die "não gravei $saida: $!\n";
-print $o $cab, join("\n", @corpos), "\n", $refs, "\n", $apendices;
+print $o $cab, join("\n", @corpos), "\n", $refs;
 close $o;
 
 printf "%d referências numeradas; %d sem citação: %s\n", scalar @ordem, scalar @sobra, join(' ', @sobra) || '-';
+printf "%d figuras e %d tabelas\n", scalar @figs, scalar @tabs;
 print join(' ', map { "[$_]=$num{$_}" } @ordem), "\n";

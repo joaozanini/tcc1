@@ -2,10 +2,10 @@
 
 Versão de trabalho de 26/10/2026. Base: os grupos 2.1 a 2.11 de [Requisitos-NeuroSight.md](Requisitos-NeuroSight.md).
 
-- Como no modelo do TCC ("cada diagrama de caso de uso foi definido com um épico"), cada grupo de requisitos virou **um diagrama de casos de uso e um épico** (UC01/E01 a UC11/E11). Há também o diagrama UC00, com os atores e os perfis.
+- Cada grupo de requisitos virou **um diagrama de casos de uso e um épico** (UC01/E01 a UC11/E11), abordagem que veio do exemplo antigo do curso ("cada diagrama de caso de uso foi definido com um épico") e foi mantida. Há também o diagrama UC00, com os atores e os perfis.
 - Cada caso de uso tem **uma história de usuário com o mesmo número** (UC07.6 ↔ HU07.6), no formato SENDO / QUERO / PARA, com critérios de aceitação.
 - A prioridade de cada história é a maior entre as dos requisitos ligados a ela. São 35 Essenciais, 19 Importantes e 6 Desejáveis.
-- Os diagramas estão em [Casos-de-uso-NeuroSight.drawio](Casos-de-uso-NeuroSight.drawio), uma página por diagrama. Abra no draw.io (aplicativo ou diagrams.net no navegador), ajuste o que quiser e exporte cada página em PNG ou PDF para o TCC. Para a figura de exemplo da Seção III, a página "Figura – Sessões e perfis" junta o UC07 (Sessões), que melhor mostra o fluxo principal, com a hierarquia dos perfis do UC00 e o paciente (UC08.3), como no exemplo do curso, que tem uma única figura de casos de uso.
+- Os diagramas estão em [Casos-de-uso-NeuroSight.drawio](Casos-de-uso-NeuroSight.drawio), uma página por diagrama. Abra no draw.io (aplicativo ou diagrams.net no navegador), ajuste o que quiser e exporte cada página em PNG (fator 2, para `imagens-dos-diagramas`). A página "Figura – Sessões e perfis" junta o UC07 (Sessões), que melhor mostra o fluxo principal, com a hierarquia dos perfis do UC00 e o paciente (UC08.3); ela abre o Apêndice A da Especificação Técnica, onde entram os doze diagramas com as tabelas de casos de uso. O artigo, pelo modelo de 2026, não traz diagramas de casos de uso: só os cita na Subseção III.A.
 
 Nos diagramas, os casos de uso com borda tracejada e fundo cinza pertencem a outro diagrama e aparecem só para mostrar a ligação entre eles.
 
