@@ -261,7 +261,7 @@ try {
   }
   $h1 = $doc.Styles.Item(-2);  $h1.Font.Italic = 0;  $h1.Font.SmallCaps = -1; $h1.ParagraphFormat.Alignment = 1; $h1.ParagraphFormat.SpaceBefore = 12; $h1.ParagraphFormat.SpaceAfter = 6
   $h2 = $doc.Styles.Item(-3);  $h2.Font.Italic = -1; $h2.ParagraphFormat.Alignment = 0; $h2.ParagraphFormat.SpaceBefore = 8; $h2.ParagraphFormat.SpaceAfter = 3
-  $ti = $doc.Styles.Item(-63); $ti.Font.Size = 24; $ti.Font.Italic = 0; $ti.ParagraphFormat.Alignment = 1; $ti.ParagraphFormat.SpaceBefore = 0; $ti.ParagraphFormat.SpaceAfter = 12
+  $ti = $doc.Styles.Item(-63); $ti.Font.Size = 22; $ti.Font.Italic = 0; $ti.ParagraphFormat.Alignment = 1; $ti.ParagraphFormat.SpaceBefore = 0; $ti.ParagraphFormat.SpaceAfter = 12
   $nr = $doc.Styles.Item(-30); $nr.Font.Name = 'Times New Roman'; $nr.Font.Size = 8
   $nr.ParagraphFormat.FirstLineIndent = 0; $nr.ParagraphFormat.LineSpacingRule = 0; $nr.ParagraphFormat.SpaceAfter = 0
   $li = $doc.Styles.Item(-49); $li.Font.Name = 'Times New Roman'; $li.Font.Size = 10

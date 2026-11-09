@@ -307,9 +307,9 @@ my $tex = <<'TEX';
 %% Inclusão do Termo de Aprovação (trocar o PDF pelo termo assinado depois da banca)
 \includepdf{termo_aprovacao.pdf}
 
-%% Cria o título do artigo
+%% Cria o título do artigo (22 pt em vez dos 24 pt da classe, para caber em 3 linhas)
 \twocolumn
-\title{\titulo}
+\title{{\fontsize{22}{26}\selectfont \titulo}}
 
 \autores{\autorestitulo}
 
