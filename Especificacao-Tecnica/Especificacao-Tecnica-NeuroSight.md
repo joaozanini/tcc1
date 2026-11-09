@@ -1,6 +1,6 @@
 # ESPECIFICAÇÃO TÉCNICA DO SISTEMA NEUROSIGHT
 
-Gerado em 05/11/2026 por montar-especificacao.pl a partir de Contextualizacao.md, Resumo-e-Abstract.md e da pasta Especificacao. Não edite aqui: mude a fonte e monte de novo. O arquivo gerar-especificacao-docx.ps1 lê este .md e preenche o template do curso no Word.
+Gerado em 09/11/2026 por montar-especificacao.pl a partir de Contextualizacao.md, Resumo-e-Abstract.md e da pasta Especificacao. Não edite aqui: mude a fonte e monte de novo. O arquivo gerar-especificacao-docx.ps1 lê este .md e preenche o template do curso no Word.
 
 Autores: João Vitor Zanini Pedro, Lucas Sarnacki Guiraud
 

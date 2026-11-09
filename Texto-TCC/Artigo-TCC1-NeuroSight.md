@@ -1,6 +1,6 @@
 # Artigo do TCC1 – NeuroSight (versão montada)
 
-Versão de trabalho de 05/11/2026, montada a partir dos arquivos das Seções I a IV desta pasta, no formato do modelo do curso (Referencias-e-modelos/TCC_Artigo_Modelo_2026.pdf). As citações já estão com a numeração final, e a lista de referências vem no fim. Para mudar o texto, edite o arquivo da seção e monte de novo com `perl Texto-TCC/montar-artigo.pl`, no Git Bash, a partir da pasta do TCC. Para atualizar a versão de entrega, no modelo LaTeX do curso, rode em seguida `perl Texto-TCC/gerar-latex.pl --pdf` (grava a pasta Texto-TCC/LaTeX, o .zip para o Overleaf e o PDF compilado); para a versão em Word, `powershell -ExecutionPolicy Bypass -File .\Texto-TCC\gerar-docx.ps1`.
+Versão de trabalho de 09/11/2026, montada a partir dos arquivos das Seções I a IV desta pasta, no formato do modelo do curso (Referencias-e-modelos/TCC_Artigo_Modelo_2026.pdf). As citações já estão com a numeração final, e a lista de referências vem no fim. Para mudar o texto, edite o arquivo da seção e monte de novo com `perl Texto-TCC/montar-artigo.pl`, no Git Bash, a partir da pasta do TCC. Para atualizar a versão de entrega, no modelo LaTeX do curso, rode em seguida `perl Texto-TCC/gerar-latex.pl --pdf` (grava a pasta Texto-TCC/LaTeX, o .zip para o Overleaf e o PDF compilado); para a versão em Word, `powershell -ExecutionPolicy Bypass -File .\Texto-TCC\gerar-docx.ps1`.
 
 Os artefatos de modelagem não entram no artigo: estão na Especificação Técnica (pasta Especificacao-Tecnica). O desenvolvimento do sistema fica para o TCC2.
 

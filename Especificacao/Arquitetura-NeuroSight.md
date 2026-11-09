@@ -19,18 +19,24 @@ Para exportar no draw.io, use Arquivo → Exportar como, PNG com zoom de 300% e 
 
 **Revisão de 05/11/2026 (a pedido do autor):** na Figura 1, as setas passaram a indicar o sentido dos dados (duplas onde há leitura e gravação), a fila do pg-boss foi para a caixa do banco, onde o texto diz que ela fica, e o proxy reverso entrou na figura, porque o texto o cita. A Figura 2 deixou de ser um diagrama de componentes com listas de responsabilidades e virou um fluxo numerado (1 a 10), no estilo de um diagrama de sequência resumido, com os passos que faltavam: o aviso de "pronto" do óculos, a liberação do botão "Iniciar" e a confirmação do início na consulta seguinte. Os nomes dos componentes ficaram iguais nas duas figuras ("App de coleta", "Sistema web", "Servidor"). Fonte de 13 px nas duas páginas e as duas figuras na largura das duas colunas.
 
+**Revisão de 09/11/2026 (a pedido do autor):** a Figura 1 misturava a arquitetura lógica com a implantação e passou a ser uma arquitetura em camadas, como a Figura 1 do modelo de 2026: Apresentação (app de coleta e sistema web), Aplicação (API e processamento) e Dados (banco de dados e armazenamento de arquivos), com o serviço de e-mail fora das camadas, como serviço externo. Saíram da figura a moldura "Servidor (VPS ou da instituição) / Docker Compose", o proxy reverso, o "disco do servidor" e o HTTPS nos rótulos das setas; esses itens continuam no texto da III.C (parágrafo da implantação) e na seção "Implantação" abaixo. O sistema web deixou de aparecer como "Navegador" fora do servidor, o que contradizia o contêiner `web` da implantação. Não há diagrama de implantação: o autor preferiu deixar esse conteúdo só no texto.
+
+**Segunda revisão de 09/11/2026 (a pedido do autor):** a descrição de cada caixa passou a cobrir tudo o que o componente faz, conferida com os requisitos, os diagramas de sequência (SD01 a SD06) e o modelo lógico; a tabela "Componentes" foi alinhada com a figura. Entraram no app o pareamento, a gravação local e o envio dos dados; no sistema web, o visitante (página inicial e autocadastro) e as funções de cada perfil; na API, os perfis de acesso, a comunicação com os óculos, o recebimento e a entrega dos arquivos e o disparo do processamento; no processamento, a conclusão da sessão ou o registro da falha; no banco, o que ele guarda (cadastros, sessões, amostras e auditoria); no armazenamento, o acesso só pela API.
+
+**Terceira revisão de 09/11/2026 (a pedido do autor):** as descrições saíram das caixas, que ficaram só com o nome e a tecnologia do componente (App de coleta: Unreal Engine 5.5 e Meta Quest Pro; Sistema web: Next.js; API: NestJS; Processamento: pg-boss e FFmpeg; Banco de dados: PostgreSQL; Armazenamento de arquivos: disco ou serviço compatível com S3; Serviço de e-mail: externo, SMTP). As responsabilidades de cada componente ficam no texto da III.C e na tabela "Componentes" abaixo, que continua completa.
+
 ## Componentes
 
 | Componente | Tecnologia | Responsabilidade |
 |---|---|---|
-| App de coleta | Unreal Engine 5.5 (C++), OpenXR e Meta XR, no Meta Quest Pro | Baixa a sessão e os estímulos, exibe os estímulos, coleta olhar e expressões, captura os quadros e envia os dados |
-| Sistema web | Next.js (React, TypeScript) | Interface de pesquisadores e administradores; não tem regra de negócio |
-| API | NestJS (TypeScript) com Prisma | Regras de negócio, autenticação (JWT e token do óculos), RLS por transação, auditoria e entrega dos arquivos |
-| Banco de dados | PostgreSQL 15 ou mais novo, com RLS | Dados de todos os tenants, isolados; também guarda a fila de tarefas (pg-boss) |
-| Arquivos | Disco do servidor (volume Docker), atrás de uma interface que permite trocar por S3 | Estímulos, JSON originais, quadros (temporários) e vídeos MP4 |
-| Processamento | Worker com pg-boss e FFmpeg (mesmo código da API, em outro contêiner) | Importa eventos e amostras para o banco e monta o MP4 |
+| App de coleta | Unreal Engine 5.5 (C++), OpenXR e Meta XR, no Meta Quest Pro | Exibe o código de pareamento; consulta o servidor, baixa a sessão e os estímulos e verifica o rastreamento; exibe os estímulos; coleta olhar e expressões e captura os quadros; grava os dados no óculos e os envia em lotes, com reenvio |
+| Sistema web | Next.js (React, TypeScript) | Interface do visitante (página inicial, autocadastro) e dos usuários: login e conta; pacientes, estímulos, modelos e sessões (envio, início e acompanhamento); análise; usuários, óculos e auditoria. Não tem regra de negócio |
+| API | NestJS (TypeScript) com Prisma | Regras de negócio e perfis de acesso; autenticação (JWT e token do óculos) e isolamento por tenant (filtro e RLS por transação); pareamento, entrega da sessão e comando de início aos óculos; recebimento dos dados e entrega dos arquivos e das exportações; disparo do processamento (fila); auditoria; envio dos e-mails |
+| Banco de dados | PostgreSQL 15 ou mais novo, com RLS | Dados de todos os tenants, isolados por RLS: cadastros, sessões, amostras e auditoria; também guarda a fila de tarefas (pg-boss) |
+| Arquivos | Disco do servidor (volume Docker), atrás de uma interface que permite trocar por S3 | Estímulos, JSON originais, quadros (temporários) e vídeos MP4, separados por tenant e entregues só pela API |
+| Processamento | Worker com pg-boss e FFmpeg (mesmo código da API, em outro contêiner) | Pega a tarefa na fila, importa eventos e amostras para o banco, monta o MP4 e deixa a sessão concluída ou, se houver erro, em falha |
 | Serviço de e-mail | SMTP de um provedor externo | Confirmação de e-mail, convite e redefinição de senha |
-| Proxy reverso | Caddy ou Nginx | HTTPS (RNF02) e encaminhamento para a API e o sistema web; aparece na Figura 1 desde 05/11/2026 |
+| Proxy reverso | Caddy ou Nginx | HTTPS (RNF02) e encaminhamento para a API e o sistema web; é infraestrutura e, desde 09/11/2026, fica fora da Figura 1 (só no texto da implantação) |
 
 ## Comunicação
 
