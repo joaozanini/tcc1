@@ -1,6 +1,6 @@
 # Decisões técnicas do NeuroSight
 
-Registro das decisões fechadas em 25/10/2026. Serve de base para a Tabela 2 (Subseção III.B) e para as Subseções III.C e III.D do artigo, e para a contextualização da Especificação Técnica.
+Registro das decisões fechadas em 25/10/2026. Serve de base para a Tabela 2 (Subseção III.B) e para as Subseções III.C e III.D do artigo, e para a contextualização da Especificação Técnica. Em 10/11/2026, a pedido do autor, o ORM passou do Prisma para o TypeORM, que tem integração oficial com o NestJS (`@nestjs/typeorm`).
 
 ## 1. Resumo
 
@@ -39,7 +39,7 @@ Registro das decisões fechadas em 25/10/2026. Serve de base para a Tabela 2 (Su
 | Unreal Engine 5.5 (C++) | App do óculos | Reaproveita o `GazeRecorderActor` da IC |
 | Plugins OpenXR, OpenXR Eye Tracker e Meta XR | Rastreamento ocular e facial no Unreal | O facial ainda precisa de prova de conceito (seção 6) |
 | NestJS (Node.js, TypeScript) | API: regras de negócio, autenticação, recepção dos dados | Documentar a API com OpenAPI (`@nestjs/swagger`): é o contrato com o app do óculos |
-| Prisma | Acesso ao banco e migrações | RLS por extensão do Prisma Client (há exemplo oficial `row-level-security`) |
+| TypeORM | ORM: entidades, repositórios, acesso ao banco e migrações | Integração oficial com o NestJS (`@nestjs/typeorm`). RLS por transação: um `QueryRunner` por requisição executa `SET LOCAL` com o tenant antes das consultas |
 | PostgreSQL (15 ou mais novo) | Banco de dados | RLS para isolar os tenants; a versão 15 é exigida pelo `ON DELETE SET NULL (coluna)` do modelo lógico |
 | Next.js (React, TypeScript) | Sistema web | Só interface: toda regra de negócio fica no NestJS. O player com heatmap da IC (React) pode ser reaproveitado |
 | FFmpeg | Montagem do MP4 a partir dos quadros JPEG | Como no servidor da IC |
@@ -121,7 +121,8 @@ A IC já grava `meta`, `frames[]` e `samples[]` (tempo, validade, ponto 3D, `(u,
 - Meta. Face tracking (Unity): https://developers.meta.com/horizon/documentation/unity/move-face-tracking/
 - Meta. Eye tracking (Unity): https://developers.meta.com/horizon/documentation/unity/move-eye-tracking/
 - Meta. Meta XR plugin settings (Unreal): https://developers.meta.com/horizon/documentation/unreal/unreal-plugin-settings
-- Prisma. Client extension examples (row-level-security): https://www.prisma.io/docs/orm/prisma-client/client-extensions/extension-examples
+- TypeORM. Documentation: https://typeorm.io/docs/getting-started
+- NestJS. Database (TypeORM integration): https://docs.nestjs.com/techniques/database
 - IETF. RFC 8628, OAuth 2.0 Device Authorization Grant: https://www.rfc-editor.org/rfc/rfc8628
 - Road to VR. Meta discontinues Quest Pro: https://roadtovr.com/meta-discontinues-quest-pro/
 - MinIO CE arquivado (fonte secundária; conferir no GitHub do MinIO): https://glukhov.org/data-infrastructure/object-storage/minio-dead/
