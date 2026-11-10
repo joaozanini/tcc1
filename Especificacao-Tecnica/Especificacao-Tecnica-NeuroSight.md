@@ -1,6 +1,6 @@
 # ESPECIFICAÇÃO TÉCNICA DO SISTEMA NEUROSIGHT
 
-Gerado em 09/11/2026 por montar-especificacao.pl a partir de Contextualizacao.md, Resumo-e-Abstract.md e da pasta Especificacao. Não edite aqui: mude a fonte e monte de novo. O arquivo gerar-especificacao-docx.ps1 lê este .md e preenche o template do curso no Word.
+Gerado em 10/11/2026 por montar-especificacao.pl a partir de Contextualizacao.md, Resumo-e-Abstract.md e da pasta Especificacao. Não edite aqui: mude a fonte e monte de novo. O arquivo gerar-especificacao-docx.ps1 lê este .md e preenche o template do curso no Word.
 
 Autores: João Vitor Zanini Pedro, Lucas Sarnacki Guiraud
 
@@ -1393,7 +1393,7 @@ FONTE: Os autores (2026)
 
 1. **`tenant_id` em todas as tabelas com dados de um tenant, inclusive as tabelas filhas.** O RLS fica simples, sem junções nas políticas.
 2. **FKs compostas com o tenant:** por exemplo, `(tenant_id, paciente_id)` aponta para `paciente(tenant_id, id)`. No PostgreSQL, a checagem de FK ignora o RLS. Sem a FK composta, um id de outro tenant enviado por engano ou de propósito seria aceito como referência. Com ela, o próprio banco garante que filho e pai são do mesmo tenant.
-3. **A classe abstrata SequenciaDeEstimulos não vira tabela.** Cada classe concreta tem as suas tabelas: `modelo_sessao` + `item_modelo` e `sessao` + `item_sessao`. Assim, a exclusão em cascata é direta (paciente → sessões → itens) e o mapeamento no Prisma fica simples.
+3. **A classe abstrata SequenciaDeEstimulos não vira tabela.** Cada classe concreta tem as suas tabelas: `modelo_sessao` + `item_modelo` e `sessao` + `item_sessao`. Assim, a exclusão em cascata é direta (paciente → sessões → itens) e o mapeamento nas entidades do TypeORM fica simples.
 4. **As amostras viram tabelas.** No processamento da sessão, o servidor importa o JSON para `amostra_olhar` e `amostra_expressao`, o que facilita os gráficos e o resumo por estímulo (RF55, RF56). O JSON original continua guardado como registro bruto (`coleta.arquivo_json`).
 5. **As expressões faciais ficam num vetor** `real[]`, com uma posição por expressão. A ordem das posições fica na tabela `expressao_facial`.
 6. **`Sessao.autorizados`** vira a tabela de ligação `sessao_autorizado`.

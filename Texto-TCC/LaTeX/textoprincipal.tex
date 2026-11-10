@@ -1,4 +1,4 @@
-% Gerado por Texto-TCC/gerar-latex.pl a partir de Artigo-TCC1-NeuroSight.md em 09/11/2026.
+% Gerado por Texto-TCC/gerar-latex.pl a partir de Artigo-TCC1-NeuroSight.md em 10/11/2026.
 % Para mudar o texto, edite os arquivos das seções em Texto-TCC, monte o artigo com
 % montar-artigo.pl e gere de novo este arquivo; mudanças feitas direto aqui se perdem na próxima geração.
 % O preâmbulo e a capa seguem o textoprincipal.tex do modelo do curso. Diferenças: a classe é
@@ -218,7 +218,7 @@ A documentação do sistema contempla, também, as histórias de usuário. Cada 
     OpenXR e Meta XR & Acesso ao rastreamento ocular e facial no Unreal~\cite{OPENXR}, \cite{META-UNREAL} \\
     TypeScript & Linguagem do \textit{backend} e do \textit{frontend}~\cite{TYPESCRIPT} \\
     NestJS & \textit{Framework} de \textit{backend}~\cite{NESTJS} \\
-    Prisma & Acesso ao banco de dados e migrações~\cite{PRISMA} \\
+    TypeORM & Mapeamento objeto-relacional (ORM), acesso ao banco de dados e migrações~\cite{TYPEORM} \\
     PostgreSQL & Banco de dados, com isolamento por \textit{Row-Level Security}~\cite{POSTGRES} \\
     Next.js & \textit{Framework} de \textit{frontend}~\cite{NEXTJS} \\
     FFmpeg & Montagem do vídeo das sessões~\cite{FFMPEG} \\
@@ -238,7 +238,7 @@ A arquitetura geral do sistema é representada pela Figura 1. Conforme apresenta
   \includegraphics[width=\textwidth]{figuras/Figura-1-arquitetura.png}
 \end{figuralarga}
 
-Na Figura 1, observa-se o aplicativo de coleta, desenvolvido a partir do protótipo da IC, que baixa a sessão e os estímulos, apresenta os estímulos ao paciente, coleta o olhar e as expressões faciais, captura os quadros da cena e envia os dados ao servidor. O sistema web é a interface dos pesquisadores e dos administradores e não contém regras de negócio. Essas regras ficam na API, que também é responsável pela autenticação, pelo isolamento entre os grupos de pesquisa, pelo registro de auditoria e pela entrega dos arquivos. A API acessa o banco de dados por meio do Prisma e guarda os arquivos (estímulos, dados brutos das sessões, quadros e vídeos) no disco do servidor, atrás de uma interface que permite trocar o disco por um serviço de armazenamento compatível com o Amazon S3 sem alterar o restante do sistema. O processamento é executado em segundo plano, a partir de uma fila de tarefas mantida no próprio banco pela biblioteca pg-boss~\cite{PGBOSS}: ele importa as amostras de cada sessão para o banco e monta o vídeo com o FFmpeg. Por fim, um serviço externo de e-mail envia as mensagens de confirmação de cadastro, de convite e de redefinição de senha.
+Na Figura 1, observa-se o aplicativo de coleta, desenvolvido a partir do protótipo da IC, que baixa a sessão e os estímulos, apresenta os estímulos ao paciente, coleta o olhar e as expressões faciais, captura os quadros da cena e envia os dados ao servidor. O sistema web é a interface dos pesquisadores e dos administradores e não contém regras de negócio. Essas regras ficam na API, que também é responsável pela autenticação, pelo isolamento entre os grupos de pesquisa, pelo registro de auditoria e pela entrega dos arquivos. A API acessa o banco de dados por meio do TypeORM e guarda os arquivos (estímulos, dados brutos das sessões, quadros e vídeos) no disco do servidor, atrás de uma interface que permite trocar o disco por um serviço de armazenamento compatível com o Amazon S3 sem alterar o restante do sistema. O processamento é executado em segundo plano, a partir de uma fila de tarefas mantida no próprio banco pela biblioteca pg-boss~\cite{PGBOSS}: ele importa as amostras de cada sessão para o banco e monta o vídeo com o FFmpeg. Por fim, um serviço externo de e-mail envia as mensagens de confirmação de cadastro, de convite e de redefinição de senha.
 
 Os componentes do servidor rodam em contêineres, orquestrados pelo Docker Compose, com um \textit{proxy} reverso responsável pela conexão segura (HTTPS, do inglês \textit{Hypertext Transfer Protocol Secure}). Assim, o sistema pode ser instalado em um servidor virtual privado (VPS, do inglês \textit{Virtual Private Server}) contratado, de preferência hospedado no Brasil, ou em um servidor da própria instituição de pesquisa. A escolha cabe ao protocolo de cada pesquisa, aprovado pelo Comitê de Ética em Pesquisa (CEP), já que o art. 13 da LGPD prevê que os dados de estudos em saúde pública sejam tratados dentro do órgão de pesquisa~\cite{LGPD}. O banco de dados e os arquivos terão cópia de segurança diária. Não há comunicação direta entre o sistema web e o óculos: as duas partes falam apenas com a API, como detalhado a seguir.
 
@@ -376,7 +376,7 @@ As etapas seguintes envolvem a prova de conceito, o desenvolvimento do aplicativ
 
 \bibitem{NESTJS} NESTJS. \textit{NestJS documentation}. 2026. Disponível em: \url{https://docs.nestjs.com/}. Acesso em: 26 out. 2026.
 
-\bibitem{PRISMA} PRISMA DATA. \textit{Prisma documentation}. 2026. Disponível em: \url{https://www.prisma.io/docs}. Acesso em: 26 out. 2026.
+\bibitem{TYPEORM} TYPEORM. \textit{TypeORM documentation}. 2026. Disponível em: \url{https://typeorm.io/docs/getting-started}. Acesso em: 26 out. 2026.
 
 \bibitem{POSTGRES} POSTGRESQL GLOBAL DEVELOPMENT GROUP. \textit{PostgreSQL documentation: row security policies}. 2026. Disponível em: \url{https://www.postgresql.org/docs/current/ddl-rowsecurity.html}. Acesso em: 26 out. 2026.
 
