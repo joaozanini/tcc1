@@ -33,8 +33,9 @@ $cm = 28.3465
 $largTexto = 16.0          # 21 cm menos as margens de 3 cm e 2 cm
 $espColunas = 0.6
 $largColuna = ($largTexto - $espColunas) / 2
-# Figuras ocupam a largura toda da página (como figure* no LaTeX), para o texto continuar legível
-$larguras = @{ 'Figura-1' = 16.0; 'Figura-2' = 16.0 }
+# Largura das figuras, em cm. Até a largura da coluna, a figura fica na coluna, no ponto do texto (como figure no
+# LaTeX); acima disso, ocupa a largura toda da página, no topo da página seguinte (como figure*)
+$larguras = @{ 'Figura-1' = $largColuna; 'Figura-2' = 16.0 }
 $padrao = '\*\*(.+?)\*\*|\*(.+?)\*|`([^`]+)`|\[\^(\d+)\]|\\([<>])'
 
 $jaAberto = @(Get-Process WINWORD -ErrorAction SilentlyContinue).Count -gt 0
@@ -196,15 +197,31 @@ function Novo-Flutuante([string]$legenda, [string]$fonte) {
   $t
 }
 
-function Figura-Flutuante([string]$legenda, [string]$caminho, [string]$fonte) {
-  $t = Novo-Flutuante $legenda $fonte
+function Largura-Da-Figura([string]$caminho) {
   $nome = [System.IO.Path]::GetFileNameWithoutExtension($caminho)
   $larg = $largTexto
   foreach ($k in $larguras.Keys) { if ($nome.StartsWith($k)) { $larg = $larguras[$k] } }
+  $larg
+}
+
+function Figura-Flutuante([string]$legenda, [string]$caminho, [string]$fonte) {
+  $t = Novo-Flutuante $legenda $fonte
   $img = $t.Cell(2, 1).Range.InlineShapes.AddPicture($caminho, $false, $true)
   $img.LockAspectRatio = -1
-  $img.Width = $larg * $cm
+  $img.Width = (Largura-Da-Figura $caminho) * $cm
   $null = $sel.EndKey(6)
+}
+
+# Figura estreita: fica na coluna, no ponto do texto, com a legenda acima e a fonte abaixo, como a tabela estreita
+function Figura-Na-Coluna([string]$legenda, [string]$caminho, [string]$fonte) {
+  Paragrafo $estLegenda $legenda
+  $sel.Style = $estFigura
+  $img = $sel.InlineShapes.AddPicture($caminho, $false, $true)
+  $img.LockAspectRatio = -1
+  $img.Width = (Largura-Da-Figura $caminho) * $cm
+  $null = $sel.EndKey(6)
+  $sel.TypeParagraph()
+  Paragrafo $estFonte $fonte
 }
 
 function Tabela-Flutuante([string]$legenda, $linhasTab, [string]$fonte) {
@@ -343,7 +360,11 @@ try {
         $null = $linhas[$j] -match '^!\[[^\]]*\]\(([^)]+)\)'
         $caminho = Join-Path $pasta $Matches[1]
         $j++; while ($j -lt $linhas.Count -and $linhas[$j] -match '^\s*$') { $j++ }
-        $null = $fila.Add([pscustomobject]@{ Legenda = $legenda; Figura = $caminho; Linhas = $null; Fonte = $linhas[$j]; Pagina = (Pagina-Atual) })
+        if ((Largura-Da-Figura $caminho) -le $largColuna) {
+          Figura-Na-Coluna $legenda $caminho $linhas[$j]
+        } else {
+          $null = $fila.Add([pscustomobject]@{ Legenda = $legenda; Figura = $caminho; Linhas = $null; Fonte = $linhas[$j]; Pagina = (Pagina-Atual) })
+        }
         $k = $j + 1; continue
       }
       $tab = @(); while ($j -lt $linhas.Count -and $linhas[$j] -like '|*') { $tab += $linhas[$j]; $j++ }
