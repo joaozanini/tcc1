@@ -28,8 +28,9 @@ my $saida  = $ARGV[1] // "$dir/LaTeX";
 my ($modelo) = glob("$dir/../TCC_TADS_Exemplo_Sistema*");
 die "pasta do modelo (TCC_TADS_Exemplo_Sistema_de_Estágios) não encontrada ao lado de Texto-TCC\n" unless $modelo && -d $modelo;
 
-# Largura das figuras: todas ocupam as duas colunas (figure*), como na versão em Word
-my %largura = ('Figura-1' => '\textwidth', 'Figura-2' => '\textwidth');
+# Largura das figuras, como na versão em Word: \columnwidth = uma coluna (ambiente figura do tads.tex, que usa
+# figure); \textwidth = as duas colunas (ambiente figuralarga, definido abaixo, que usa figure*)
+my %largura = ('Figura-1' => '\columnwidth', 'Figura-2' => '\textwidth');
 
 sub ler { my ($f) = @_; open my $h, '<', $f or die "não abri $f: $!\n"; local $/; my $t = <$h>; close $h; $t =~ s/\r\n/\n/g; return $t; }
 
@@ -190,7 +191,8 @@ while ($k < @l) {
       my $larg = $largura{ $pref // '' } // '\textwidth';
       $j = proxima($j + 1);
       my $f = fonte($l[$j], "FIGURA $num");
-      push @corpo, "\\begin{figuralarga}[!t]{$leg}{$f}{fig:$num}", "  \\includegraphics[width=$larg]{$img}", '\end{figuralarga}', '';
+      my $amb = $larg eq '\columnwidth' ? 'figura' : 'figuralarga';
+      push @corpo, "\\begin{$amb}[!t]{$leg}{$f}{fig:$num}", "  \\includegraphics[width=$larg]{$img}", "\\end{$amb}", '';
     } else {
       my @tab; while ($j < @l && $l[$j] =~ /^\|/) { push @tab, $l[$j]; $j++ }
       die "TABELA $num sem a tabela logo abaixo da legenda\n" unless @tab;

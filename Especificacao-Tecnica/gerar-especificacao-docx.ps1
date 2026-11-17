@@ -137,6 +137,15 @@ $stylesXml = $stylesXml -replace '</w:styles>\s*$', ($novosEstilos + '</w:styles
 $cm = 360000   # EMU por centímetro
 $largTexto = 16.0;  $altMaxRetrato  = 20.5      # A4 retrato, margens 3 cm (sup./esq.) e 2 cm (inf./dir.), menos legenda e fonte
 $largPais  = 24.7;  $altMaxPaisagem = 13.3      # A4 paisagem, mesmas margens
+# Figuras em retrato mais estreitas que o texto, pelo início do nome do arquivo (largura em cm). A Figura 1 é a do
+# artigo, desenhada para caber em uma coluna: na largura inteira do texto ficaria com 15 cm de altura
+$largurasFig = @{ 'Figura-1-arquitetura' = 9.5 }
+function Largura-Retrato([string]$caminho) {
+  $nome = [System.IO.Path]::GetFileNameWithoutExtension($caminho)
+  $larg = $largTexto
+  foreach ($chave in $largurasFig.Keys) { if ($nome.StartsWith($chave)) { $larg = $largurasFig[$chave] } }
+  $larg
+}
 if (-not (Test-Path (Join-Path $tmp 'word\media'))) { New-Item -ItemType Directory -Path (Join-Path $tmp 'word\media') | Out-Null }
 if ($typesXml -notmatch 'Extension="png"') { $typesXml = $typesXml -replace '<Default Extension="rels"', '<Default Extension="png" ContentType="image/png"/><Default Extension="rels"' }
 $nImg = 0
@@ -272,7 +281,7 @@ while ($k -lt $linhas.Count) {
       } else {
         Retrato
         Escrever (P 'Legenda' $legenda (Ppr-Quebra))
-        Escrever ('<w:p><w:pPr><w:pStyle w:val="Figura"/></w:pPr>' + (Imagem-Xml $caminho $largTexto $altMaxRetrato) + '</w:p>')
+        Escrever ('<w:p><w:pPr><w:pStyle w:val="Figura"/></w:pPr>' + (Imagem-Xml $caminho (Largura-Retrato $caminho) $altMaxRetrato) + '</w:p>')
       }
       Escrever (P 'Fonte' $fonte)
       $nFig++; $k = $j + 1; continue
